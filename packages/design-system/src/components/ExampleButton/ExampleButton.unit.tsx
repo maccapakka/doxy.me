@@ -74,4 +74,3 @@ describe("ExampleButton", () => {
     expect(button.className).toContain("custom-class");
   });
 });
-

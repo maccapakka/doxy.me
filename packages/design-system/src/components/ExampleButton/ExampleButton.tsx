@@ -26,12 +26,7 @@ export const ExampleButton = ({
   onClick,
   className,
 }: ExampleButtonProps) => {
-  const classNames = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    className,
-  ]
+  const classNames = [styles.button, styles[variant], styles[size], className]
     .filter(Boolean)
     .join(" ");
 
@@ -46,4 +41,3 @@ export const ExampleButton = ({
     </button>
   );
 };
-

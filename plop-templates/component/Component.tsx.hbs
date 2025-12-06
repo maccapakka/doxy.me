@@ -1,0 +1,25 @@
+"use client";
+
+import { ReactNode } from "react";
+import styles from "./{{pascalCase name}}.module.css";
+
+export interface {{pascalCase name}}Props {
+  /** The content to display inside the component */
+  children?: ReactNode;
+  /** Additional CSS classes */
+  className?: string;
+}
+
+export const {{pascalCase name}} = ({
+  children,
+  className,
+}: {{pascalCase name}}Props) => {
+  const classNames = [styles.root, className].filter(Boolean).join(" ");
+
+  return (
+    <div className={classNames}>
+      {children}
+    </div>
+  );
+};
+

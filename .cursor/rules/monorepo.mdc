@@ -32,6 +32,8 @@ This is a Turborepo monorepo:
 | `pnpm manypkg:fix` | Auto-fix dependency issues |
 | `pnpm sort-package-json` | Sort all package.json files |
 | `pnpm storybook` | Run Storybook for design-system |
+| `pnpm test` | Run Vitest tests |
+| `pnpm generate:component` | Generate new component with PlopJS |
 
 ## Workspace-Specific Commands
 
@@ -47,6 +49,8 @@ Use `--filter` to target specific workspaces:
 - **Knip** - Dead code detection
 - **Prettier** - Formatting
 - **ESLint** - Linting
+- **Vitest** - Unit testing
+- **PlopJS** - Component scaffolding
 - **Husky + lint-staged** - Pre-commit hooks
 - **commitlint** - Conventional commits
 

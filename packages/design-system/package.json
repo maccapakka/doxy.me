@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+    "./components": "./src/components/index.ts",
+    "./components/*": "./src/components/*/index.ts"
   },
   "scripts": {
     "build-storybook": "storybook build",
     "check-types": "tsc --noEmit",
-    "generate:component": "turbo gen react-component",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "test": "vitest run"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -30,12 +32,10 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@vitest/browser-playwright": "^4.0.15",
-    "@vitest/coverage-v8": "^4.0.15",
     "eslint": "^9.39.1",
     "eslint-plugin-storybook": "^10.1.4",
     "playwright": "^1.57.0",
     "storybook": "^10.1.4",
-    "typescript": "5.9.2",
-    "vitest": "^4.0.15"
+    "typescript": "5.9.2"
   }
 }

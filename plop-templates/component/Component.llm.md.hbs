@@ -1,0 +1,60 @@
+# {{pascalCase name}}
+
+{{description}}
+
+## Import
+
+```tsx
+import { {{pascalCase name}} } from "@doxy/design-system/components";
+// or
+import { {{pascalCase name}} } from "@doxy/design-system/components/{{pascalCase name}}";
+```
+
+## Usage
+
+```tsx
+<{{pascalCase name}}>
+  Content goes here
+</{{pascalCase name}}>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | `undefined` | The content to display inside the component |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<{{pascalCase name}}>Hello World</{{pascalCase name}}>
+```
+
+### With Custom Class
+
+```tsx
+<{{pascalCase name}} className="my-custom-class">
+  Styled content
+</{{pascalCase name}}>
+```
+
+## Accessibility
+
+- Uses semantic HTML elements
+- Supports keyboard navigation where applicable
+
+## File Structure
+
+```
+{{pascalCase name}}/
+├── index.ts                    # Component exports
+├── {{pascalCase name}}.tsx           # Main component
+├── {{pascalCase name}}.unit.tsx      # Unit tests
+├── {{pascalCase name}}.stories.tsx   # Storybook stories
+├── {{pascalCase name}}.module.css    # CSS modules styles
+└── {{pascalCase name}}.llm.md        # This file
+```
+

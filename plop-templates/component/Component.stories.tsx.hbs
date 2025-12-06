@@ -1,0 +1,35 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { {{pascalCase name}} } from "./{{pascalCase name}}";
+
+const meta: Meta<typeof {{pascalCase name}}> = {
+  component: {{pascalCase name}},
+  title: "Components/{{pascalCase name}}",
+  tags: ["autodocs"],
+  argTypes: {
+    children: {
+      description: "The content to display inside the component",
+      control: "text",
+    },
+    className: {
+      description: "Additional CSS classes",
+      control: "text",
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof {{pascalCase name}}>;
+
+export const Default: Story = {
+  args: {
+    children: "{{pascalCase name}} content",
+  },
+};
+
+export const WithCustomClass: Story = {
+  args: {
+    children: "Styled {{pascalCase name}}",
+    className: "custom-{{dashCase name}}",
+  },
+};
+

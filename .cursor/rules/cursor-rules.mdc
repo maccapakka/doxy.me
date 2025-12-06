@@ -33,6 +33,9 @@ When making a change that affects conventions:
 | `pnpm.mdc` | Dependency management | New workspaces, pnpm issues, install patterns |
 | `monorepo.mdc` | Project structure/conventions | Scripts, tooling, structure changes |
 | `cursor-rules.mdc` | This file - meta rules | New rule files added |
+| `component-tests.mdc` | Test update requirements | Component testing conventions change |
+| `component-structure.mdc` | Component folder structure | Component conventions change |
+| `component-llm-docs.mdc` | LLM documentation requirements | LLM doc format changes |
 
 ## Creating New Rule Files
 

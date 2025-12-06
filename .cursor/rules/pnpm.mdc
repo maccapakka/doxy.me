@@ -48,10 +48,10 @@ After any dependency changes, validate monorepo integrity:
 | Workspace | Name | Location |
 |-----------|------|----------|
 | Web App | `@doxy/webapp` | `apps/web` |
-| UI Components | `@doxy/ui` | `packages/ui` |
+| Design System | `@doxy/design-system` | `packages/design-system` |
 | ESLint Config | `@doxy/eslint-config` | `packages/eslint-config` |
 | TypeScript Config | `@doxy/typescript-config` | `packages/typescript-config` |
 
 ## Known Quirks
 
-<!-- Add any pnpm-specific issues or workarounds discovered here -->
+- **Always run `pnpm manypkg:fix` when manypkg errors occur** - Don't manually fix dependency sorting or other manypkg issues. The fix command handles unsorted dependencies, version mismatches, and other common issues automatically.

@@ -12,7 +12,8 @@
     "manypkg": "manypkg check",
     "manypkg:fix": "manypkg fix",
     "prepare": "husky",
-    "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"packages/*/package.json\""
+    "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"packages/*/package.json\"",
+    "storybook": "turbo run storybook --filter=@doxy/design-system"
   },
   "dependencies": {
     "@commitlint/cli": "^20.2.0",

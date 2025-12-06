@@ -31,6 +31,7 @@ This is a Turborepo monorepo:
 | `pnpm manypkg` | Validate monorepo dependencies |
 | `pnpm manypkg:fix` | Auto-fix dependency issues |
 | `pnpm sort-package-json` | Sort all package.json files |
+| `pnpm storybook` | Run Storybook for design-system |
 
 ## Workspace-Specific Commands
 

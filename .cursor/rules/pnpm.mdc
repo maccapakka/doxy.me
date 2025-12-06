@@ -32,7 +32,7 @@ The workspace name should match the `name` field in that workspace's `package.js
 
 **Examples:**
 - `pnpm add react --filter @doxy/webapp` - Install to apps/web
-- `pnpm add zod --filter @doxy/ui` - Install to packages/ui  
+- `pnpm add zod --filter @doxy/ui` - Install to packages/ui
 - `pnpm add lodash --filter @doxy/ui -D` - DevDep in workspace is OK
 
 ## After Installing Dependencies

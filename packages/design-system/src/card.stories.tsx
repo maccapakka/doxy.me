@@ -52,4 +52,3 @@ export const WithCustomClass: Story = {
     className: "custom-card",
   },
 };
-

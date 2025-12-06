@@ -38,4 +38,3 @@ export const WithCustomClass: Story = {
     className: "highlight",
   },
 };
-

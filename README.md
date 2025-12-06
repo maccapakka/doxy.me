@@ -18,7 +18,7 @@ This Turborepo includes the following packages/apps:
 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
-- `@doxy/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@doxy/design-system`: a stub React component library shared by both `web` and `docs` applications
 - `@doxy/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@doxy/typescript-config`: `tsconfig.json`s used throughout the monorepo
 

@@ -43,7 +43,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@doxy/ui':
+      '@doxy/design-system':
         specifier: workspace:*
         version: link:../../packages/ui
       next:

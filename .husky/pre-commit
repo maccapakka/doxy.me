@@ -1,1 +1,2 @@
-# Add pre-commit hooks here (e.g., pnpm run lint)
+pnpm lint
+pnpm exec lint-staged

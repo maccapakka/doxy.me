@@ -3,24 +3,30 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "lint:unused": "knip",
     "manypkg": "manypkg check",
     "manypkg:fix": "manypkg fix",
     "prepare": "husky",
-    "postinstall": "manypkg check"
+    "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"packages/*/package.json\""
+  },
+  "dependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@manypkg/cli": "^0.21.4",
+    "husky": "^9.1.7",
+    "knip": "^5.71.0",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.6.2",
+    "sort-package-json": "^3.5.0",
+    "turbo": "^2.6.3",
+    "typescript": "5.9.2"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "@manypkg/cli": "^0.21.4",
-    "husky": "^9.1.7",
-    "prettier": "^3.6.2",
-    "turbo": "^2.6.3",
-    "typescript": "5.9.2"
   }
 }

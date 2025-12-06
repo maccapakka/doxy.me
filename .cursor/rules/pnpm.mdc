@@ -1,0 +1,57 @@
+---
+description: "Rules for pnpm dependency management in this monorepo"
+alwaysApply: true
+---
+
+# pnpm Dependency Management
+
+This is a pnpm monorepo. Follow these rules strictly when managing dependencies.
+
+## Installing Dependencies at the Root
+
+When installing a package at the **root** of the monorepo:
+
+```bash
+pnpm add <package-name> -w
+```
+
+**Important constraints:**
+- Always use the `-w` (or `--workspace-root`) flag for root-level installs
+- Install ALL root-level packages as regular `dependencies`, NOT `devDependencies`
+- This project uses manypkg which disallows `devDependencies` at the root level
+
+## Installing Dependencies in a Workspace
+
+When installing a package into a **specific workspace** (app or package):
+
+```bash
+pnpm add <package-name> --filter <workspace-name>
+```
+
+The workspace name should match the `name` field in that workspace's `package.json`.
+
+**Examples:**
+- `pnpm add react --filter @doxy/webapp` - Install to apps/web
+- `pnpm add zod --filter @doxy/ui` - Install to packages/ui  
+- `pnpm add lodash --filter @doxy/ui -D` - DevDep in workspace is OK
+
+## After Installing Dependencies
+
+After any dependency changes, validate monorepo integrity:
+
+1. The `manypkg check` script should run automatically via lint-staged on commit
+2. If validation fails or you want to check manually, run: `pnpm manypkg`
+3. To auto-fix issues: `pnpm manypkg:fix`
+
+## Available Workspaces
+
+| Workspace | Name | Location |
+|-----------|------|----------|
+| Web App | `@doxy/webapp` | `apps/web` |
+| UI Components | `@doxy/ui` | `packages/ui` |
+| ESLint Config | `@doxy/eslint-config` | `packages/eslint-config` |
+| TypeScript Config | `@doxy/typescript-config` | `packages/typescript-config` |
+
+## Known Quirks
+
+<!-- Add any pnpm-specific issues or workarounds discovered here -->

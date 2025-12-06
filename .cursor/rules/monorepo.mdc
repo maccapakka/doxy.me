@@ -1,0 +1,69 @@
+---
+description: "General conventions and structure for the doxy monorepo"
+alwaysApply: true
+---
+
+# Doxy Monorepo Conventions
+
+## Project Structure
+
+This is a Turborepo monorepo:
+
+- `apps/` - Applications (web app, future APIs, etc.)
+- `packages/` - Shared libraries and configs
+- Root contains tooling config (Turbo, Prettier, Husky, etc.)
+
+## Package Naming
+
+- Root package: `@doxy/monorepo`
+- All packages and apps use the `@doxy/<name>` scope
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `pnpm dev` | Run dev servers for all apps |
+| `pnpm build` | Build all packages and apps |
+| `pnpm lint` | Lint all packages |
+| `pnpm lint:fix` | Fix linting issues |
+| `pnpm check-types` | Type-check all packages |
+| `pnpm lint:unused` | Find unused deps/exports (Knip) |
+| `pnpm manypkg` | Validate monorepo dependencies |
+| `pnpm manypkg:fix` | Auto-fix dependency issues |
+| `pnpm sort-package-json` | Sort all package.json files |
+
+## Workspace-Specific Commands
+
+Use `--filter` to target specific workspaces:
+
+- `pnpm --filter @doxy/webapp dev`
+- `pnpm --filter @doxy/ui build`
+
+## Code Quality Stack
+
+- **Turborepo** - Build orchestration
+- **manypkg** - Dependency validation
+- **Knip** - Dead code detection
+- **Prettier** - Formatting
+- **ESLint** - Linting
+- **Husky + lint-staged** - Pre-commit hooks
+- **commitlint** - Conventional commits
+
+## Commit Convention
+
+Format: `type(scope): description`
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `build`, `ci`
+
+## Adding New Packages/Apps
+
+**New shared package (`packages/`):**
+1. Create directory under `packages/`
+2. Name with `@doxy/` scope in `package.json`
+3. Extend `@doxy/typescript-config` and `@doxy/eslint-config`
+4. Run `pnpm install` to link
+
+**New app (`apps/`):**
+1. Create directory under `apps/`
+2. Name with `@doxy/` scope in `package.json`
+3. Import shared packages as needed

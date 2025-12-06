@@ -1,0 +1,44 @@
+---
+description: "Meta-rule for maintaining Cursor rules - keep documentation in sync with project changes"
+alwaysApply: true
+---
+
+# Cursor Rules Maintenance
+
+The `.cursor/rules/` directory contains project conventions that guide AI assistance. **These rules must stay current with the project.**
+
+## When to Update Rules
+
+Update the relevant `.mdc` file when:
+
+1. **Adding/removing npm scripts** - Update the scripts table in `monorepo.mdc`
+2. **Adding new workspaces** - Update the workspace table in `pnpm.mdc`
+3. **Discovering pnpm quirks** - Add to "Known Quirks" section in `pnpm.mdc`
+4. **Changing tooling** - Update the code quality stack in `monorepo.mdc`
+5. **New conventions established** - Document in the appropriate rule file
+
+## How to Update
+
+When making a change that affects conventions:
+
+1. Identify which rule file is affected
+2. Update the relevant section
+3. Keep formatting consistent (tables, headers, etc.)
+4. Be concise - rules should be scannable, not verbose
+
+## Rule Files Overview
+
+| File | Purpose | Update When |
+|------|---------|-------------|
+| `pnpm.mdc` | Dependency management | New workspaces, pnpm issues, install patterns |
+| `monorepo.mdc` | Project structure/conventions | Scripts, tooling, structure changes |
+| `cursor-rules.mdc` | This file - meta rules | New rule files added |
+
+## Creating New Rule Files
+
+If a new domain of conventions emerges (e.g., testing, deployment), create a new `.mdc` file:
+
+1. Create `.cursor/rules/<domain>.mdc`
+2. Add frontmatter with `description` and `alwaysApply: true`
+3. Document the conventions clearly
+4. Update this file's table above

@@ -16,12 +16,6 @@
     transform 0.1s ease;
 }
 
-/* Test camelCase selector for CSS modules */
-.buttonIcon {
-  width: 16px;
-  height: 16px;
-}
-
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.5;

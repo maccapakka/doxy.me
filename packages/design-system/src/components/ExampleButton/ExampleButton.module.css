@@ -9,12 +9,17 @@
 
   font-family: inherit;
   font-weight: 500;
-  color: red;
 
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
     transform 0.1s ease;
+}
+
+/* Test camelCase selector for CSS modules */
+.buttonIcon {
+  width: 16px;
+  height: 16px;
 }
 
 .button:disabled {

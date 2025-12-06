@@ -25,6 +25,8 @@ This is a Turborepo monorepo:
 | `pnpm dev` | Run dev servers for all apps |
 | `pnpm build` | Build all packages and apps |
 | `pnpm lint` | Lint all packages |
+| `pnpm lint:css` | Lint all CSS files with Stylelint |
+| `pnpm lint:css:fix` | Auto-fix CSS linting issues |
 | `pnpm lint:fix` | Fix linting issues |
 | `pnpm check-types` | Type-check all packages |
 | `pnpm lint:unused` | Find unused deps/exports (Knip) |
@@ -48,7 +50,8 @@ Use `--filter` to target specific workspaces:
 - **manypkg** - Dependency validation
 - **Knip** - Dead code detection
 - **Prettier** - Formatting
-- **ESLint** - Linting
+- **ESLint** - JavaScript/TypeScript linting
+- **Stylelint** - CSS linting with property ordering
 - **Vitest** - Unit testing
 - **PlopJS** - Component scaffolding
 - **Husky + lint-staged** - Pre-commit hooks

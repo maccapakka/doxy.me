@@ -7,6 +7,15 @@ const meta: Meta<typeof Text> = {
   component: Text,
   title: "Components/Text",
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      subtitle: "A foundational typography primitive with semantic aliases",
+      description: {
+        component:
+          "Text renders typography using design tokens from a 1.2 typescale. It supports 10 variants from `title-1` (largest) to `caption-2` (smallest), semantic colors, and polymorphic rendering via the `as` prop. Use the `Title`, `Heading`, and `Caption` aliases for improved code readability.",
+      },
+    },
+  },
   argTypes: {
     // Element
     as: {
@@ -77,6 +86,15 @@ export default meta;
 type Story = StoryObj<typeof Text>;
 
 export const Default: Story = {
+  name: "Typography Scale",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "All 10 typography variants from `title-1` (largest) to `caption-2` (smallest), each displayed with a pangram to showcase the complete character set.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={6}>
       {(
@@ -107,6 +125,15 @@ export const Default: Story = {
 };
 
 export const AllColors: Story = {
+  name: "Color Palette",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "All semantic color options. Use these to convey meaning: `critical` for errors, `positive` for success, `warning` for cautions, and `secondary` for muted text.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={2} padding={4} background="secondary">
       <Text color="primary">Primary color</Text>
@@ -124,6 +151,15 @@ export const AllColors: Story = {
 };
 
 export const VariantWithColor: Story = {
+  name: "Variant + Color",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Combine any typography variant with any color. This example shows a `featured-1` variant with `critical` color for an error message.",
+      },
+    },
+  },
   args: {
     variant: "featured-1",
     color: "critical",
@@ -132,6 +168,15 @@ export const VariantWithColor: Story = {
 };
 
 export const PolymorphicRendering: Story = {
+  name: "Polymorphic (as prop)",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `as` prop to render semantic HTML elements. Typography styling is independent of the element, so you can use `title-1` styling on an `<h1>` or any other element.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={4}>
       <Text as="h1" variant="title-1">
@@ -152,6 +197,15 @@ export const PolymorphicRendering: Story = {
 
 // Semantic aliases stories
 export const TitleAlias: Story = {
+  name: "Alias: Title",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The `Title` alias is identical to `Text` but improves code readability when used for page or section titles.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={4}>
       <Title variant="title-1">Page Title with Title alias</Title>
@@ -166,6 +220,15 @@ export const TitleAlias: Story = {
 };
 
 export const HeadingAlias: Story = {
+  name: "Alias: Heading",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The `Heading` alias is identical to `Text` but improves code readability when used for section headings and subheadings.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={4}>
       <Heading variant="featured-1">Section Heading</Heading>
@@ -180,6 +243,15 @@ export const HeadingAlias: Story = {
 };
 
 export const CaptionAlias: Story = {
+  name: "Alias: Caption",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The `Caption` alias is identical to `Text` but improves code readability when used for captions, labels, and metadata.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={2}>
       <Caption variant="caption-1">Image caption text</Caption>
@@ -194,6 +266,15 @@ export const CaptionAlias: Story = {
 };
 
 export const TypographyHierarchy: Story = {
+  name: "Typography Hierarchy",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A realistic example showing how to combine Title, Heading, Text, and Caption to create a clear visual hierarchy on a page.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={6} padding={6}>
       <Title as="h1" variant="title-1">
@@ -220,6 +301,15 @@ export const TypographyHierarchy: Story = {
 };
 
 export const FormLabels: Story = {
+  name: "Form Labels",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use Text with `as="label"` for form labels and Caption for help text or validation messages. Pair with semantic colors for error states.',
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={4}>
       <Box direction="column" gap={1}>
@@ -253,6 +343,15 @@ export const FormLabels: Story = {
 };
 
 export const ErrorStates: Story = {
+  name: "Feedback States",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use semantic colors to communicate feedback: `critical` for errors, `positive` for success, and `warning` for cautions.",
+      },
+    },
+  },
   render: () => (
     <Box direction="column" gap={4}>
       <Box direction="column" gap={1}>

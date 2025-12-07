@@ -235,71 +235,60 @@ export const PolymorphicRendering: Story = {
 };
 
 // Semantic aliases stories
-export const TitleAlias: Story = {
-  name: "Alias: Title",
+export const SemanticAliases: Story = {
+  name: "Semantic Aliases",
   parameters: {
     docs: {
       description: {
         story:
-          "The `Title` alias is identical to `Text` but improves code readability when used for page or section titles.",
+          "The `Title`, `Heading`, and `Caption` aliases are identical to `Text` but improve code readability. Use `Title` for page/section titles, `Heading` for section headings, and `Caption` for captions, labels, and metadata.",
       },
     },
   },
   render: () => (
-    <Box direction="column" gap={4}>
-      <Title variant="title-1">Page Title with Title alias</Title>
-      <Title variant="title-2" color="primary">
-        Colored Title
-      </Title>
-      <Title as="h1" variant="title-1">
-        H1 Title
-      </Title>
-    </Box>
-  ),
-};
-
-export const HeadingAlias: Story = {
-  name: "Alias: Heading",
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The `Heading` alias is identical to `Text` but improves code readability when used for section headings and subheadings.",
-      },
-    },
-  },
-  render: () => (
-    <Box direction="column" gap={4}>
-      <Heading variant="featured-1">Section Heading</Heading>
-      <Heading variant="featured-2" color="accent">
-        Accented Heading
-      </Heading>
-      <Heading as="h3" variant="title-3">
-        H3 Heading
-      </Heading>
-    </Box>
-  ),
-};
-
-export const CaptionAlias: Story = {
-  name: "Alias: Caption",
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The `Caption` alias is identical to `Text` but improves code readability when used for captions, labels, and metadata.",
-      },
-    },
-  },
-  render: () => (
-    <Box direction="column" gap={2}>
-      <Caption variant="caption-1">Image caption text</Caption>
-      <Caption variant="caption-2" color="secondary">
-        Secondary caption
-      </Caption>
-      <Caption variant="body-2" color="critical">
-        Error message as caption
-      </Caption>
+    <Box direction="column" gap={8}>
+      <Box direction="column" gap={4}>
+        <Text variant="body-2" color="secondary">
+          Title Alias
+        </Text>
+        <Box direction="column" gap={3}>
+          <Title variant="title-1">Page Title with Title alias</Title>
+          <Title variant="title-2" color="primary">
+            Colored Title
+          </Title>
+          <Title as="h1" variant="title-1">
+            H1 Title
+          </Title>
+        </Box>
+      </Box>
+      <Box direction="column" gap={4}>
+        <Text variant="body-2" color="secondary">
+          Heading Alias
+        </Text>
+        <Box direction="column" gap={3}>
+          <Heading variant="featured-1">Section Heading</Heading>
+          <Heading variant="featured-2" color="accent">
+            Accented Heading
+          </Heading>
+          <Heading as="h3" variant="title-3">
+            H3 Heading
+          </Heading>
+        </Box>
+      </Box>
+      <Box direction="column" gap={4}>
+        <Text variant="body-2" color="secondary">
+          Caption Alias
+        </Text>
+        <Box direction="column" gap={2}>
+          <Caption variant="caption-1">Image caption text</Caption>
+          <Caption variant="caption-2" color="secondary">
+            Secondary caption
+          </Caption>
+          <Caption variant="body-2" color="critical">
+            Error message as caption
+          </Caption>
+        </Box>
+      </Box>
     </Box>
   ),
 };
@@ -529,96 +518,94 @@ export const ItalicText: Story = {
   ),
 };
 
-export const Truncation: Story = {
-  name: "Truncation",
+export const TextOverflowAndWrapping: Story = {
+  name: "Text Overflow & Wrapping",
   parameters: {
     docs: {
       description: {
         story:
-          "Use `truncate` for single-line ellipsis or `maxLines` for multi-line clamping.",
+          "Control how text overflows and wraps. Use `truncate` for single-line ellipsis, `maxLines` for multi-line clamping, and `wrap` to control wrapping behavior.",
       },
     },
   },
   render: () => (
-    <Box direction="column" gap={6}>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          truncate (single line)
-        </Caption>
-        <Box style={{ maxWidth: "300px" }}>
-          <Text truncate>
-            This is a very long text that will be truncated with an ellipsis
-            when it exceeds the container width.
-          </Text>
+    <Box direction="column" gap={8}>
+      <Box direction="column" gap={4}>
+        <Text variant="body-2" color="secondary">
+          Truncation
+        </Text>
+        <Box direction="column" gap={4}>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              truncate (single line)
+            </Caption>
+            <Box style={{ maxWidth: "300px" }}>
+              <Text truncate>
+                This is a very long text that will be truncated with an ellipsis
+                when it exceeds the container width.
+              </Text>
+            </Box>
+          </Box>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              maxLines=&#123;2&#125;
+            </Caption>
+            <Box style={{ maxWidth: "300px" }}>
+              <Text maxLines={2}>
+                This is a longer text that will be clamped to exactly two lines.
+                Any content beyond the second line will be hidden with an
+                ellipsis at the end.
+              </Text>
+            </Box>
+          </Box>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              maxLines=&#123;3&#125;
+            </Caption>
+            <Box style={{ maxWidth: "300px" }}>
+              <Text maxLines={3}>
+                This is an even longer text that demonstrates three-line
+                clamping. The content will be visible for three full lines before
+                being truncated with an ellipsis. This is useful for card
+                descriptions or preview text.
+              </Text>
+            </Box>
+          </Box>
         </Box>
       </Box>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          maxLines=&#123;2&#125;
-        </Caption>
-        <Box style={{ maxWidth: "300px" }}>
-          <Text maxLines={2}>
-            This is a longer text that will be clamped to exactly two lines. Any
-            content beyond the second line will be hidden with an ellipsis at
-            the end.
-          </Text>
+      <Box direction="column" gap={4}>
+        <Text variant="body-2" color="secondary">
+          Text Wrapping
+        </Text>
+        <Box direction="column" gap={4}>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              wrap=&quot;balance&quot; (balances line lengths)
+            </Caption>
+            <Box style={{ maxWidth: "400px" }}>
+              <Title variant="title-2" wrap="balance">
+                A Balanced Heading That Wraps Nicely Across Lines
+              </Title>
+            </Box>
+          </Box>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              wrap=&quot;pretty&quot; (avoids orphans)
+            </Caption>
+            <Box style={{ maxWidth: "400px" }}>
+              <Text wrap="pretty">
+                This paragraph uses pretty wrapping which tries to avoid orphan
+                words at the end of a paragraph.
+              </Text>
+            </Box>
+          </Box>
+          <Box direction="column" gap={1}>
+            <Caption variant="caption-1" color="secondary">
+              wrap=&quot;nowrap&quot;
+            </Caption>
+            <Text wrap="nowrap">This text will not wrap to the next line.</Text>
+          </Box>
         </Box>
-      </Box>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          maxLines=&#123;3&#125;
-        </Caption>
-        <Box style={{ maxWidth: "300px" }}>
-          <Text maxLines={3}>
-            This is an even longer text that demonstrates three-line clamping.
-            The content will be visible for three full lines before being
-            truncated with an ellipsis. This is useful for card descriptions or
-            preview text.
-          </Text>
-        </Box>
-      </Box>
-    </Box>
-  ),
-};
-
-export const TextWrap: Story = {
-  name: "Text Wrap",
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `wrap` prop to control text wrapping. `balance` and `pretty` are particularly useful for headings.",
-      },
-    },
-  },
-  render: () => (
-    <Box direction="column" gap={6}>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          wrap=&quot;balance&quot; (balances line lengths)
-        </Caption>
-        <Box style={{ maxWidth: "400px" }}>
-          <Title variant="title-2" wrap="balance">
-            A Balanced Heading That Wraps Nicely Across Lines
-          </Title>
-        </Box>
-      </Box>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          wrap=&quot;pretty&quot; (avoids orphans)
-        </Caption>
-        <Box style={{ maxWidth: "400px" }}>
-          <Text wrap="pretty">
-            This paragraph uses pretty wrapping which tries to avoid orphan
-            words at the end of a paragraph.
-          </Text>
-        </Box>
-      </Box>
-      <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
-          wrap=&quot;nowrap&quot;
-        </Caption>
-        <Text wrap="nowrap">This text will not wrap to the next line.</Text>
       </Box>
     </Box>
   ),

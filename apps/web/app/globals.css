@@ -59,7 +59,7 @@ h2 {
 }
 
 .color-swatch.primary:hover {
-  background-color: var(--dxy-color-primary-faded);
+  background-color: var(--dxy-color-primary-hover);
 }
 
 .color-swatch.secondary {
@@ -67,7 +67,7 @@ h2 {
 }
 
 .color-swatch.secondary:hover {
-  background-color: var(--dxy-color-secondary-faded);
+  background-color: var(--dxy-color-secondary-hover);
 }
 
 .color-swatch.accent {
@@ -75,7 +75,7 @@ h2 {
 }
 
 .color-swatch.accent:hover {
-  background-color: var(--dxy-color-accent-faded);
+  background-color: var(--dxy-color-accent-hover);
 }
 
 .color-swatch.warning {
@@ -84,7 +84,7 @@ h2 {
 }
 
 .color-swatch.warning:hover {
-  background-color: var(--dxy-color-warning-faded);
+  background-color: var(--dxy-color-warning-hover);
 }
 
 .color-swatch.positive {
@@ -92,7 +92,7 @@ h2 {
 }
 
 .color-swatch.positive:hover {
-  background-color: var(--dxy-color-positive-faded);
+  background-color: var(--dxy-color-positive-hover);
 }
 
 .color-swatch.critical {
@@ -100,7 +100,7 @@ h2 {
 }
 
 .color-swatch.critical:hover {
-  background-color: var(--dxy-color-critical-faded);
+  background-color: var(--dxy-color-critical-hover);
 }
 
 /* Spacing demo */

@@ -45,19 +45,48 @@ Tokens are defined in `packages/design-system/src/tokens/` using the `--dxy-` pr
 
 ### Color Tokens
 
-Colors are defined in oklch format. Most colors have a base and faded variant.
+Colors are defined in oklch format. Each semantic color has 5 programmatically generated variants using `color-mix()`.
 
-| Token | Purpose | Faded Variant |
-|-------|---------|---------------|
-| `--dxy-color-primary` | Primary actions, links (Blue) | `--dxy-color-primary-faded` |
-| `--dxy-color-secondary` | Secondary elements (Slate) | `--dxy-color-secondary-faded` |
-| `--dxy-color-accent` | Highlights, accents (Violet) | `--dxy-color-accent-faded` |
-| `--dxy-color-warning` | Warning states (Amber) | `--dxy-color-warning-faded` |
-| `--dxy-color-positive` | Success states (Green) | `--dxy-color-positive-faded` |
-| `--dxy-color-critical` | Error states, destructive actions (Red) | `--dxy-color-critical-faded` |
-| `--dxy-color-neutral` | Placeholder, muted backgrounds (Light gray) | `--dxy-color-neutral-faded` |
-| `--dxy-color-white` | Pure white | - |
-| `--dxy-color-black` | Pure black | - |
+**Base Colors:**
+
+| Token | Purpose |
+|-------|---------|
+| `--dxy-color-primary` | Primary actions, links (Blue) |
+| `--dxy-color-secondary` | Secondary elements (Slate) |
+| `--dxy-color-accent` | Highlights, accents (Violet) |
+| `--dxy-color-warning` | Warning states (Amber) |
+| `--dxy-color-positive` | Success states (Green) |
+| `--dxy-color-critical` | Error states, destructive actions (Red) |
+| `--dxy-color-neutral` | Placeholder, muted backgrounds (Light gray) |
+| `--dxy-color-white` | Pure white |
+| `--dxy-color-black` | Pure black |
+
+**Color Variant System:**
+
+Each semantic color (primary, secondary, accent, warning, positive, critical, neutral) has 5 variants:
+
+| Variant | Use Case | Formula |
+|---------|----------|---------|
+| `-subtle` | Very light backgrounds, alert containers, badges | `color-mix(in oklch, {color}, var(--dxy-color-mix-subtle-base) var(--dxy-color-mix-subtle-value))` |
+| `-bold` | Darker/saturated version, text on light backgrounds | `color-mix(in oklch, {color}, var(--dxy-color-mix-bold-base) var(--dxy-color-mix-bold-value))` |
+| `-hover` | Interactive hover states for buttons/links | `color-mix(in oklch, {color}, var(--dxy-color-mix-hover-base) var(--dxy-color-mix-hover-value))` |
+| `-focus` | Focus rings and focus indicators | `color-mix(in oklch, {color}, var(--dxy-color-mix-focus-base) var(--dxy-color-mix-focus-value))` |
+| `-active` | Pressed/active states for interactive elements | `color-mix(in oklch, {color}, var(--dxy-color-mix-active-base) var(--dxy-color-mix-active-value))` |
+
+**Configuration Variables:**
+
+| Variable | Value | Purpose |
+|----------|-------|---------|
+| `--dxy-color-mix-subtle-base` | white | Base color for subtle variants |
+| `--dxy-color-mix-subtle-value` | 90% | Mix percentage for subtle variants |
+| `--dxy-color-mix-bold-base` | black | Base color for bold variants |
+| `--dxy-color-mix-bold-value` | 20% | Mix percentage for bold variants |
+| `--dxy-color-mix-hover-base` | black | Base color for hover states |
+| `--dxy-color-mix-hover-value` | 12% | Mix percentage for hover states |
+| `--dxy-color-mix-focus-base` | black | Base color for focus states |
+| `--dxy-color-mix-focus-value` | 5% | Mix percentage for focus states |
+| `--dxy-color-mix-active-base` | black | Base color for active states |
+| `--dxy-color-mix-active-value` | 25% | Mix percentage for active states |
 
 ### Spacing Tokens
 
@@ -118,7 +147,7 @@ Typography uses a 1.2 typescale ratio with body-1 (1.6rem = 16px) as the base. T
 
 | File | Contents |
 |------|----------|
-| `color.css` | Color tokens with base and faded variants |
+| `color.css` | Color tokens with base colors, 5 variants per color, and mixing configuration |
 | `spacing.css` | Spacing scale tokens |
 | `typography.css` | Typography scale and variant tokens |
 | `index.css` | Imports all tokens + minimal CSS reset |

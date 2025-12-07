@@ -565,8 +565,8 @@ export const TextOverflowAndWrapping: Story = {
             <Box style={{ maxWidth: "300px" }}>
               <Text maxLines={3}>
                 This is an even longer text that demonstrates three-line
-                clamping. The content will be visible for three full lines before
-                being truncated with an ellipsis. This is useful for card
+                clamping. The content will be visible for three full lines
+                before being truncated with an ellipsis. This is useful for card
                 descriptions or preview text.
               </Text>
             </Box>

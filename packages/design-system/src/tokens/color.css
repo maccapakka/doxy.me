@@ -242,4 +242,6 @@
   --dxy-color-foreground: var(--dxy-color-neutral);
   --dxy-color-foreground-headings: var(--dxy-color-secondary);
   --dxy-color-background: var(--dxy-color-primary);
+  --dxy-color-disabled: var(--dxy-color-neutral-subtle);
+  --dxy-color-disabled-foreground: var(--dxy-color-neutral);
 }

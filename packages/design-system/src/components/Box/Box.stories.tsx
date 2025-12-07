@@ -143,6 +143,8 @@ const meta: Meta<typeof Box> = {
         "neutral",
         "neutral-subtle",
         "neutral-bold",
+        "black",
+        "white",
       ],
       table: { category: "Styling" },
     },
@@ -577,6 +579,19 @@ export const BackgroundColors: Story = {
           </Box>
           <Box background="neutral-bold" padding={4}>
             <Text style={{ color: "white" }}>neutral-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Black & White
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="black" padding={4}>
+            <Text style={{ color: "white" }}>black — Pure black</Text>
+          </Box>
+          <Box background="white" padding={4}>
+            <Text>white — Pure white</Text>
           </Box>
         </Box>
       </Box>

@@ -256,6 +256,24 @@ describe("Box", () => {
       );
     });
 
+    it("sets --_bg CSS variable with black color", () => {
+      const { container } = render(<Box background="black">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-black)"
+      );
+    });
+
+    it("sets --_bg CSS variable with white color", () => {
+      const { container } = render(<Box background="white">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-white)"
+      );
+    });
+
     it("does not set --_bg CSS variable when background is undefined", () => {
       const { container } = render(<Box>Content</Box>);
       const box = container.firstChild as HTMLElement;

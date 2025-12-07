@@ -27,7 +27,9 @@ type BackgroundColor =
   | "critical-bold"
   | "neutral"
   | "neutral-subtle"
-  | "neutral-bold";
+  | "neutral-bold"
+  | "black"
+  | "white";
 
 /** Flex direction values */
 type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";

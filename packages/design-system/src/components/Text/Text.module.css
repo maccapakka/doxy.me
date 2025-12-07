@@ -1,0 +1,118 @@
+/**
+ * Text Component Styles
+ *
+ * Typography variants mapped to design tokens.
+ * Color classes for semantic text colors.
+ */
+
+.root {
+  /* Base reset */
+  margin: 0;
+  font-family: var(--dxy-type-ff-body);
+}
+
+/* ========================================
+ * Typography Variants
+ * ======================================== */
+
+/* Title variants */
+.title-1 {
+  font-family: var(--dxy-type-ff-heading);
+  font-size: var(--dxy-type-title-1-size);
+  font-weight: var(--dxy-type-title-1-weight);
+  line-height: var(--dxy-type-title-1-lh);
+  letter-spacing: var(--dxy-type-title-1-ls);
+}
+
+.title-2 {
+  font-family: var(--dxy-type-ff-heading);
+  font-size: var(--dxy-type-title-2-size);
+  font-weight: var(--dxy-type-title-2-weight);
+  line-height: var(--dxy-type-title-2-lh);
+  letter-spacing: var(--dxy-type-title-2-ls);
+}
+
+.title-3 {
+  font-family: var(--dxy-type-ff-heading);
+  font-size: var(--dxy-type-title-3-size);
+  font-weight: var(--dxy-type-title-3-weight);
+  line-height: var(--dxy-type-title-3-lh);
+  letter-spacing: var(--dxy-type-title-3-ls);
+}
+
+/* Featured variants */
+.featured-1 {
+  font-size: var(--dxy-type-featured-1-size);
+  font-weight: var(--dxy-type-featured-1-weight);
+  line-height: var(--dxy-type-featured-1-lh);
+}
+
+.featured-2 {
+  font-size: var(--dxy-type-featured-2-size);
+  font-weight: var(--dxy-type-featured-2-weight);
+  line-height: var(--dxy-type-featured-2-lh);
+}
+
+.featured-3 {
+  font-size: var(--dxy-type-featured-3-size);
+  font-weight: var(--dxy-type-featured-3-weight);
+  line-height: var(--dxy-type-featured-3-lh);
+}
+
+/* Body variants */
+.body-1 {
+  font-size: var(--dxy-type-body-1-size);
+  font-weight: var(--dxy-type-body-1-weight);
+  line-height: var(--dxy-type-body-1-lh);
+}
+
+.body-2 {
+  font-size: var(--dxy-type-body-2-size);
+  font-weight: var(--dxy-type-body-2-weight);
+  line-height: var(--dxy-type-body-2-lh);
+}
+
+/* Caption variants */
+.caption-1 {
+  font-size: var(--dxy-type-caption-1-size);
+  font-weight: var(--dxy-type-caption-1-weight);
+  line-height: var(--dxy-type-caption-1-lh);
+}
+
+.caption-2 {
+  font-size: var(--dxy-type-caption-2-size);
+  font-weight: var(--dxy-type-caption-2-weight);
+  line-height: var(--dxy-type-caption-2-lh);
+}
+
+/* ========================================
+ * Color Variants
+ * ======================================== */
+
+.primary {
+  color: var(--dxy-color-primary);
+}
+
+.secondary {
+  color: var(--dxy-color-secondary);
+}
+
+.accent {
+  color: var(--dxy-color-accent);
+}
+
+.warning {
+  color: var(--dxy-color-warning);
+}
+
+.positive {
+  color: var(--dxy-color-positive);
+}
+
+.critical {
+  color: var(--dxy-color-critical);
+}
+
+.neutral {
+  color: var(--dxy-color-neutral);
+}

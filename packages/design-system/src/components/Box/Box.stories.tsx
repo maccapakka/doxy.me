@@ -1,5 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Box, Section, Article, Header, Footer, Aside } from "./Box";
+import {
+  Box,
+  Section,
+  Article,
+  Header,
+  Footer,
+  Aside,
+  Stack,
+  Cluster,
+  Placeholder,
+} from "./Box";
 
 const meta: Meta<typeof Box> = {
   component: Box,
@@ -69,6 +79,7 @@ const meta: Meta<typeof Box> = {
         "warning",
         "positive",
         "critical",
+        "neutral",
       ],
     },
     children: {
@@ -85,20 +96,6 @@ const meta: Meta<typeof Box> = {
 export default meta;
 type Story = StoryObj<typeof Box>;
 
-/** Placeholder box for demos */
-const PlaceholderBox = ({ children }: { children: React.ReactNode }) => (
-  <div
-    style={{
-      padding: "16px 24px",
-      backgroundColor: "oklch(90% 0.02 260deg)",
-      borderRadius: "4px",
-      fontSize: "14px",
-    }}
-  >
-    {children}
-  </div>
-);
-
 export const Default: Story = {
   args: {
     children: "Box content",
@@ -114,9 +111,9 @@ export const FlexColumn: Story = {
   },
   render: (args) => (
     <Box {...args}>
-      <PlaceholderBox>Item 1</PlaceholderBox>
-      <PlaceholderBox>Item 2</PlaceholderBox>
-      <PlaceholderBox>Item 3</PlaceholderBox>
+      <Placeholder>Item 1</Placeholder>
+      <Placeholder>Item 2</Placeholder>
+      <Placeholder>Item 3</Placeholder>
     </Box>
   ),
 };
@@ -129,9 +126,9 @@ export const FlexRow: Story = {
   },
   render: (args) => (
     <Box {...args}>
-      <PlaceholderBox>Item 1</PlaceholderBox>
-      <PlaceholderBox>Item 2</PlaceholderBox>
-      <PlaceholderBox>Item 3</PlaceholderBox>
+      <Placeholder>Item 1</Placeholder>
+      <Placeholder>Item 2</Placeholder>
+      <Placeholder>Item 3</Placeholder>
     </Box>
   ),
 };
@@ -145,7 +142,7 @@ export const Centered: Story = {
   },
   render: (args) => (
     <Box {...args} style={{ minHeight: "200px" }}>
-      <PlaceholderBox>Centered content</PlaceholderBox>
+      <Placeholder>Centered content</Placeholder>
     </Box>
   ),
 };
@@ -157,8 +154,8 @@ export const SpaceBetween: Story = {
   },
   render: (args) => (
     <Box {...args}>
-      <PlaceholderBox>Left</PlaceholderBox>
-      <PlaceholderBox>Right</PlaceholderBox>
+      <Placeholder>Left</Placeholder>
+      <Placeholder>Right</Placeholder>
     </Box>
   ),
 };
@@ -219,12 +216,12 @@ export const NestedBoxes: Story = {
   render: () => (
     <Box direction="column" gap={4} padding={4} background="secondary">
       <Box direction="row" gap={4} padding={4} background="primary">
-        <PlaceholderBox>Nested 1</PlaceholderBox>
-        <PlaceholderBox>Nested 2</PlaceholderBox>
+        <Placeholder>Nested 1</Placeholder>
+        <Placeholder>Nested 2</Placeholder>
       </Box>
       <Box direction="row" gap={4} padding={4} background="accent">
-        <PlaceholderBox>Nested 3</PlaceholderBox>
-        <PlaceholderBox>Nested 4</PlaceholderBox>
+        <Placeholder>Nested 3</Placeholder>
+        <Placeholder>Nested 4</Placeholder>
       </Box>
     </Box>
   ),
@@ -290,5 +287,26 @@ export const SemanticLayout: Story = {
         <span style={{ color: "white" }}>© 2025 Doxy</span>
       </Footer>
     </Box>
+  ),
+};
+
+// Layout alias stories
+export const StackExample: Story = {
+  render: () => (
+    <Stack gap={4} padding={4} background="secondary">
+      <Placeholder>Item 1</Placeholder>
+      <Placeholder>Item 2</Placeholder>
+      <Placeholder>Item 3</Placeholder>
+    </Stack>
+  ),
+};
+
+export const ClusterExample: Story = {
+  render: () => (
+    <Cluster gap={4} padding={4} background="secondary">
+      <Placeholder>Item 1</Placeholder>
+      <Placeholder>Item 2</Placeholder>
+      <Placeholder>Item 3</Placeholder>
+    </Cluster>
   ),
 };

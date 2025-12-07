@@ -15,6 +15,7 @@
   --dxy-color-warning: oklch(75% 0.18 85deg);
   --dxy-color-positive: oklch(60% 0.2 145deg);
   --dxy-color-critical: oklch(55% 0.22 25deg);
+  --dxy-color-neutral: oklch(90% 0.02 260deg);
 
   /* ========================================
    * Faded Variants
@@ -47,6 +48,11 @@
   --dxy-color-critical-faded: color-mix(
     in oklch,
     var(--dxy-color-critical),
+    black 30%
+  );
+  --dxy-color-neutral-faded: color-mix(
+    in oklch,
+    var(--dxy-color-neutral),
     black 30%
   );
 }

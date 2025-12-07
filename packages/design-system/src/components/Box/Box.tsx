@@ -12,7 +12,8 @@ type BackgroundColor =
   | "accent"
   | "warning"
   | "positive"
-  | "critical";
+  | "critical"
+  | "neutral";
 
 /** Flex direction values */
 type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
@@ -131,3 +132,14 @@ export const Footer = (props: Omit<BoxProps, "as">) => (
 export const Aside = (props: Omit<BoxProps, "as">) => (
   <Box as="aside" {...props} />
 );
+
+// Layout aliases
+export const Stack = (props: Omit<BoxProps, "direction">) => (
+  <Box direction="column" {...props} />
+);
+export const Cluster = (props: Omit<BoxProps, "direction">) => (
+  <Box direction="row" {...props} />
+);
+export const Placeholder = (
+  props: Omit<BoxProps, "background" | "padding">
+) => <Box background="neutral" padding={4} {...props} />;

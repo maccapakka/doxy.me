@@ -29,9 +29,8 @@
   justify-self: var(--_js);
 
   /* Token-based spacing calculations */
-  padding: calc(var(--dxy-spacing-base) * var(--_pa, 0));
-  padding-block: calc(var(--dxy-spacing-base) * var(--_py, 0));
-  padding-inline: calc(var(--dxy-spacing-base) * var(--_px, 0));
+  padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));
+  padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
   border-radius: var(--dxy-spacing-2x);
 }
 
@@ -58,4 +57,8 @@
 
 .critical {
   background-color: var(--dxy-color-critical);
+}
+
+.neutral {
+  background-color: var(--dxy-color-neutral);
 }

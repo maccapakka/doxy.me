@@ -53,6 +53,7 @@ Colors are defined in oklch format. Each color has a base and faded variant.
 | `--dxy-color-warning` | Warning states (Amber) | `--dxy-color-warning-faded` |
 | `--dxy-color-positive` | Success states (Green) | `--dxy-color-positive-faded` |
 | `--dxy-color-critical` | Error states, destructive actions (Red) | `--dxy-color-critical-faded` |
+| `--dxy-color-neutral` | Placeholder, muted backgrounds (Light gray) | `--dxy-color-neutral-faded` |
 
 ### Spacing Tokens
 

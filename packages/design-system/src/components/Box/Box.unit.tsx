@@ -38,11 +38,7 @@ describe("Box", () => {
 
   describe("CSS custom properties", () => {
     it("does not render undefined props in style attribute", () => {
-      render(
-        <Box data-testid="box">
-          Content
-        </Box>
-      );
+      render(<Box data-testid="box">Content</Box>);
       const element = screen.getByTestId("box");
       // Only --_gap should be set (has default), others should be empty
       expect(element.style.getPropertyValue("--_gap")).toBe("2");
@@ -235,4 +231,3 @@ describe("Semantic aliases", () => {
     expect(element.className).toContain("primary");
   });
 });
-

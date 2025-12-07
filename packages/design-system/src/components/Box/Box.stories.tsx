@@ -9,7 +9,16 @@ const meta: Meta<typeof Box> = {
     as: {
       description: "The element type to render",
       control: "select",
-      options: ["div", "section", "article", "header", "footer", "aside", "main", "nav"],
+      options: [
+        "div",
+        "section",
+        "article",
+        "header",
+        "footer",
+        "aside",
+        "main",
+        "nav",
+      ],
     },
     direction: {
       description: "Flex direction",
@@ -24,7 +33,14 @@ const meta: Meta<typeof Box> = {
     justifyContent: {
       description: "Justify content on the main axis",
       control: "select",
-      options: ["flex-start", "center", "flex-end", "space-between", "space-around", "space-evenly"],
+      options: [
+        "flex-start",
+        "center",
+        "flex-end",
+        "space-between",
+        "space-around",
+        "space-evenly",
+      ],
     },
     gap: {
       description: "Gap between children (token multiplier 1-12)",
@@ -45,7 +61,15 @@ const meta: Meta<typeof Box> = {
     background: {
       description: "Background color from design tokens",
       control: "select",
-      options: [undefined, "primary", "secondary", "accent", "warning", "positive", "critical"],
+      options: [
+        undefined,
+        "primary",
+        "secondary",
+        "accent",
+        "warning",
+        "positive",
+        "critical",
+      ],
     },
     children: {
       description: "The content to display inside the Box",
@@ -245,7 +269,13 @@ export const SemanticLayout: Story = {
         </Box>
       </Header>
       <Box direction="row">
-        <Aside padding={4} direction="column" gap={4} background="secondary" style={{ width: "200px" }}>
+        <Aside
+          padding={4}
+          direction="column"
+          gap={4}
+          background="secondary"
+          style={{ width: "200px" }}
+        >
           <span style={{ color: "white" }}>Sidebar Item 1</span>
           <span style={{ color: "white" }}>Sidebar Item 2</span>
         </Aside>
@@ -262,4 +292,3 @@ export const SemanticLayout: Story = {
     </Box>
   ),
 };
-

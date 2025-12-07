@@ -2,6 +2,7 @@
 
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import cx from "classnames";
+
 import styles from "./Box.module.css";
 
 /** Valid background color tokens */
@@ -87,17 +88,19 @@ export const Box = ({
 }: BoxProps) => (
   <Component
     className={cx(styles.root, background && styles[background], className)}
-    style={{
-      "--_gap": gap,
-      "--_pa": padding,
-      "--_px": paddingInline,
-      "--_py": paddingBlock,
-      "--_dir": direction,
-      "--_ai": alignItems,
-      "--_as": alignSelf,
-      "--_jc": justifyContent,
-      "--_js": justifySelf,
-    } as CSSProperties}
+    style={
+      {
+        "--_gap": gap,
+        "--_pa": padding,
+        "--_px": paddingInline,
+        "--_py": paddingBlock,
+        "--_dir": direction,
+        "--_ai": alignItems,
+        "--_as": alignSelf,
+        "--_jc": justifyContent,
+        "--_js": justifySelf,
+      } as CSSProperties
+    }
     {...rest}
   >
     {children}
@@ -105,9 +108,18 @@ export const Box = ({
 );
 
 // Semantic HTML aliases
-export const Section = (props: Omit<BoxProps, "as">) => <Box as="section" {...props} />;
-export const Article = (props: Omit<BoxProps, "as">) => <Box as="article" {...props} />;
-export const Header = (props: Omit<BoxProps, "as">) => <Box as="header" {...props} />;
-export const Footer = (props: Omit<BoxProps, "as">) => <Box as="footer" {...props} />;
-export const Aside = (props: Omit<BoxProps, "as">) => <Box as="aside" {...props} />;
-
+export const Section = (props: Omit<BoxProps, "as">) => (
+  <Box as="section" {...props} />
+);
+export const Article = (props: Omit<BoxProps, "as">) => (
+  <Box as="article" {...props} />
+);
+export const Header = (props: Omit<BoxProps, "as">) => (
+  <Box as="header" {...props} />
+);
+export const Footer = (props: Omit<BoxProps, "as">) => (
+  <Box as="footer" {...props} />
+);
+export const Aside = (props: Omit<BoxProps, "as">) => (
+  <Box as="aside" {...props} />
+);

@@ -16,6 +16,7 @@ Update the relevant `.mdc` file when:
 3. **Discovering pnpm quirks** - Add to "Known Quirks" section in `pnpm.mdc`
 4. **Changing tooling** - Update the code quality stack in `monorepo.mdc`
 5. **New conventions established** - Document in the appropriate rule file
+6. **Modifying design tokens** - Update the tokens tables in `design-tokens.mdc`
 
 ## How to Update
 
@@ -36,6 +37,7 @@ When making a change that affects conventions:
 | `component-tests.mdc` | Test update requirements | Component testing conventions change |
 | `component-structure.mdc` | Component folder structure | Component conventions change |
 | `component-llm-docs.mdc` | LLM documentation requirements | LLM doc format changes |
+| `design-tokens.mdc` | Design system tokens reference | Tokens added, removed, or renamed |
 
 ## Creating New Rule Files
 

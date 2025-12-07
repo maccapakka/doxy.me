@@ -1,0 +1,62 @@
+---
+description: "Design system tokens reference - available CSS custom properties for colors and spacing"
+alwaysApply: true
+---
+
+# Design System Tokens
+
+The design system tokens are defined in `packages/design-system/src/tokens/`. Use these CSS custom properties consistently across all components and apps.
+
+## Naming Convention
+
+All tokens use the `--dxy-` prefix:
+- Colors: `--dxy-color-{name}` and `--dxy-color-{name}-faded`
+- Spacing: `--dxy-spacing-{multiplier}`
+
+## Color Tokens
+
+Colors are defined in oklch format. Each color has a base and faded variant.
+
+| Token | Purpose | Faded Variant |
+|-------|---------|---------------|
+| `--dxy-color-primary` | Primary actions, links (Blue) | `--dxy-color-primary-faded` |
+| `--dxy-color-secondary` | Secondary elements (Slate) | `--dxy-color-secondary-faded` |
+| `--dxy-color-accent` | Highlights, accents (Violet) | `--dxy-color-accent-faded` |
+| `--dxy-color-warning` | Warning states (Amber) | `--dxy-color-warning-faded` |
+| `--dxy-color-positive` | Success states (Green) | `--dxy-color-positive-faded` |
+| `--dxy-color-critical` | Error states, destructive actions (Red) | `--dxy-color-critical-faded` |
+
+## Spacing Tokens
+
+Spacing uses a 4px base unit with multipliers from 1x to 12x.
+
+| Token | Value |
+|-------|-------|
+| `--dxy-spacing-base` | 4px |
+| `--dxy-spacing-1x` | 4px |
+| `--dxy-spacing-2x` | 8px |
+| `--dxy-spacing-3x` | 12px |
+| `--dxy-spacing-4x` | 16px |
+| `--dxy-spacing-5x` | 20px |
+| `--dxy-spacing-6x` | 24px |
+| `--dxy-spacing-7x` | 28px |
+| `--dxy-spacing-8x` | 32px |
+| `--dxy-spacing-9x` | 36px |
+| `--dxy-spacing-10x` | 40px |
+| `--dxy-spacing-11x` | 44px |
+| `--dxy-spacing-12x` | 48px |
+
+## Token Files
+
+| File | Contents |
+|------|----------|
+| `color.css` | Color tokens with base and faded variants |
+| `spacing.css` | Spacing scale tokens |
+| `index.css` | Imports all tokens + minimal CSS reset |
+
+## When to Update This Rule
+
+Update this file when:
+- Adding new token categories (e.g., typography, shadows)
+- Adding, removing, or renaming individual tokens
+- Changing the token naming convention

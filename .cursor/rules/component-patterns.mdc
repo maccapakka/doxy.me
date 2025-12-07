@@ -131,6 +131,22 @@ const alignItemsMap = { start: "flex-start", end: "flex-end" };
 
 ---
 
+## CSS Token Guidelines
+
+### No Inline Comments for Calculated Values
+
+Do not add inline comments documenting calculated CSS custom property values. Values computed with `calc()` or derived from other tokens are dynamic and comments would become stale if the base values change.
+
+```css
+/* ❌ Avoid - comments become stale */
+--dxy-type-title-1-size: calc(var(--dxy-type-base) * 1.2 * 1.2); /* ~2.3rem */
+
+/* ✅ Correct - no value comments */
+--dxy-type-title-1-size: calc(var(--dxy-type-base) * 1.2 * 1.2);
+```
+
+---
+
 ## CSS Variable Pattern for Token Props
 
 Components use a private CSS custom property pattern to connect React props with design tokens.

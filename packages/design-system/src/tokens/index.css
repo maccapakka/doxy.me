@@ -8,6 +8,7 @@
 
 @import url("./color.css");
 @import url("./spacing.css");
+@import url("./typography.css");
 
 /* Minimal CSS Reset */
 *,
@@ -19,13 +20,15 @@
 }
 
 html {
+  font-size: 62.5%; /* 1rem = 10px, making calculations easier */
   text-size-adjust: 100%;
   tab-size: 4;
 }
 
 body {
-  font-family: Inter, sans-serif;
-  line-height: 1.5;
+  font-family: var(--dxy-type-ff-body);
+  font-size: var(--dxy-type-body-1-size);
+  line-height: var(--dxy-type-body-1-lh);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

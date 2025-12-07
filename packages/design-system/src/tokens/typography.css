@@ -1,0 +1,114 @@
+/**
+ * Typography Tokens
+ *
+ * Typescale-based system using a 1.2 ratio (minor third).
+ * Body-1 (1.6rem = 16px) is the base, scaling up and down from there.
+ */
+
+:root {
+  /* ========================================
+   * Configuration
+   * ======================================== */
+  --dxy-type-scale: 1.2;
+  --dxy-type-base: 1.6rem;
+
+  /* Line Heights */
+  --dxy-type-lh-heading: 1.1;
+  --dxy-type-lh-featured: 1.3;
+  --dxy-type-lh-body: 1.6;
+  --dxy-type-lh-caption: 1.4;
+
+  /* Letter Spacing */
+  --dxy-type-ls-heading: -0.022em;
+
+  /* Font Weights */
+  --dxy-type-weight-normal: 400;
+  --dxy-type-weight-bold: 700;
+
+  /* Font Families */
+  --dxy-type-ff-heading: inter, sans-serif;
+  --dxy-type-ff-body: inter, sans-serif;
+
+  /* ========================================
+   * Body Variants (default text - base of scale)
+   * ======================================== */
+
+  /* Body 1 - Default body text (base) */
+  --dxy-type-body-1-size: var(--dxy-type-base);
+  --dxy-type-body-1-lh: var(--dxy-type-lh-body);
+  --dxy-type-body-1-weight: var(--dxy-type-weight-normal);
+
+  /* ========================================
+   * Scaling UP from body-1
+   * ======================================== */
+
+  /* Featured 3 - Small subtitle */
+  --dxy-type-featured-3-size: calc(
+    var(--dxy-type-body-1-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-featured-3-lh: var(--dxy-type-lh-featured);
+  --dxy-type-featured-3-weight: var(--dxy-type-weight-normal);
+
+  /* Featured 2 - Medium subtitle */
+  --dxy-type-featured-2-size: calc(
+    var(--dxy-type-featured-3-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-featured-2-lh: var(--dxy-type-lh-featured);
+  --dxy-type-featured-2-weight: var(--dxy-type-weight-normal);
+
+  /* Featured 1 - Large subtitle */
+  --dxy-type-featured-1-size: calc(
+    var(--dxy-type-featured-2-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-featured-1-lh: var(--dxy-type-lh-featured);
+  --dxy-type-featured-1-weight: var(--dxy-type-weight-normal);
+
+  /* Title 3 - Smallest display */
+  --dxy-type-title-3-size: calc(
+    var(--dxy-type-featured-1-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-title-3-lh: var(--dxy-type-lh-heading);
+  --dxy-type-title-3-ls: var(--dxy-type-ls-heading);
+  --dxy-type-title-3-weight: var(--dxy-type-weight-bold);
+
+  /* Title 2 - Medium display */
+  --dxy-type-title-2-size: calc(
+    var(--dxy-type-title-3-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-title-2-lh: var(--dxy-type-lh-heading);
+  --dxy-type-title-2-ls: var(--dxy-type-ls-heading);
+  --dxy-type-title-2-weight: var(--dxy-type-weight-bold);
+
+  /* Title 1 - Largest display */
+  --dxy-type-title-1-size: calc(
+    var(--dxy-type-title-2-size) * var(--dxy-type-scale)
+  );
+  --dxy-type-title-1-lh: var(--dxy-type-lh-heading);
+  --dxy-type-title-1-ls: var(--dxy-type-ls-heading);
+  --dxy-type-title-1-weight: var(--dxy-type-weight-bold);
+
+  /* ========================================
+   * Scaling DOWN from body-1
+   * ======================================== */
+
+  /* Body 2 - Smaller body text */
+  --dxy-type-body-2-size: calc(
+    var(--dxy-type-body-1-size) / var(--dxy-type-scale)
+  );
+  --dxy-type-body-2-lh: var(--dxy-type-lh-body);
+  --dxy-type-body-2-weight: var(--dxy-type-weight-normal);
+
+  /* Caption 1 - Small captions */
+  --dxy-type-caption-1-size: calc(
+    var(--dxy-type-body-2-size) / var(--dxy-type-scale)
+  );
+  --dxy-type-caption-1-lh: var(--dxy-type-lh-caption);
+  --dxy-type-caption-1-weight: var(--dxy-type-weight-normal);
+
+  /* Caption 2 - Smallest captions */
+  --dxy-type-caption-2-size: calc(
+    var(--dxy-type-caption-1-size) / var(--dxy-type-scale)
+  );
+  --dxy-type-caption-2-lh: var(--dxy-type-lh-caption);
+  --dxy-type-caption-2-weight: var(--dxy-type-weight-normal);
+}

@@ -5,7 +5,9 @@
   "exports": {
     "./*": "./src/*.tsx",
     "./components": "./src/components/index.ts",
-    "./components/*": "./src/components/*/index.ts"
+    "./components/*": "./src/components/*/index.ts",
+    "./tokens": "./src/tokens/index.css",
+    "./tokens/*": "./src/tokens/*.css"
   },
   "scripts": {
     "build-storybook": "storybook build",

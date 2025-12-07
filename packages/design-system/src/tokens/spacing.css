@@ -1,0 +1,24 @@
+/**
+ * Spacing Tokens
+ *
+ * Base unit of 4px with programmatic variants from 1x to 12x.
+ */
+
+:root {
+  /* Base spacing unit */
+  --dxy-spacing-base: 4px;
+
+  /* Spacing scale */
+  --dxy-spacing-1x: var(--dxy-spacing-base);
+  --dxy-spacing-2x: calc(var(--dxy-spacing-base) * 2);
+  --dxy-spacing-3x: calc(var(--dxy-spacing-base) * 3);
+  --dxy-spacing-4x: calc(var(--dxy-spacing-base) * 4);
+  --dxy-spacing-5x: calc(var(--dxy-spacing-base) * 5);
+  --dxy-spacing-6x: calc(var(--dxy-spacing-base) * 6);
+  --dxy-spacing-7x: calc(var(--dxy-spacing-base) * 7);
+  --dxy-spacing-8x: calc(var(--dxy-spacing-base) * 8);
+  --dxy-spacing-9x: calc(var(--dxy-spacing-base) * 9);
+  --dxy-spacing-10x: calc(var(--dxy-spacing-base) * 10);
+  --dxy-spacing-11x: calc(var(--dxy-spacing-base) * 11);
+  --dxy-spacing-12x: calc(var(--dxy-spacing-base) * 12);
+}

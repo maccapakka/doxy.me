@@ -1,0 +1,56 @@
+/**
+ * Color Tokens
+ * 
+ * Base colors defined in oklch format.
+ * Faded variants calculated programmatically using color-mix().
+ */
+
+:root {
+  /* Primary - Blue */
+  --dxy-color-primary: oklch(55% 0.2 250deg);
+  --dxy-color-primary-faded: color-mix(
+    in oklch,
+    var(--dxy-color-primary),
+    black 30%
+  );
+
+  /* Secondary - Slate */
+  --dxy-color-secondary: oklch(45% 0.02 260deg);
+  --dxy-color-secondary-faded: color-mix(
+    in oklch,
+    var(--dxy-color-secondary),
+    black 30%
+  );
+
+  /* Accent - Violet */
+  --dxy-color-accent: oklch(60% 0.25 300deg);
+  --dxy-color-accent-faded: color-mix(
+    in oklch,
+    var(--dxy-color-accent),
+    black 30%
+  );
+
+  /* Warning - Amber */
+  --dxy-color-warning: oklch(75% 0.18 85deg);
+  --dxy-color-warning-faded: color-mix(
+    in oklch,
+    var(--dxy-color-warning),
+    black 30%
+  );
+
+  /* Positive - Green */
+  --dxy-color-positive: oklch(60% 0.2 145deg);
+  --dxy-color-positive-faded: color-mix(
+    in oklch,
+    var(--dxy-color-positive),
+    black 30%
+  );
+
+  /* Critical - Red */
+  --dxy-color-critical: oklch(55% 0.22 25deg);
+  --dxy-color-critical-faded: color-mix(
+    in oklch,
+    var(--dxy-color-critical),
+    black 30%
+  );
+}

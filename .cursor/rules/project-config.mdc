@@ -45,7 +45,7 @@ Tokens are defined in `packages/design-system/src/tokens/` using the `--dxy-` pr
 
 ### Color Tokens
 
-Colors are defined in oklch format. Each color has a base and faded variant.
+Colors are defined in oklch format. Most colors have a base and faded variant.
 
 | Token | Purpose | Faded Variant |
 |-------|---------|---------------|
@@ -56,6 +56,8 @@ Colors are defined in oklch format. Each color has a base and faded variant.
 | `--dxy-color-positive` | Success states (Green) | `--dxy-color-positive-faded` |
 | `--dxy-color-critical` | Error states, destructive actions (Red) | `--dxy-color-critical-faded` |
 | `--dxy-color-neutral` | Placeholder, muted backgrounds (Light gray) | `--dxy-color-neutral-faded` |
+| `--dxy-color-white` | Pure white | - |
+| `--dxy-color-black` | Pure black | - |
 
 ### Spacing Tokens
 

@@ -16,6 +16,8 @@
   --_as: initial;
   --_jc: initial;
   --_js: initial;
+  --_w: initial;
+  --_h: initial;
 
   /* Default styles */
   display: flex;
@@ -27,6 +29,9 @@
   justify-content: var(--_jc);
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
   justify-self: var(--_js);
+
+  width: var(--_w);
+  height: var(--_h);
 
   /* Token-based spacing calculations */
   padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));

@@ -61,6 +61,10 @@ export interface BoxProps {
   paddingInline?: number;
   /** Background color from design tokens */
   background?: BackgroundColor;
+  /** Width as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
+  width?: string;
+  /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
+  height?: string;
   /** Additional inline styles */
   style?: CSSProperties;
   /** Allow any additional props */
@@ -87,6 +91,8 @@ export const Box = ({
   paddingBlock,
   paddingInline,
   background,
+  width,
+  height,
   style,
   ...rest
 }: BoxProps) => {
@@ -110,6 +116,8 @@ export const Box = ({
           "--_as": alignSelf,
           "--_jc": justifyContent,
           "--_js": justifySelf,
+          "--_w": width,
+          "--_h": height,
           ...style,
         } as CSSProperties
       }

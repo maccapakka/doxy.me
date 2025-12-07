@@ -1,5 +1,5 @@
 ---
-description: "Component documentation requirements: unit tests and LLM documentation"
+description: "Component documentation requirements: unit tests, Storybook stories, and LLM documentation"
 globs:
   - "**/components/**/*.tsx"
 alwaysApply: false
@@ -63,6 +63,61 @@ describe("ComponentName", () => {
 
 ## Storybook Stories
 
+### Rich Documentation
+
+Every component should have rich Storybook documentation using parameters. This creates professional, informative docs pages.
+
+**Meta-level documentation** (in `const meta`):
+
+| Property | Purpose |
+|----------|---------|
+| `parameters.docs.subtitle` | Brief tagline displayed under the component title |
+| `parameters.docs.description.component` | Detailed component overview (supports markdown) |
+
+**Story-level documentation** (on each story):
+
+| Property | Purpose |
+|----------|---------|
+| `name` | Display name in sidebar/docs (cleaner than export name) |
+| `parameters.docs.description.story` | Explains the story's purpose |
+
+### Meta Pattern
+
+```tsx
+const meta: Meta<typeof ComponentName> = {
+  component: ComponentName,
+  title: "Components/ComponentName",
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      subtitle: "Brief tagline describing the component",
+      description: {
+        component:
+          "Detailed description of the component. Explain its purpose, key features, and when to use it. Supports `markdown` formatting.",
+      },
+    },
+  },
+  argTypes: { /* ... */ },
+};
+```
+
+### Story Pattern
+
+```tsx
+export const Default: Story = {
+  name: "Typography Scale",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Explains what this story demonstrates and when to use this pattern.",
+      },
+    },
+  },
+  render: () => <ComponentName />,
+};
+```
+
 ### ArgTypes Categories
 
 Always group `argTypes` into semantic categories using `table.category`. This organizes the Controls panel into collapsible sections.
@@ -78,7 +133,7 @@ Always group `argTypes` into semantic categories using `table.category`. This or
 | State | `disabled`, `loading`, `selected`, `open` |
 | Events | `onClick`, `onChange`, `onFocus`, `onBlur` |
 
-### Pattern
+### ArgTypes Pattern
 
 ```tsx
 const meta: Meta<typeof ComponentName> = {

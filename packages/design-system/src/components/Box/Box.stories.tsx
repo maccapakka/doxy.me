@@ -16,6 +16,7 @@ const meta: Meta<typeof Box> = {
   title: "Components/Box",
   tags: ["autodocs"],
   argTypes: {
+    // Element
     as: {
       description: "The element type to render",
       control: "select",
@@ -29,16 +30,30 @@ const meta: Meta<typeof Box> = {
         "main",
         "nav",
       ],
+      table: { category: "Element" },
     },
+    children: {
+      description: "The content to display inside the Box",
+      control: "text",
+      table: { category: "Element" },
+    },
+    className: {
+      description: "Additional CSS classes",
+      control: "text",
+      table: { category: "Element" },
+    },
+    // Layout
     direction: {
       description: "Flex direction",
       control: "select",
       options: ["row", "column", "row-reverse", "column-reverse"],
+      table: { category: "Layout" },
     },
     alignItems: {
       description: "Align items on the cross axis",
       control: "select",
       options: ["flex-start", "center", "flex-end", "stretch", "baseline"],
+      table: { category: "Layout" },
     },
     justifyContent: {
       description: "Justify content on the main axis",
@@ -51,23 +66,42 @@ const meta: Meta<typeof Box> = {
         "space-around",
         "space-evenly",
       ],
+      table: { category: "Layout" },
     },
+    alignSelf: {
+      description: "Align self on the cross axis",
+      control: "select",
+      options: ["flex-start", "center", "flex-end", "stretch"],
+      table: { category: "Layout" },
+    },
+    justifySelf: {
+      description: "Justify self on the main axis",
+      control: "select",
+      options: ["flex-start", "center", "flex-end", "stretch"],
+      table: { category: "Layout" },
+    },
+    // Spacing
     gap: {
       description: "Gap between children (token multiplier 1-12)",
       control: { type: "range", min: 1, max: 12, step: 1 },
+      table: { category: "Spacing" },
     },
     padding: {
       description: "Padding on all sides (token multiplier 1-12)",
       control: { type: "range", min: 1, max: 12, step: 1 },
+      table: { category: "Spacing" },
     },
     paddingBlock: {
       description: "Vertical padding (token multiplier 1-12)",
       control: { type: "range", min: 1, max: 12, step: 1 },
+      table: { category: "Spacing" },
     },
     paddingInline: {
       description: "Horizontal padding (token multiplier 1-12)",
       control: { type: "range", min: 1, max: 12, step: 1 },
+      table: { category: "Spacing" },
     },
+    // Styling
     background: {
       description: "Background color from design tokens",
       control: "select",
@@ -81,14 +115,7 @@ const meta: Meta<typeof Box> = {
         "critical",
         "neutral",
       ],
-    },
-    children: {
-      description: "The content to display inside the Box",
-      control: "text",
-    },
-    className: {
-      description: "Additional CSS classes",
-      control: "text",
+      table: { category: "Styling" },
     },
   },
 };

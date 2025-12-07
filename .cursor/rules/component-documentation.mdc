@@ -61,6 +61,60 @@ describe("ComponentName", () => {
 
 ---
 
+## Storybook Stories
+
+### ArgTypes Categories
+
+Always group `argTypes` into semantic categories using `table.category`. This organizes the Controls panel into collapsible sections.
+
+**Standard categories** (use these when applicable):
+
+| Category | Props |
+|----------|-------|
+| Element | `as`, `children`, `className`, `id`, `ref` |
+| Layout | `direction`, `alignItems`, `alignSelf`, `justifyContent`, `justifySelf`, `wrap` |
+| Spacing | `gap`, `padding`, `paddingBlock`, `paddingInline`, `margin`, etc. |
+| Styling | `background`, `color`, `variant`, `size` |
+| State | `disabled`, `loading`, `selected`, `open` |
+| Events | `onClick`, `onChange`, `onFocus`, `onBlur` |
+
+### Pattern
+
+```tsx
+const meta: Meta<typeof ComponentName> = {
+  component: ComponentName,
+  argTypes: {
+    // Element
+    as: {
+      description: "The element type to render",
+      control: "select",
+      options: ["div", "section", "article"],
+      table: { category: "Element" },
+    },
+    children: {
+      description: "The content to display",
+      control: "text",
+      table: { category: "Element" },
+    },
+    // Layout
+    direction: {
+      description: "Flex direction",
+      control: "select",
+      options: ["row", "column"],
+      table: { category: "Layout" },
+    },
+    // Spacing
+    gap: {
+      description: "Gap between children",
+      control: { type: "range", min: 1, max: 12 },
+      table: { category: "Spacing" },
+    },
+  },
+};
+```
+
+---
+
 ## LLM Documentation
 
 The `.llm.md` file provides AI assistants with optimized documentation to:

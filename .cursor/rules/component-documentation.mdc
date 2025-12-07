@@ -1,0 +1,134 @@
+---
+description: "Component documentation requirements: unit tests and LLM documentation"
+globs:
+  - "**/components/**/*.tsx"
+alwaysApply: false
+---
+
+# Component Documentation
+
+When modifying any component, always update the corresponding test and documentation files.
+
+## File Co-location
+
+Documentation files are co-located with the component:
+
+```
+ComponentName/
+├── ComponentName.tsx           # Component (when this changes...)
+├── ComponentName.unit.tsx      # Update tests
+└── ComponentName.llm.md        # Update LLM docs
+```
+
+---
+
+## Unit Tests
+
+### Requirements
+
+1. **Always update the `.unit.tsx` file** when changing component logic, props, or behavior
+2. **Add new test cases** for new functionality, props, or edge cases
+3. **Update existing tests** if expected behavior changes
+4. **Ensure tests cover**:
+   - All props and their variations
+   - User interactions (clicks, inputs, etc.)
+   - Conditional rendering logic
+   - Accessibility requirements
+
+### Test Pattern
+
+Use Vitest with React Testing Library:
+
+```tsx
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { ComponentName } from "./ComponentName";
+
+describe("ComponentName", () => {
+  it("should render correctly", () => {
+    render(<ComponentName />);
+    // assertions
+  });
+
+  it("should handle user interaction", () => {
+    const handleClick = vi.fn();
+    render(<ComponentName onClick={handleClick} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(handleClick).toHaveBeenCalled();
+  });
+});
+```
+
+---
+
+## LLM Documentation
+
+The `.llm.md` file provides AI assistants with optimized documentation to:
+
+- Understand how to use the component correctly
+- Generate accurate code using the component
+- Know the available props and their types
+- Understand the component's intended use cases
+
+### Required Sections
+
+Every `ComponentName.llm.md` must include:
+
+1. **Component Name** - H1 header with the component name
+2. **Import** - How to import the component
+3. **Usage** - Basic usage example
+4. **Props** - Table of all props with types, defaults, and descriptions
+5. **Examples** - Multiple usage examples covering common scenarios
+
+### Recommended Sections
+
+- **Variants** - If the component has visual variants
+- **Sizes** - If the component has size options
+- **Accessibility** - Relevant a11y considerations
+
+### Template
+
+```markdown
+# ComponentName
+
+Brief description of the component.
+
+## Import
+
+\`\`\`tsx
+import { ComponentName } from "design-system/components";
+\`\`\`
+
+## Usage
+
+\`\`\`tsx
+<ComponentName prop="value">Content</ComponentName>
+\`\`\`
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `propName` | `type` | `default` | Description |
+
+## Examples
+
+### Example Name
+
+\`\`\`tsx
+<ComponentName>Example</ComponentName>
+\`\`\`
+```
+
+---
+
+## When to Update
+
+Update these documentation files when:
+
+- Adding, removing, or modifying props
+- Changing default values
+- Adding new variants or sizes
+- Changing the component's behavior
+- Adding new usage patterns
+- Fixing bugs that change expected behavior

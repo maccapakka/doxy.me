@@ -1,15 +1,84 @@
 ---
-description: "Component styling and typing patterns for design system components"
+description: "React component conventions: folder structure, styling patterns, CSS variables, and TypeScript"
 globs:
   - "**/components/**/*.tsx"
+  - "**/components/**/*.css"
 alwaysApply: false
 ---
 
-# Component Patterns
+# React Component Patterns
 
-Conventions for styling and typing design system components.
+Conventions for structuring, styling, and typing React components in a design system.
 
-## ClassName Composition
+## Folder Structure
+
+Each component must have its own folder with PascalCase naming:
+
+```
+ComponentName/
+├── index.ts                    # Re-exports (required)
+├── ComponentName.tsx           # Main component (required)
+├── ComponentName.unit.tsx      # Unit tests (required)
+├── ComponentName.stories.tsx   # Storybook stories (required)
+├── ComponentName.module.css    # CSS modules styling (required)
+└── ComponentName.llm.md        # LLM documentation (optional)
+```
+
+## Naming Conventions
+
+- **Folder name**: PascalCase (e.g., `ExampleButton`, `UserCard`)
+- **File names**: Match folder name with appropriate extension
+- **Component export**: Named export matching the component name
+- **Props interface**: `{ComponentName}Props`
+
+## Export Pattern
+
+```tsx
+// index.ts
+export { ComponentName } from "./ComponentName";
+export type { ComponentNameProps } from "./ComponentName";
+```
+
+## Component Scaffolding
+
+Use PlopJS or equivalent generator to scaffold new components:
+
+```bash
+pnpm generate:component
+```
+
+Always use the generator for consistency - do not manually create component folders.
+
+---
+
+## TypeScript Conventions
+
+### Type-Only Imports
+
+Always use `import type` when importing types:
+
+```tsx
+// ✅ Correct
+import type { ReactNode, CSSProperties, ElementType } from "react";
+
+// ❌ Incorrect
+import { ReactNode, CSSProperties, ElementType } from "react";
+```
+
+### Mixed Imports
+
+When importing both values and types, use separate import statements:
+
+```tsx
+import { useState, useEffect } from "react";
+import type { ReactNode, FC } from "react";
+```
+
+---
+
+## Styling Patterns
+
+### ClassName Composition
 
 Use the `classnames` library (imported as `cx`) for composing class names:
 
@@ -19,7 +88,7 @@ import cx from "classnames";
 <div className={cx(styles.root, background && styles[background], className)} />
 ```
 
-## Inline Styles with CSS Custom Properties
+### Inline Styles with CSS Custom Properties
 
 Pass CSS custom properties via inline styles, cast with `as CSSProperties`:
 
@@ -36,9 +105,9 @@ import type { CSSProperties } from "react";
 
 React automatically omits `undefined` values from the style object.
 
-## Direct CSS Values
+### Direct CSS Values
 
-Props that map to CSS properties should accept CSS values directly - avoid creating abstraction maps:
+Props that map to CSS properties should accept CSS values directly - avoid abstraction maps:
 
 ```tsx
 // ✅ Good - direct CSS values
@@ -54,9 +123,83 @@ const alignItemsMap = { start: "flex-start", end: "flex-end" };
 <Box alignItems="start" /> // Then mapped internally
 ```
 
+---
+
+## CSS Variable Pattern for Token Props
+
+Components use a private CSS custom property pattern to connect React props with design tokens.
+
+### The Pattern
+
+**1. Set defaults at the React prop level**
+
+```tsx
+export const Box = ({
+  gap = 2,        // Default 8px (2 × 4px base)
+  padding,        // No default - optional
+  ...
+}: BoxProps) => {
+```
+
+**2. Pass prop values to CSS via inline style**
+
+```tsx
+<div
+  style={{
+    '--_gap': gap,      // Always set (has default)
+    '--_pa': padding,   // Only set when defined
+  } as CSSProperties}
+  className={styles.root}
+>
+```
+
+**3. CSS module consumes variables with token calculations**
+
+```css
+.root {
+  /* Reset to prevent inheritance from parent components */
+  --_pa: initial;
+  --_gap: initial;
+
+  /* Token calculations */
+  gap: calc(var(--spacing-base) * var(--_gap));
+  padding: calc(var(--spacing-base) * var(--_pa, 0));
+}
+```
+
+### Private Variable Naming
+
+Use `--_` prefix with 2-4 letter abbreviations:
+
+| Abbreviation | Property |
+|-------------|----------|
+| `--_pa` | padding (all) |
+| `--_px` | padding-inline |
+| `--_py` | padding-block |
+| `--_gap` | gap |
+
+### Always Reset Variables
+
+Reset private variables to `initial` at the start of the rule to prevent inheritance:
+
+```css
+.root {
+  --_pa: initial;  /* Nested components won't inherit */
+  --_gap: initial;
+}
+```
+
+### When to Use This Pattern
+
+- **Use** for spacing props (padding, margin, gap) that should map to design tokens
+- **Use** for any numeric prop that multiplies against a base token
+- **Don't use** for boolean/string props - use data attributes or CSS classes instead
+
+---
+
 ## Polymorphic Components
 
-For components that support an `as` prop, use simplified typing:
+For components that support an `as` prop:
 
 ```tsx
 import type { ElementType, ReactNode } from "react";
@@ -66,7 +209,6 @@ export interface ComponentProps {
   as?: ElementType;
   children?: ReactNode;
   className?: string;
-  // ... other props
   /** Allow pass-through props */
   [key: string]: unknown;
 }

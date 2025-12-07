@@ -11,12 +11,12 @@ The `.cursor/rules/` directory contains project conventions that guide AI assist
 
 Update the relevant `.mdc` file when:
 
-1. **Adding/removing npm scripts** - Update the scripts table in `monorepo.mdc`
-2. **Adding new workspaces** - Update the workspace table in `pnpm.mdc`
-3. **Discovering pnpm quirks** - Add to "Known Quirks" section in `pnpm.mdc`
-4. **Changing tooling** - Update the code quality stack in `monorepo.mdc`
-5. **New conventions established** - Document in the appropriate rule file
-6. **Modifying design tokens** - Update the tokens tables in `design-tokens.mdc`
+1. **Adding/removing npm scripts or workspaces** - Update `project-config.mdc`
+2. **Modifying design tokens** - Update `project-config.mdc`
+3. **Changing pnpm patterns or monorepo structure** - Update `pnpm-monorepo.mdc`
+4. **Changing component conventions** - Update `component-patterns.mdc`
+5. **Changing test/docs requirements** - Update `component-documentation.mdc`
+6. **New rule files added** - Update this file's table
 
 ## How to Update
 
@@ -31,29 +31,17 @@ When making a change that affects conventions:
 
 | File | Purpose | Update When |
 |------|---------|-------------|
-| `pnpm.mdc` | Dependency management | New workspaces, pnpm issues, install patterns |
-| `monorepo.mdc` | Project structure/conventions | Scripts, tooling, structure changes |
+| `component-patterns.mdc` | Component structure, styling, CSS vars, TypeScript | Component conventions change |
+| `component-documentation.mdc` | Test and LLM documentation requirements | Testing/docs conventions change |
+| `pnpm-monorepo.mdc` | Generic pnpm and monorepo conventions | Dependency/structure patterns change |
+| `project-config.mdc` | Project-specific: workspaces, scripts, tokens | Scripts, workspaces, or tokens change |
 | `cursor-rules.mdc` | This file - meta rules | New rule files added |
-| `component-tests.mdc` | Test update requirements | Component testing conventions change |
-| `component-structure.mdc` | Component folder structure | Component conventions change |
-| `component-llm-docs.mdc` | LLM documentation requirements | LLM doc format changes |
-| `design-tokens.mdc` | Design system tokens reference | Tokens added, removed, or renamed |
-| `css-variable-pattern.mdc` | Private CSS variable pattern for token props | Token prop patterns change |
-| `typescript-imports.mdc` | TypeScript type-only import conventions | Import conventions change |
-| `component-patterns.mdc` | Component styling and typing patterns | Styling/typing conventions change |
-
-## Stylelint Configuration
-
-The project uses `.stylelintrc.cjs` for CSS linting configuration. The custom-property-pattern rule allows:
-- Standard kebab-case: `--my-var`
-- Design tokens: `--dxy-color-primary`
-- Private variables: `--_pa`, `--_gap` (for token-based component props)
 
 ## Creating New Rule Files
 
-If a new domain of conventions emerges (e.g., testing, deployment), create a new `.mdc` file:
+If a new domain of conventions emerges (e.g., deployment, API patterns), create a new `.mdc` file:
 
 1. Create `.cursor/rules/<domain>.mdc`
-2. Add frontmatter with `description` and `alwaysApply: true`
+2. Add frontmatter with `description` and appropriate `globs` or `alwaysApply`
 3. Document the conventions clearly
 4. Update this file's table above

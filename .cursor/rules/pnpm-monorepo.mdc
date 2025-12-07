@@ -1,0 +1,116 @@
+---
+description: "pnpm monorepo conventions: dependency management, project structure, and workflows"
+alwaysApply: true
+---
+
+# pnpm Monorepo Conventions
+
+Generic conventions for pnpm-based Turborepo monorepos.
+
+## Project Structure
+
+Standard Turborepo layout:
+
+- `apps/` - Applications (web apps, APIs, etc.)
+- `packages/` - Shared libraries and configs
+- Root contains tooling config (Turbo, Prettier, Husky, etc.)
+
+## Package Naming
+
+Use a consistent scope for all packages:
+
+- Root package: `@scope/monorepo`
+- All packages and apps use the `@scope/<name>` pattern
+
+---
+
+## Dependency Management
+
+### Installing at the Root
+
+When installing a package at the **root** of the monorepo:
+
+```bash
+pnpm add <package-name> -w
+```
+
+**Important:**
+- Always use the `-w` (or `--workspace-root`) flag for root-level installs
+- If using manypkg, install root packages as `dependencies`, not `devDependencies`
+
+### Installing in a Workspace
+
+When installing into a **specific workspace**:
+
+```bash
+pnpm add <package-name> --filter <workspace-name>
+```
+
+The workspace name should match the `name` field in that workspace's `package.json`.
+
+**Examples:**
+- `pnpm add react --filter @scope/webapp`
+- `pnpm add zod --filter @scope/ui -D`
+
+### Workspace-Specific Commands
+
+Use `--filter` to target specific workspaces:
+
+```bash
+pnpm --filter @scope/webapp dev
+pnpm --filter @scope/ui build
+```
+
+### After Installing Dependencies
+
+If using manypkg for dependency validation:
+
+1. `manypkg check` should run automatically via lint-staged on commit
+2. Run `pnpm manypkg` to check manually
+3. Run `pnpm manypkg:fix` to auto-fix issues
+
+---
+
+## Code Quality Stack
+
+Recommended tooling for monorepos:
+
+- **Turborepo** - Build orchestration
+- **manypkg** - Dependency validation
+- **Knip** - Dead code detection
+- **Prettier** - Formatting
+- **ESLint** - JavaScript/TypeScript linting
+- **Stylelint** - CSS linting
+- **Vitest** - Unit testing
+- **Husky + lint-staged** - Pre-commit hooks
+- **commitlint** - Conventional commits
+
+---
+
+## Commit Convention
+
+Format: `type(scope): description`
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `build`, `ci`
+
+---
+
+## Adding New Packages/Apps
+
+**New shared package (`packages/`):**
+1. Create directory under `packages/`
+2. Add `package.json` with `@scope/` namespace
+3. Extend shared TypeScript and ESLint configs
+4. Run `pnpm install` to link
+
+**New app (`apps/`):**
+1. Create directory under `apps/`
+2. Add `package.json` with `@scope/` namespace
+3. Import shared packages as needed
+
+---
+
+## Known Quirks
+
+- **Always run `pnpm manypkg:fix` when manypkg errors occur** - Don't manually fix dependency sorting or other manypkg issues. The fix command handles unsorted dependencies, version mismatches, and other common issues automatically.
+- **Never use `--ignore-pnpmfile`** - If the `.pnpmfile.cjs` hook errors, fix it rather than bypassing it.

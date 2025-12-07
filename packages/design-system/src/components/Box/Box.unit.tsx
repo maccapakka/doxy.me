@@ -62,7 +62,9 @@ describe("Box", () => {
     });
 
     it("sets --_bg CSS variable with primary-bold variant", () => {
-      const { container } = render(<Box background="primary-bold">Content</Box>);
+      const { container } = render(
+        <Box background="primary-bold">Content</Box>
+      );
       const box = container.firstChild as HTMLElement;
 
       expect(box.style.getPropertyValue("--_bg")).toBe(
@@ -111,7 +113,9 @@ describe("Box", () => {
     });
 
     it("sets --_bg CSS variable with accent-subtle variant", () => {
-      const { container } = render(<Box background="accent-subtle">Content</Box>);
+      const { container } = render(
+        <Box background="accent-subtle">Content</Box>
+      );
       const box = container.firstChild as HTMLElement;
 
       expect(box.style.getPropertyValue("--_bg")).toBe(
@@ -149,7 +153,9 @@ describe("Box", () => {
     });
 
     it("sets --_bg CSS variable with warning-bold variant", () => {
-      const { container } = render(<Box background="warning-bold">Content</Box>);
+      const { container } = render(
+        <Box background="warning-bold">Content</Box>
+      );
       const box = container.firstChild as HTMLElement;
 
       expect(box.style.getPropertyValue("--_bg")).toBe(
@@ -240,7 +246,9 @@ describe("Box", () => {
     });
 
     it("sets --_bg CSS variable with neutral-bold variant", () => {
-      const { container } = render(<Box background="neutral-bold">Content</Box>);
+      const { container } = render(
+        <Box background="neutral-bold">Content</Box>
+      );
       const box = container.firstChild as HTMLElement;
 
       expect(box.style.getPropertyValue("--_bg")).toBe(

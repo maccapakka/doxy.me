@@ -122,6 +122,8 @@ export const Default: Story = {
 
 Always group `argTypes` into semantic categories using `table.category`. This organizes the Controls panel into collapsible sections.
 
+**CRITICAL: Every prop must be filed under the correct category using `table.category`. Never leave props uncategorized.**
+
 **Standard categories** (use these when applicable):
 
 | Category | Props |

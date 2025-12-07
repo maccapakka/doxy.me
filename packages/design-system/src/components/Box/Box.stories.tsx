@@ -146,6 +146,16 @@ const meta: Meta<typeof Box> = {
       ],
       table: { category: "Styling" },
     },
+    width: {
+      description: "Width of the box (CSS width value)",
+      control: "text",
+      table: { category: "Styling" },
+    },
+    height: {
+      description: "Height of the box (CSS height value)",
+      control: "text",
+      table: { category: "Styling" },
+    },
   },
 };
 
@@ -445,7 +455,9 @@ export const BackgroundColors: Story = {
             <Text>primary-subtle — Light background variant</Text>
           </Box>
           <Box background="primary" padding={4}>
-            <Text style={{ color: "white" }}>primary — Main actions and links</Text>
+            <Text style={{ color: "white" }}>
+              primary — Main actions and links
+            </Text>
           </Box>
           <Box background="primary-bold" padding={4}>
             <Text style={{ color: "white" }}>primary-bold — Bold variant</Text>
@@ -461,10 +473,14 @@ export const BackgroundColors: Story = {
             <Text>secondary-subtle — Light background variant</Text>
           </Box>
           <Box background="secondary" padding={4}>
-            <Text style={{ color: "white" }}>secondary — Secondary elements</Text>
+            <Text style={{ color: "white" }}>
+              secondary — Secondary elements
+            </Text>
           </Box>
           <Box background="secondary-bold" padding={4}>
-            <Text style={{ color: "white" }}>secondary-bold — Bold variant</Text>
+            <Text style={{ color: "white" }}>
+              secondary-bold — Bold variant
+            </Text>
           </Box>
         </Box>
       </Box>
@@ -477,7 +493,9 @@ export const BackgroundColors: Story = {
             <Text>accent-subtle — Light background variant</Text>
           </Box>
           <Box background="accent" padding={4}>
-            <Text style={{ color: "white" }}>accent — Highlights and accents</Text>
+            <Text style={{ color: "white" }}>
+              accent — Highlights and accents
+            </Text>
           </Box>
           <Box background="accent-bold" padding={4}>
             <Text style={{ color: "white" }}>accent-bold — Bold variant</Text>

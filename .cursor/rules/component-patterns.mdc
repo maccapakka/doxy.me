@@ -1,0 +1,89 @@
+---
+description: "Component styling and typing patterns for design system components"
+globs:
+  - "**/components/**/*.tsx"
+alwaysApply: false
+---
+
+# Component Patterns
+
+Conventions for styling and typing design system components.
+
+## ClassName Composition
+
+Use the `classnames` library (imported as `cx`) for composing class names:
+
+```tsx
+import cx from "classnames";
+
+<div className={cx(styles.root, background && styles[background], className)} />
+```
+
+## Inline Styles with CSS Custom Properties
+
+Pass CSS custom properties via inline styles, cast with `as CSSProperties`:
+
+```tsx
+import type { CSSProperties } from "react";
+
+<div
+  style={{
+    "--_gap": gap,
+    "--_pa": padding,
+  } as CSSProperties}
+/>
+```
+
+React automatically omits `undefined` values from the style object.
+
+## Direct CSS Values
+
+Props that map to CSS properties should accept CSS values directly - avoid creating abstraction maps:
+
+```tsx
+// ✅ Good - direct CSS values
+type AlignItems = "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
+
+<Box alignItems="flex-start" />
+```
+
+```tsx
+// ❌ Avoid - abstraction maps
+const alignItemsMap = { start: "flex-start", end: "flex-end" };
+
+<Box alignItems="start" /> // Then mapped internally
+```
+
+## Polymorphic Components
+
+For components that support an `as` prop, use simplified typing:
+
+```tsx
+import type { ElementType, ReactNode } from "react";
+
+export interface ComponentProps {
+  /** The element type to render */
+  as?: ElementType;
+  children?: ReactNode;
+  className?: string;
+  // ... other props
+  /** Allow pass-through props */
+  [key: string]: unknown;
+}
+
+export const Component = ({
+  as: Element = "div",
+  children,
+  className,
+  ...rest
+}: ComponentProps) => (
+  <Element className={className} {...rest}>
+    {children}
+  </Element>
+);
+```
+
+Key points:
+- Use `as?: ElementType` (no generics needed)
+- Rename in destructuring: `as: Element = "div"`
+- Include `[key: string]: unknown` for pass-through props

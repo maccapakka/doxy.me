@@ -1,0 +1,61 @@
+/**
+ * Box Component Styles
+ *
+ * Uses private CSS custom properties for token-based spacing.
+ * See .cursor/rules/css-variable-pattern.mdc for the pattern documentation.
+ */
+
+.root {
+  /* Reset private variables to prevent inheritance */
+  --_pa: initial;
+  --_px: initial;
+  --_py: initial;
+  --_gap: initial;
+  --_dir: initial;
+  --_ai: initial;
+  --_as: initial;
+  --_jc: initial;
+  --_js: initial;
+
+  /* Default styles */
+  display: flex;
+  flex-direction: var(--_dir);
+  gap: calc(var(--dxy-spacing-base) * var(--_gap));
+  align-items: var(--_ai);
+  /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+  align-self: var(--_as);
+  justify-content: var(--_jc);
+  /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+  justify-self: var(--_js);
+
+  /* Token-based spacing calculations */
+  padding: calc(var(--dxy-spacing-base) * var(--_pa, 0));
+  padding-block: calc(var(--dxy-spacing-base) * var(--_py, 0));
+  padding-inline: calc(var(--dxy-spacing-base) * var(--_px, 0));
+  border-radius: var(--dxy-spacing-2x);
+}
+
+/* Background color variants */
+.primary {
+  background-color: var(--dxy-color-primary);
+}
+
+.secondary {
+  background-color: var(--dxy-color-secondary);
+}
+
+.accent {
+  background-color: var(--dxy-color-accent);
+}
+
+.warning {
+  background-color: var(--dxy-color-warning);
+}
+
+.positive {
+  background-color: var(--dxy-color-positive);
+}
+
+.critical {
+  background-color: var(--dxy-color-critical);
+}

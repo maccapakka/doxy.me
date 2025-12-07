@@ -1,0 +1,93 @@
+---
+description: "CSS custom property pattern for token-based component props"
+globs:
+  - "**/components/**/*.css"
+  - "**/components/**/*.tsx"
+alwaysApply: false
+---
+
+# CSS Variable Pattern for Token-Based Props
+
+Components use a private CSS custom property pattern to connect React props with design tokens. This enables type-safe, token-constrained styling while keeping CSS in CSS modules.
+
+## The Pattern
+
+### 1. Set defaults at the React prop level
+
+```tsx
+// Default values are ALWAYS set as prop defaults, not in CSS or inline styles
+export const Box = ({
+  gap = 2,        // Default 8px (2 × 4px base)
+  padding,        // No default - optional
+  ...
+}: BoxProps) => {
+```
+
+### 2. Component passes prop values to CSS via inline style
+
+```tsx
+// In the component (Box.tsx)
+<div
+  style={{
+    '--_gap': gap,      // Always set (has default)
+    '--_pa': padding,   // Only set when defined
+  }}
+  className={styles.root}
+>
+```
+
+### 3. CSS module consumes variables with token calculations
+
+```css
+/* In the CSS module (Box.module.css) */
+.root {
+  /* Reset to prevent inheritance from parent components */
+  --_pa: initial;
+  --_gap: initial;
+
+  /* Token calculations - no CSS fallbacks needed when prop has default */
+  gap: calc(var(--dxy-spacing-base) * var(--_gap));
+  padding: calc(var(--dxy-spacing-base) * var(--_pa, 0));
+}
+```
+
+## Key Conventions
+
+### Private Variable Naming
+
+Use `--_` prefix with 2-4 letter abbreviations:
+
+| Abbreviation | Property | Example |
+|-------------|----------|---------|
+| `--_pa` | padding (all) | `padding: calc(...)` |
+| `--_px` | padding-inline | `padding-inline: calc(...)` |
+| `--_py` | padding-block | `padding-block: calc(...)` |
+| `--_gap` | gap | `gap: calc(...)` |
+
+### Always Reset Variables
+
+Reset private variables to `initial` at the start of the rule to prevent inheritance:
+
+```css
+.root {
+  --_pa: initial;  /* Nested Box components won't inherit */
+  --_gap: initial;
+}
+```
+
+### Spacing Props Type
+
+Spacing props should accept `number` as a multiplier of the base spacing unit (4px).
+
+## When to Use This Pattern
+
+- **Use** for spacing props (padding, margin, gap) that should map to design tokens
+- **Use** for any numeric prop that multiplies against a base token
+- **Don't use** for boolean/string props - use data attributes or CSS classes instead
+
+## Benefits
+
+1. **Token enforcement** - Props are constrained to valid token values
+2. **No inheritance issues** - `initial` reset prevents cascade problems
+3. **CSS stays in CSS** - Calculations happen in stylesheets, not JS
+4. **Performant** - No runtime style calculations in React

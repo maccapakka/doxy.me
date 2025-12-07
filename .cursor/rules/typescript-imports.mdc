@@ -1,0 +1,43 @@
+---
+description: "TypeScript import conventions for type-only imports"
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: false
+---
+
+# TypeScript Import Conventions
+
+## Type-Only Imports
+
+Always use `import type` when importing types from any module:
+
+```tsx
+// ✅ Correct
+import type { ReactNode, CSSProperties, ElementType } from "react";
+
+// ❌ Incorrect
+import { ReactNode, CSSProperties, ElementType } from "react";
+```
+
+This applies to all type imports, not just React:
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { VariantProps } from "class-variance-authority";
+```
+
+## Mixed Imports
+
+When importing both values and types from the same module, use separate import statements:
+
+```tsx
+import { useState, useEffect } from "react";
+import type { ReactNode, FC } from "react";
+```
+
+## Benefits
+
+- Enables better tree-shaking and smaller bundles
+- Makes it explicit what is a type vs a runtime value
+- Types are erased at compile time, clarifying intent

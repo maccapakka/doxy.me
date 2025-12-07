@@ -38,6 +38,16 @@ When making a change that affects conventions:
 | `component-structure.mdc` | Component folder structure | Component conventions change |
 | `component-llm-docs.mdc` | LLM documentation requirements | LLM doc format changes |
 | `design-tokens.mdc` | Design system tokens reference | Tokens added, removed, or renamed |
+| `css-variable-pattern.mdc` | Private CSS variable pattern for token props | Token prop patterns change |
+| `typescript-imports.mdc` | TypeScript type-only import conventions | Import conventions change |
+| `component-patterns.mdc` | Component styling and typing patterns | Styling/typing conventions change |
+
+## Stylelint Configuration
+
+The project uses `.stylelintrc.cjs` for CSS linting configuration. The custom-property-pattern rule allows:
+- Standard kebab-case: `--my-var`
+- Design tokens: `--dxy-color-primary`
+- Private variables: `--_pa`, `--_gap` (for token-based component props)
 
 ## Creating New Rule Files
 

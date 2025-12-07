@@ -61,10 +61,12 @@ export * from "./AnotherComponent";
 
 ## Creating New Components
 
-Use the PlopJS generator to scaffold new components:
+**ALWAYS use the PlopJS generator to scaffold new components:**
 
 ```bash
 pnpm generate:component
 ```
 
-This automatically creates all required files and updates the barrel export.
+This is **required** for all new components. It automatically creates all required files with correct naming and structure, and updates the barrel export.
+
+Do NOT manually create component folders - always use the generator to ensure consistency.

@@ -108,6 +108,25 @@ Spacing uses a 4px base unit with multipliers from 1x to 12x.
 | `--dxy-spacing-11x` | 44px |
 | `--dxy-spacing-12x` | 48px |
 
+### Border Radius Tokens
+
+Border radius uses an 8px base unit with inner, base, and outer variants.
+
+| Token | Value |
+|-------|-------|
+| `--dxy-border-radius-base` | 8px |
+| `--dxy-border-radius-inner` | 8px (alias of base) |
+| `--dxy-border-radius-outer` | 16px (base × 2) |
+
+**Usage in Components:**
+
+The Box component accepts `borderRadius` prop with these values:
+- `"base"` (default) - 8px standard rounded corners
+- `"inner"` - 8px, same as base
+- `"outer"` - 16px, larger rounded corners
+- `"circle"` - 9999px for circular elements
+- `"squircle"` - 8px with `corner-shape: squircle` for iOS-style rounded corners
+
 ### Typography Tokens
 
 Typography uses a 1.2 typescale ratio with body-1 (1.6rem = 16px) as the base. The html font-size is set to 62.5% so 1rem = 10px.
@@ -149,6 +168,7 @@ Typography uses a 1.2 typescale ratio with body-1 (1.6rem = 16px) as the base. T
 |------|----------|
 | `color.css` | Color tokens with base colors, 5 variants per color, and mixing configuration |
 | `spacing.css` | Spacing scale tokens |
+| `borders.css` | Border tokens (border-radius: base, inner, outer) |
 | `typography.css` | Typography scale and variant tokens |
 | `index.css` | Imports all tokens + minimal CSS reset |
 

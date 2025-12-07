@@ -45,6 +45,10 @@ import {
 | `paddingBlock`   | `number`                                                                        | `undefined` | Vertical padding (multiplier of 4px)     |
 | `paddingInline`  | `number`                                                                        | `undefined` | Horizontal padding (multiplier of 4px)   |
 | `background`     | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical'` | `undefined` | Background color from design tokens      |
+| `borderRadius`   | `'base' \| 'outer' \| 'inner' \| 'circle'`                                      | `'base'`    | Border radius from design tokens         |
+| `cornerShape`    | `'round' \| 'scoop' \| 'bevel' \| 'notch' \| 'squircle'`                        | `'round'`   | Corner shape style (CSS corner-shape)    |
+| `width`          | `string`                                                                        | `undefined` | Width as CSS value (e.g. "300px", "50%") |
+| `height`         | `string`                                                                        | `undefined` | Height as CSS value (e.g. "100vh")       |
 
 ## Spacing Values
 
@@ -60,7 +64,7 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 
 - `display: flex`
 - `gap: 8px` (2x token)
-- `border-radius: 8px` (2x token)
+- `border-radius: 8px` (base token, default)
 
 ## Examples
 
@@ -96,6 +100,29 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 <Box background="primary" padding={4}>
   <span style={{ color: "white" }}>Primary background</span>
 </Box>
+```
+
+### Border Radius
+
+```tsx
+// Token-based border radius
+<Box borderRadius="base">Default (8px)</Box>
+<Box borderRadius="inner">Inner (8px)</Box>
+<Box borderRadius="outer">Outer (16px)</Box>
+
+// Special values
+<Box borderRadius="circle">Perfect circle (9999px)</Box>
+```
+
+### Corner Shape
+
+```tsx
+// Control corner shape style (CSS corner-shape property)
+<Box borderRadius="outer" cornerShape="round">Standard rounded corners (default)</Box>
+<Box borderRadius="outer" cornerShape="scoop">Inward curves</Box>
+<Box borderRadius="outer" cornerShape="bevel">Cut corners</Box>
+<Box borderRadius="outer" cornerShape="notch">Inverse bevels</Box>
+<Box borderRadius="outer" cornerShape="squircle">iOS-style superellipse</Box>
 ```
 
 ### Logical Padding (Block/Inline)

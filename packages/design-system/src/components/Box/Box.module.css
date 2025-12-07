@@ -17,6 +17,7 @@
   --_as: initial;
   --_jc: initial;
   --_js: initial;
+  --_cs: initial;
   --_w: initial;
   --_h: initial;
 
@@ -37,7 +38,25 @@
   /* Token-based spacing calculations */
   padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));
   padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
-  border-radius: var(--dxy-spacing-2x);
 
   background-color: var(--_bg);
+
+  corner-shape: var(--_cs);
+}
+
+/* Border radius variants */
+.borderRadiusBase {
+  border-radius: var(--dxy-border-radius-base);
+}
+
+.borderRadiusInner {
+  border-radius: var(--dxy-border-radius-inner);
+}
+
+.borderRadiusOuter {
+  border-radius: var(--dxy-border-radius-outer);
+}
+
+.borderRadiusCircle {
+  border-radius: 9999px;
 }

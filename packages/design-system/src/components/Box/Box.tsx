@@ -47,6 +47,12 @@ type JustifyContent =
 /** Justify/align self values (CSS values) */
 type PlaceSelf = "flex-start" | "center" | "flex-end" | "stretch";
 
+/** Border radius values */
+type BorderRadius = "base" | "outer" | "inner" | "circle";
+
+/** Corner shape values */
+type CornerShape = "round" | "scoop" | "bevel" | "notch" | "squircle";
+
 /** Props for the Box component */
 export interface BoxProps {
   /** The element type to render as (default: "div") */
@@ -75,6 +81,10 @@ export interface BoxProps {
   paddingInline?: number;
   /** Background color from design tokens */
   background?: BackgroundColor;
+  /** Border radius from design tokens or special values (default: "base") */
+  borderRadius?: BorderRadius;
+  /** Corner shape style (default: "round") */
+  cornerShape?: CornerShape;
   /** Width as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
   width?: string;
   /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
@@ -105,12 +115,22 @@ export const Box = ({
   paddingBlock,
   paddingInline,
   background,
+  borderRadius = "base",
+  cornerShape = "round",
   width,
   height,
   style,
   ...rest
 }: BoxProps) => {
-  const rootClasses = cx(styles.root, className);
+  // Map borderRadius prop to CSS class
+  const borderRadiusClass = {
+    base: styles.borderRadiusBase,
+    inner: styles.borderRadiusInner,
+    outer: styles.borderRadiusOuter,
+    circle: styles.borderRadiusCircle,
+  }[borderRadius];
+
+  const rootClasses = cx(styles.root, borderRadiusClass, className);
 
   return (
     <Component
@@ -127,6 +147,7 @@ export const Box = ({
           "--_as": alignSelf,
           "--_jc": justifyContent,
           "--_js": justifySelf,
+          "--_cs": cornerShape,
           "--_w": width,
           "--_h": height,
           ...style,

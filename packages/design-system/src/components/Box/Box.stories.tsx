@@ -146,6 +146,18 @@ const meta: Meta<typeof Box> = {
       ],
       table: { category: "Styling" },
     },
+    borderRadius: {
+      description: "Border radius from design tokens or special values",
+      control: "select",
+      options: ["base", "outer", "inner", "circle"],
+      table: { category: "Styling" },
+    },
+    cornerShape: {
+      description: "Corner shape style (CSS corner-shape property)",
+      control: "select",
+      options: ["round", "scoop", "bevel", "notch", "squircle"],
+      table: { category: "Styling" },
+    },
     width: {
       description: "Width of the box (CSS width value)",
       control: "text",
@@ -701,6 +713,223 @@ export const SemanticElements: Story = {
             Renders as &lt;aside&gt; — for tangentially related content
           </Text>
         </Aside>
+      </Box>
+    </Box>
+  ),
+};
+
+export const BorderRadius: Story = {
+  name: "Border Radius",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Control border radius with design tokens or special values. Use `base` (default, 8px), `inner` (8px), or `outer` (16px) for standard rounded corners. Use `circle` for circular elements.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="row" gap={6}>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="inner"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Inner</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          inner (8px)
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="base"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Base</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          base (8px, default)
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Outer</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          outer (16px)
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="circle"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Circle</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          circle (9999px)
+        </Text>
+      </Box>
+    </Box>
+  ),
+};
+
+export const CornerShape: Story = {
+  name: "Corner Shape",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Control corner shape style with the CSS corner-shape property. Use `round` (default) for standard rounded corners, `scoop` for inward curves, `bevel` for cut corners, `notch` for inverse bevels, or `squircle` for iOS-style superellipse curves. Works best with border-radius applied.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="row" gap={6}>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          cornerShape="round"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Round</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          round (default)
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          cornerShape="scoop"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Scoop</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          scoop
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          cornerShape="bevel"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Bevel</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          bevel
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          cornerShape="notch"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Notch</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          notch
+        </Text>
+      </Box>
+      <Box direction="column" gap={2} alignItems="center">
+        <Box
+          borderRadius="outer"
+          cornerShape="squircle"
+          padding={6}
+          background="neutral-bold"
+          width="120px"
+          height="120px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>Squircle</Text>
+        </Box>
+        <Text
+          variant="body-2"
+          color="secondary"
+          style={{ textAlign: "center" }}
+        >
+          squircle
+        </Text>
       </Box>
     </Box>
   ),

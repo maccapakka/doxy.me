@@ -1,0 +1,14 @@
+/**
+ * Border Tokens
+ *
+ * Border radius uses an 8px base unit with inner, base, and outer variants.
+ */
+
+:root {
+  /* Base border radius unit */
+  --dxy-border-radius-base: 8px;
+
+  /* Border radius scale */
+  --dxy-border-radius-inner: var(--dxy-border-radius-base);
+  --dxy-border-radius-outer: calc(var(--dxy-border-radius-base) * 2);
+}

@@ -356,6 +356,87 @@ describe("Box", () => {
     });
   });
 
+  describe("border radius props", () => {
+    it("applies borderRadiusBase class by default", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("borderRadiusBase");
+    });
+
+    it("applies borderRadiusBase class", () => {
+      const { container } = render(<Box borderRadius="base">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("borderRadiusBase");
+    });
+
+    it("applies borderRadiusInner class", () => {
+      const { container } = render(<Box borderRadius="inner">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("borderRadiusInner");
+    });
+
+    it("applies borderRadiusOuter class", () => {
+      const { container } = render(<Box borderRadius="outer">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("borderRadiusOuter");
+    });
+
+    it("applies borderRadiusCircle class", () => {
+      const { container } = render(<Box borderRadius="circle">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("borderRadiusCircle");
+    });
+  });
+
+  describe("corner shape props", () => {
+    it("sets --_cs CSS variable with round by default", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("round");
+    });
+
+    it("sets --_cs CSS variable with round", () => {
+      const { container } = render(<Box cornerShape="round">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("round");
+    });
+
+    it("sets --_cs CSS variable with scoop", () => {
+      const { container } = render(<Box cornerShape="scoop">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("scoop");
+    });
+
+    it("sets --_cs CSS variable with bevel", () => {
+      const { container } = render(<Box cornerShape="bevel">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("bevel");
+    });
+
+    it("sets --_cs CSS variable with notch", () => {
+      const { container } = render(<Box cornerShape="notch">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("notch");
+    });
+
+    it("sets --_cs CSS variable with squircle", () => {
+      const { container } = render(<Box cornerShape="squircle">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_cs")).toBe("squircle");
+    });
+  });
+
   describe("custom styles", () => {
     it("merges custom inline styles", () => {
       const { container } = render(

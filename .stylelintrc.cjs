@@ -17,6 +17,12 @@ module.exports = {
           "Custom property name should be kebab-case, --dxy-* (token), or --_* (private)",
       },
     ],
+    "property-no-unknown": [
+      true,
+      {
+        ignoreProperties: ["corner-shape"], // CSS Shapes Module Level 1
+      },
+    ],
   },
 };
 

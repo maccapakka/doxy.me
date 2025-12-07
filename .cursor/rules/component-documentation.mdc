@@ -168,6 +168,40 @@ const meta: Meta<typeof ComponentName> = {
 };
 ```
 
+### Story Organization
+
+Group stories by logical concern rather than creating separate stories for each prop value. This creates more effective documentation that's easier to navigate and understand.
+
+**Benefits:**
+
+- Cleaner, more scannable documentation
+- Easier comparison of related variants side-by-side
+- Fewer repetitive story definitions
+- Better understanding of the full range of options
+
+**Guidelines:**
+
+1. **Consolidate related variations** - Group stories that demonstrate different values of the same prop into a single comprehensive story
+2. **Use descriptive labels** - Use the `Text` component with appropriate variants to clearly label each variation being demonstrated
+3. **Show complete option sets** - For enum-like props, show all available values in one story for easy comparison
+4. **Group semantic patterns** - Combine semantic HTML aliases (Section, Article, Header, etc.) into one story
+5. **Group layout patterns** - Combine related layout shortcuts (Stack, Cluster, etc.) into one story
+
+**Example:**
+
+See `Box.stories.tsx` for reference implementation:
+
+| Story | Demonstrates |
+|---|---|
+| Flex Direction | All 4 direction values (row, column, row-reverse, column-reverse) |
+| Justify Content | All 6 justifyContent values (flex-start, center, flex-end, space-between, space-around, space-evenly) |
+| Align Items | All 5 alignItems values (flex-start, center, flex-end, stretch, baseline) |
+| Background Colors | All 7 color tokens (primary, secondary, accent, warning, positive, critical, neutral) |
+| Semantic Elements | All 5 semantic aliases (Section, Article, Header, Footer, Aside) |
+| Layout Aliases | Stack and Cluster patterns together |
+
+Each variation within a story should be wrapped in a container with a `Text` label explaining which variant is being shown.
+
 ---
 
 ## LLM Documentation

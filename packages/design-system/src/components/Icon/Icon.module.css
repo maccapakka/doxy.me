@@ -1,0 +1,52 @@
+.root {
+  /* Reset to prevent inheritance from parent components */
+  --_size: initial;
+
+  /* Prevent text selection */
+  user-select: none;
+
+  /* Display as inline element that respects sizing */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1;
+
+  /* Size calculation using spacing base token */
+  width: calc(var(--dxy-spacing-base) * var(--_size));
+}
+
+/* Ensure SVG fills the container */
+.root svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Color variants using design tokens */
+.primary {
+  color: var(--dxy-color-primary);
+}
+
+.secondary {
+  color: var(--dxy-color-secondary);
+}
+
+.accent {
+  color: var(--dxy-color-accent);
+}
+
+.warning {
+  color: var(--dxy-color-warning);
+}
+
+.positive {
+  color: var(--dxy-color-positive);
+}
+
+.critical {
+  color: var(--dxy-color-critical);
+}
+
+.neutral {
+  color: var(--dxy-color-neutral);
+}

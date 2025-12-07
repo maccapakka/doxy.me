@@ -22,12 +22,14 @@ Project-specific settings for the doxy monorepo. Update this file when adding wo
 |--------|-------------|
 | `pnpm dev` | Run dev servers for all apps |
 | `pnpm build` | Build all packages and apps |
-| `pnpm lint` | Lint all packages |
-| `pnpm lint:css` | Lint all CSS files with Stylelint |
-| `pnpm lint:css:fix` | Auto-fix CSS linting issues |
-| `pnpm lint:fix` | Fix linting issues |
-| `pnpm check-types` | Type-check all packages |
+| `pnpm lint` | Run all linters (JS, CSS, unused) |
+| `pnpm lint:js` | Lint JS/TS with ESLint |
+| `pnpm lint:js:fix` | Auto-fix ESLint issues |
+| `pnpm lint:css` | Lint CSS with Stylelint |
+| `pnpm lint:css:fix` | Auto-fix Stylelint issues |
+| `pnpm lint:fix` | Run all fixers (JS + CSS) |
 | `pnpm lint:unused` | Find unused deps/exports (Knip) |
+| `pnpm check-types` | Type-check all packages |
 | `pnpm manypkg` | Validate monorepo dependencies |
 | `pnpm manypkg:fix` | Auto-fix dependency issues |
 | `pnpm sort-package-json` | Sort all package.json files |

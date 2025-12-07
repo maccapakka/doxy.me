@@ -60,5 +60,6 @@
    * Functional Colors
    * ======================================== */
   --dxy-color-foreground: var(--dxy-color-neutral);
+  --dxy-color-foreground-headings: var(--dxy-color-secondary);
   --dxy-color-background: var(--dxy-color-primary);
 }

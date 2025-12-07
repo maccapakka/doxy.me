@@ -85,27 +85,35 @@ export const Box = ({
   paddingInline,
   background,
   ...rest
-}: BoxProps) => (
-  <Component
-    className={cx(styles.root, background && styles[background], className)}
-    style={
-      {
-        "--_gap": gap,
-        "--_pa": padding,
-        "--_px": paddingInline,
-        "--_py": paddingBlock,
-        "--_dir": direction,
-        "--_ai": alignItems,
-        "--_as": alignSelf,
-        "--_jc": justifyContent,
-        "--_js": justifySelf,
-      } as CSSProperties
-    }
-    {...rest}
-  >
-    {children}
-  </Component>
-);
+}: BoxProps) => {
+  const rootClasses = cx(
+    styles.root,
+    background && styles[background],
+    className
+  );
+
+  return (
+    <Component
+      className={rootClasses}
+      style={
+        {
+          "--_gap": gap,
+          "--_pa": padding,
+          "--_px": paddingInline,
+          "--_py": paddingBlock,
+          "--_dir": direction,
+          "--_ai": alignItems,
+          "--_as": alignSelf,
+          "--_jc": justifyContent,
+          "--_js": justifySelf,
+        } as CSSProperties
+      }
+      {...rest}
+    >
+      {children}
+    </Component>
+  );
+};
 
 // Semantic HTML aliases
 export const Section = (props: Omit<BoxProps, "as">) => (

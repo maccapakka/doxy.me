@@ -80,12 +80,18 @@ import type { ReactNode, FC } from "react";
 
 ### ClassName Composition
 
-Use the `classnames` library (imported as `cx`) for composing class names:
+Use the `classnames` library (imported as `cx`) for composing class names. Always extract the composed classes into a `rootClasses` variable before passing to the component:
 
 ```tsx
 import cx from "classnames";
 
-<div className={cx(styles.root, background && styles[background], className)} />
+const rootClasses = cx(
+  styles.root,
+  background && styles[background],
+  className
+);
+
+<Component className={rootClasses} />
 ```
 
 ### Inline Styles with CSS Custom Properties

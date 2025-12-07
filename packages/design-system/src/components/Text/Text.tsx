@@ -77,4 +77,3 @@ export const Text = ({
 export const Title = (props: TextProps) => <Text {...props} />;
 export const Heading = (props: TextProps) => <Text {...props} />;
 export const Caption = (props: TextProps) => <Text {...props} />;
-

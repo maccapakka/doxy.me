@@ -234,4 +234,3 @@ describe("Semantic aliases", () => {
     expect(element.tagName).toBe("H1");
   });
 });
-

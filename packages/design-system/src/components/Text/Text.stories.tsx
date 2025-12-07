@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Text, Title, Heading, Caption } from "./Text";
-import { Box } from "../Box";
+import type { TextProps } from "./Text";
+import { Box, Stack } from "../Box";
 
 const meta: Meta<typeof Text> = {
   component: Text,
@@ -11,7 +12,18 @@ const meta: Meta<typeof Text> = {
     as: {
       description: "The element type to render",
       control: "select",
-      options: ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6", "label", "div"],
+      options: [
+        "span",
+        "p",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "label",
+        "div",
+      ],
       table: { category: "Element" },
     },
     children: {
@@ -65,24 +77,31 @@ export default meta;
 type Story = StoryObj<typeof Text>;
 
 export const Default: Story = {
-  args: {
-    children: "Default body text",
-  },
-};
-
-export const AllVariants: Story = {
   render: () => (
-    <Box direction="column" gap={4}>
-      <Text variant="title-1">Title 1 - Largest display</Text>
-      <Text variant="title-2">Title 2 - Medium display</Text>
-      <Text variant="title-3">Title 3 - Smallest display</Text>
-      <Text variant="featured-1">Featured 1 - Large subtitle</Text>
-      <Text variant="featured-2">Featured 2 - Medium subtitle</Text>
-      <Text variant="featured-3">Featured 3 - Small subtitle</Text>
-      <Text variant="body-1">Body 1 - Default body text</Text>
-      <Text variant="body-2">Body 2 - Smaller body text</Text>
-      <Text variant="caption-1">Caption 1 - Small captions</Text>
-      <Text variant="caption-2">Caption 2 - Smallest captions</Text>
+    <Box direction="column" gap={6}>
+      {(
+        [
+          "title-1",
+          "title-2",
+          "title-3",
+          "featured-1",
+          "featured-2",
+          "featured-3",
+          "body-1",
+          "body-2",
+          "caption-1",
+          "caption-2",
+        ] as const
+      ).map((variant) => (
+        <Stack key={variant} gap={1}>
+          <Text variant="caption-1" color="secondary">
+            {variant}
+          </Text>
+          <Text variant={variant as TextProps["variant"]}>
+            The quick brown fox jumps over the lazy dog
+          </Text>
+        </Stack>
+      ))}
     </Box>
   ),
 };
@@ -263,4 +282,3 @@ export const ErrorStates: Story = {
     </Box>
   ),
 };
-

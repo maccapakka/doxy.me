@@ -29,6 +29,9 @@ body {
   font-family: var(--dxy-type-ff-body);
   font-size: var(--dxy-type-body-1-size);
   line-height: var(--dxy-type-body-1-lh);
+  color: var(--dxy-color-foreground);
+
+  background: var(--dxy-color-background);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

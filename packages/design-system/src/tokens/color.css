@@ -9,13 +9,13 @@
   /* ========================================
    * Base Colors
    * ======================================== */
-  --dxy-color-primary: oklch(55% 0.2 250deg);
-  --dxy-color-secondary: oklch(45% 0.02 260deg);
-  --dxy-color-accent: oklch(60% 0.25 300deg);
-  --dxy-color-warning: oklch(75% 0.18 85deg);
-  --dxy-color-positive: oklch(60% 0.2 145deg);
-  --dxy-color-critical: oklch(55% 0.22 25deg);
-  --dxy-color-neutral: oklch(90% 0.02 260deg);
+  --dxy-color-primary: oklch(78.41% 0.096 195.38deg);
+  --dxy-color-secondary: oklch(27.85% 0.047 203.91deg);
+  --dxy-color-accent: oklch(70.87% 0.143 293.58deg);
+  --dxy-color-warning: oklch(85.71% 0.163 96.64deg);
+  --dxy-color-positive: oklch(71.87% 0.167 155.94deg);
+  --dxy-color-critical: oklch(63.34% 0.225 19.18deg);
+  --dxy-color-neutral: oklch(50.52% 0.027 175.92deg);
 
   /* ========================================
    * Faded Variants
@@ -55,4 +55,10 @@
     var(--dxy-color-neutral),
     black 30%
   );
+
+  /* ========================================
+   * Functional Colors
+   * ======================================== */
+  --dxy-color-foreground: var(--dxy-color-neutral);
+  --dxy-color-background: var(--dxy-color-primary);
 }

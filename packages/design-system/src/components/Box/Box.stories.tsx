@@ -277,46 +277,6 @@ export const SemanticArticle: Story = {
   ),
 };
 
-export const SemanticLayout: Story = {
-  render: () => (
-    <Box direction="column">
-      <Header
-        padding={4}
-        justifyContent="space-between"
-        alignItems="center"
-        background="primary"
-      >
-        <span style={{ color: "white", fontWeight: "bold" }}>Logo</span>
-        <Box gap={4}>
-          <span style={{ color: "white" }}>Nav 1</span>
-          <span style={{ color: "white" }}>Nav 2</span>
-        </Box>
-      </Header>
-      <Box direction="row">
-        <Aside
-          padding={4}
-          direction="column"
-          gap={4}
-          background="secondary"
-          style={{ width: "200px" }}
-        >
-          <span style={{ color: "white" }}>Sidebar Item 1</span>
-          <span style={{ color: "white" }}>Sidebar Item 2</span>
-        </Aside>
-        <Article padding={6} direction="column" gap={4} style={{ flex: 1 }}>
-          <h1 style={{ margin: 0 }}>Main Content</h1>
-          <p style={{ margin: 0 }}>
-            This demonstrates a semantic page layout using Box aliases.
-          </p>
-        </Article>
-      </Box>
-      <Footer padding={4} justifyContent="center" background="secondary">
-        <span style={{ color: "white" }}>© 2025 Doxy</span>
-      </Footer>
-    </Box>
-  ),
-};
-
 // Layout alias stories
 export const StackExample: Story = {
   render: () => (

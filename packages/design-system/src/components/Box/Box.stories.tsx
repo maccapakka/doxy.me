@@ -123,12 +123,26 @@ const meta: Meta<typeof Box> = {
       options: [
         undefined,
         "primary",
+        "primary-subtle",
+        "primary-bold",
         "secondary",
+        "secondary-subtle",
+        "secondary-bold",
         "accent",
+        "accent-subtle",
+        "accent-bold",
         "warning",
+        "warning-subtle",
+        "warning-bold",
         "positive",
+        "positive-subtle",
+        "positive-bold",
         "critical",
+        "critical-subtle",
+        "critical-bold",
         "neutral",
+        "neutral-subtle",
+        "neutral-bold",
       ],
       table: { category: "Styling" },
     },
@@ -416,34 +430,125 @@ export const BackgroundColors: Story = {
     docs: {
       description: {
         story:
-          "Apply semantic background colors from design tokens. Each color maps to a specific use case: `primary` for main actions, `critical` for errors, `positive` for success states, etc.",
+          "Apply semantic background colors from design tokens. Each color has base, `-subtle`, and `-bold` variants. Base colors are for primary use, `-subtle` for light backgrounds and containers, `-bold` for darker/saturated versions.",
       },
     },
   },
   render: () => (
-    <Box direction="column" gap={4}>
-      <Box background="primary" padding={4}>
-        <Text style={{ color: "white" }}>primary — Main actions and links</Text>
-      </Box>
-      <Box background="secondary" padding={4}>
-        <Text style={{ color: "white" }}>secondary — Secondary elements</Text>
-      </Box>
-      <Box background="accent" padding={4}>
-        <Text style={{ color: "white" }}>accent — Highlights and accents</Text>
-      </Box>
-      <Box background="warning" padding={4}>
-        <Text>warning — Warning states</Text>
-      </Box>
-      <Box background="positive" padding={4}>
-        <Text style={{ color: "white" }}>positive — Success states</Text>
-      </Box>
-      <Box background="critical" padding={4}>
-        <Text style={{ color: "white" }}>
-          critical — Errors and destructive actions
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Primary
         </Text>
+        <Box direction="column" gap={2}>
+          <Box background="primary-subtle" padding={4}>
+            <Text>primary-subtle — Light background variant</Text>
+          </Box>
+          <Box background="primary" padding={4}>
+            <Text style={{ color: "white" }}>primary — Main actions and links</Text>
+          </Box>
+          <Box background="primary-bold" padding={4}>
+            <Text style={{ color: "white" }}>primary-bold — Bold variant</Text>
+          </Box>
+        </Box>
       </Box>
-      <Box background="neutral" padding={4}>
-        <Text>neutral — Placeholders and muted backgrounds</Text>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Secondary
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="secondary-subtle" padding={4}>
+            <Text>secondary-subtle — Light background variant</Text>
+          </Box>
+          <Box background="secondary" padding={4}>
+            <Text style={{ color: "white" }}>secondary — Secondary elements</Text>
+          </Box>
+          <Box background="secondary-bold" padding={4}>
+            <Text style={{ color: "white" }}>secondary-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Accent
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="accent-subtle" padding={4}>
+            <Text>accent-subtle — Light background variant</Text>
+          </Box>
+          <Box background="accent" padding={4}>
+            <Text style={{ color: "white" }}>accent — Highlights and accents</Text>
+          </Box>
+          <Box background="accent-bold" padding={4}>
+            <Text style={{ color: "white" }}>accent-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Warning
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="warning-subtle" padding={4}>
+            <Text>warning-subtle — Light background variant</Text>
+          </Box>
+          <Box background="warning" padding={4}>
+            <Text>warning — Warning states</Text>
+          </Box>
+          <Box background="warning-bold" padding={4}>
+            <Text>warning-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Positive
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="positive-subtle" padding={4}>
+            <Text>positive-subtle — Light background variant</Text>
+          </Box>
+          <Box background="positive" padding={4}>
+            <Text style={{ color: "white" }}>positive — Success states</Text>
+          </Box>
+          <Box background="positive-bold" padding={4}>
+            <Text style={{ color: "white" }}>positive-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Critical
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="critical-subtle" padding={4}>
+            <Text>critical-subtle — Light background variant</Text>
+          </Box>
+          <Box background="critical" padding={4}>
+            <Text style={{ color: "white" }}>
+              critical — Errors and destructive actions
+            </Text>
+          </Box>
+          <Box background="critical-bold" padding={4}>
+            <Text style={{ color: "white" }}>critical-bold — Bold variant</Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="featured-3" as="h3">
+          Neutral
+        </Text>
+        <Box direction="column" gap={2}>
+          <Box background="neutral-subtle" padding={4}>
+            <Text>neutral-subtle — Light background variant</Text>
+          </Box>
+          <Box background="neutral" padding={4}>
+            <Text>neutral — Placeholders and muted backgrounds</Text>
+          </Box>
+          <Box background="neutral-bold" padding={4}>
+            <Text style={{ color: "white" }}>neutral-bold — Bold variant</Text>
+          </Box>
+        </Box>
       </Box>
     </Box>
   ),

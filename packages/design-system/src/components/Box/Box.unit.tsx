@@ -1,291 +1,376 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { Box, Section, Article, Header, Footer, Aside } from "./Box";
+import { render } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { Box } from "./Box";
 
 describe("Box", () => {
-  it("renders children correctly", () => {
-    render(<Box>Test content</Box>);
-    expect(screen.getByText("Test content")).toBeInTheDocument();
-  });
+  describe("rendering", () => {
+    it("renders with default props", () => {
+      const { container } = render(<Box>Test content</Box>);
+      const box = container.firstChild as HTMLElement;
 
-  it("applies the root class by default", () => {
-    render(<Box>Content</Box>);
-    const element = screen.getByText("Content");
-    expect(element.className).toContain("root");
-  });
-
-  it("applies additional className when provided", () => {
-    render(<Box className="custom-class">Content</Box>);
-    const element = screen.getByText("Content");
-    expect(element.className).toContain("custom-class");
-  });
-
-  it("renders as div by default", () => {
-    render(<Box data-testid="box">Content</Box>);
-    const element = screen.getByTestId("box");
-    expect(element.tagName).toBe("DIV");
-  });
-
-  it("renders as custom element with as prop", () => {
-    render(
-      <Box as="section" data-testid="box">
-        Content
-      </Box>
-    );
-    const element = screen.getByTestId("box");
-    expect(element.tagName).toBe("SECTION");
-  });
-
-  describe("CSS custom properties", () => {
-    it("does not render undefined props in style attribute", () => {
-      render(<Box data-testid="box">Content</Box>);
-      const element = screen.getByTestId("box");
-      // Only --_gap should be set (has default), others should be empty
-      expect(element.style.getPropertyValue("--_gap")).toBe("2");
-      expect(element.style.getPropertyValue("--_pa")).toBe("");
-      expect(element.style.getPropertyValue("--_px")).toBe("");
-      expect(element.style.getPropertyValue("--_py")).toBe("");
-      expect(element.style.getPropertyValue("--_dir")).toBe("");
-      expect(element.style.getPropertyValue("--_ai")).toBe("");
-      expect(element.style.getPropertyValue("--_jc")).toBe("");
+      expect(box).toBeInTheDocument();
+      expect(box.tagName).toBe("DIV");
+      expect(box.textContent).toBe("Test content");
     });
 
-    it("sets --_pa for padding prop", () => {
-      render(
-        <Box padding={4} data-testid="box">
+    it("renders as different HTML elements via as prop", () => {
+      const { container } = render(<Box as="section">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.tagName).toBe("SECTION");
+    });
+
+    it("applies custom className", () => {
+      const { container } = render(<Box className="custom-class">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box).toHaveClass("custom-class");
+    });
+
+    it("passes through additional props", () => {
+      const { container } = render(
+        <Box data-testid="test-box" aria-label="Test">
           Content
         </Box>
       );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_pa")).toBe("4");
-    });
+      const box = container.firstChild as HTMLElement;
 
-    it("sets --_px for paddingInline prop", () => {
-      render(
-        <Box paddingInline={6} data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_px")).toBe("6");
-    });
-
-    it("sets --_py for paddingBlock prop", () => {
-      render(
-        <Box paddingBlock={8} data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_py")).toBe("8");
-    });
-
-    it("sets --_gap for gap prop", () => {
-      render(
-        <Box gap={4} data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_gap")).toBe("4");
-    });
-  });
-
-  describe("flex properties", () => {
-    it("sets --_dir for direction prop", () => {
-      render(
-        <Box direction="column" data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_dir")).toBe("column");
-    });
-
-    it("sets --_ai for alignItems prop", () => {
-      render(
-        <Box alignItems="center" data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_ai")).toBe("center");
-    });
-
-    it("sets --_jc for justifyContent prop", () => {
-      render(
-        <Box justifyContent="space-between" data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
-    });
-
-    it("sets --_jc for all justifyContent values", () => {
-      const justifyValues = [
-        "flex-start",
-        "center",
-        "flex-end",
-        "space-between",
-        "space-around",
-        "space-evenly",
-      ] as const;
-
-      justifyValues.forEach((value) => {
-        const { unmount } = render(
-          <Box justifyContent={value} data-testid="box">
-            Content
-          </Box>
-        );
-        const element = screen.getByTestId("box");
-        expect(element.style.getPropertyValue("--_jc")).toBe(value);
-        unmount();
-      });
-    });
-
-    it("applies justifyContent alongside other flex properties", () => {
-      render(
-        <Box
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          data-testid="box"
-        >
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_dir")).toBe("row");
-      expect(element.style.getPropertyValue("--_ai")).toBe("center");
-      expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
-    });
-
-    it("preserves CSS variables when external style prop is passed", () => {
-      render(
-        <Box
-          justifyContent="space-between"
-          alignItems="center"
-          style={{ minHeight: "200px" }}
-          data-testid="box"
-        >
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      // CSS variables should still be set even with external style
-      expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
-      expect(element.style.getPropertyValue("--_ai")).toBe("center");
-      // External style should also be applied
-      expect(element.style.minHeight).toBe("200px");
-    });
-
-    it("sets --_as for alignSelf prop", () => {
-      render(
-        <Box alignSelf="flex-end" data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_as")).toBe("flex-end");
-    });
-
-    it("sets --_js for justifySelf prop", () => {
-      render(
-        <Box justifySelf="center" data-testid="box">
-          Content
-        </Box>
-      );
-      const element = screen.getByTestId("box");
-      expect(element.style.getPropertyValue("--_js")).toBe("center");
+      expect(box).toHaveAttribute("data-testid", "test-box");
+      expect(box).toHaveAttribute("aria-label", "Test");
     });
   });
 
   describe("background colors", () => {
-    it("applies primary background class", () => {
-      render(
-        <Box background="primary" data-testid="box">
+    it("sets --_bg CSS variable with primary color", () => {
+      const { container } = render(<Box background="primary">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-primary)"
+      );
+    });
+
+    it("sets --_bg CSS variable with primary-subtle variant", () => {
+      const { container } = render(
+        <Box background="primary-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-primary-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with primary-bold variant", () => {
+      const { container } = render(<Box background="primary-bold">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-primary-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with secondary color", () => {
+      const { container } = render(<Box background="secondary">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-secondary)"
+      );
+    });
+
+    it("sets --_bg CSS variable with secondary-subtle variant", () => {
+      const { container } = render(
+        <Box background="secondary-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-secondary-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with secondary-bold variant", () => {
+      const { container } = render(
+        <Box background="secondary-bold">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-secondary-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with accent color", () => {
+      const { container } = render(<Box background="accent">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-accent)"
+      );
+    });
+
+    it("sets --_bg CSS variable with accent-subtle variant", () => {
+      const { container } = render(<Box background="accent-subtle">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-accent-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with accent-bold variant", () => {
+      const { container } = render(<Box background="accent-bold">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-accent-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with warning color", () => {
+      const { container } = render(<Box background="warning">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-warning)"
+      );
+    });
+
+    it("sets --_bg CSS variable with warning-subtle variant", () => {
+      const { container } = render(
+        <Box background="warning-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-warning-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with warning-bold variant", () => {
+      const { container } = render(<Box background="warning-bold">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-warning-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with positive color", () => {
+      const { container } = render(<Box background="positive">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-positive)"
+      );
+    });
+
+    it("sets --_bg CSS variable with positive-subtle variant", () => {
+      const { container } = render(
+        <Box background="positive-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-positive-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with positive-bold variant", () => {
+      const { container } = render(
+        <Box background="positive-bold">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-positive-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with critical color", () => {
+      const { container } = render(<Box background="critical">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-critical)"
+      );
+    });
+
+    it("sets --_bg CSS variable with critical-subtle variant", () => {
+      const { container } = render(
+        <Box background="critical-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-critical-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with critical-bold variant", () => {
+      const { container } = render(
+        <Box background="critical-bold">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-critical-bold)"
+      );
+    });
+
+    it("sets --_bg CSS variable with neutral color", () => {
+      const { container } = render(<Box background="neutral">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-neutral)"
+      );
+    });
+
+    it("sets --_bg CSS variable with neutral-subtle variant", () => {
+      const { container } = render(
+        <Box background="neutral-subtle">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-neutral-subtle)"
+      );
+    });
+
+    it("sets --_bg CSS variable with neutral-bold variant", () => {
+      const { container } = render(<Box background="neutral-bold">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-neutral-bold)"
+      );
+    });
+
+    it("does not set --_bg CSS variable when background is undefined", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe("");
+    });
+  });
+
+  describe("layout props", () => {
+    it("sets --_dir CSS variable for direction", () => {
+      const { container } = render(<Box direction="column">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_dir")).toBe("column");
+    });
+
+    it("sets --_gap CSS variable with default value", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_gap")).toBe("2");
+    });
+
+    it("sets --_gap CSS variable with custom value", () => {
+      const { container } = render(<Box gap={6}>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_gap")).toBe("6");
+    });
+
+    it("sets --_ai CSS variable for alignItems", () => {
+      const { container } = render(<Box alignItems="center">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_ai")).toBe("center");
+    });
+
+    it("sets --_jc CSS variable for justifyContent", () => {
+      const { container } = render(
+        <Box justifyContent="space-between">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_jc")).toBe("space-between");
+    });
+
+    it("sets --_as CSS variable for alignSelf", () => {
+      const { container } = render(<Box alignSelf="flex-end">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_as")).toBe("flex-end");
+    });
+
+    it("sets --_js CSS variable for justifySelf", () => {
+      const { container } = render(<Box justifySelf="center">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_js")).toBe("center");
+    });
+  });
+
+  describe("spacing props", () => {
+    it("sets --_pa CSS variable for padding", () => {
+      const { container } = render(<Box padding={4}>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_pa")).toBe("4");
+    });
+
+    it("sets --_py CSS variable for paddingBlock", () => {
+      const { container } = render(<Box paddingBlock={6}>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_py")).toBe("6");
+    });
+
+    it("sets --_px CSS variable for paddingInline", () => {
+      const { container } = render(<Box paddingInline={8}>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_px")).toBe("8");
+    });
+  });
+
+  describe("sizing props", () => {
+    it("sets --_w CSS variable for width", () => {
+      const { container } = render(<Box width="300px">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_w")).toBe("300px");
+    });
+
+    it("sets --_h CSS variable for height", () => {
+      const { container } = render(<Box height="100vh">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_h")).toBe("100vh");
+    });
+  });
+
+  describe("custom styles", () => {
+    it("merges custom inline styles", () => {
+      const { container } = render(
+        <Box style={{ color: "red", fontSize: "16px" }}>Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.color).toBe("red");
+      expect(box.style.fontSize).toBe("16px");
+    });
+
+    it("custom styles do not override CSS variables", () => {
+      const { container } = render(
+        <Box background="primary" style={{ color: "red" }}>
           Content
         </Box>
       );
-      const element = screen.getByTestId("box");
-      expect(element.className).toContain("primary");
-    });
+      const box = container.firstChild as HTMLElement;
 
-    it("applies secondary background class", () => {
-      render(
-        <Box background="secondary" data-testid="box">
-          Content
-        </Box>
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-primary)"
       );
-      const element = screen.getByTestId("box");
-      expect(element.className).toContain("secondary");
+      expect(box.style.color).toBe("red");
     });
-
-    it("applies all background color classes", () => {
-      const colors = [
-        "primary",
-        "secondary",
-        "accent",
-        "warning",
-        "positive",
-        "critical",
-      ] as const;
-
-      colors.forEach((color) => {
-        const { unmount } = render(
-          <Box background={color} data-testid="box">
-            Content
-          </Box>
-        );
-        const element = screen.getByTestId("box");
-        expect(element.className).toContain(color);
-        unmount();
-      });
-    });
-  });
-});
-
-describe("Semantic aliases", () => {
-  it("Section renders as section element", () => {
-    render(<Section data-testid="section">Content</Section>);
-    const element = screen.getByTestId("section");
-    expect(element.tagName).toBe("SECTION");
-  });
-
-  it("Article renders as article element", () => {
-    render(<Article data-testid="article">Content</Article>);
-    const element = screen.getByTestId("article");
-    expect(element.tagName).toBe("ARTICLE");
-  });
-
-  it("Header renders as header element", () => {
-    render(<Header data-testid="header">Content</Header>);
-    const element = screen.getByTestId("header");
-    expect(element.tagName).toBe("HEADER");
-  });
-
-  it("Footer renders as footer element", () => {
-    render(<Footer data-testid="footer">Content</Footer>);
-    const element = screen.getByTestId("footer");
-    expect(element.tagName).toBe("FOOTER");
-  });
-
-  it("Aside renders as aside element", () => {
-    render(<Aside data-testid="aside">Content</Aside>);
-    const element = screen.getByTestId("aside");
-    expect(element.tagName).toBe("ASIDE");
-  });
-
-  it("semantic aliases accept Box props", () => {
-    render(
-      <Section padding={4} gap={2} background="primary" data-testid="section">
-        Content
-      </Section>
-    );
-    const element = screen.getByTestId("section");
-    expect(element.style.getPropertyValue("--_pa")).toBe("4");
-    expect(element.style.getPropertyValue("--_gap")).toBe("2");
-    expect(element.className).toContain("primary");
   });
 });

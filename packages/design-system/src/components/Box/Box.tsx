@@ -8,12 +8,26 @@ import styles from "./Box.module.css";
 /** Valid background color tokens */
 type BackgroundColor =
   | "primary"
+  | "primary-subtle"
+  | "primary-bold"
   | "secondary"
+  | "secondary-subtle"
+  | "secondary-bold"
   | "accent"
+  | "accent-subtle"
+  | "accent-bold"
   | "warning"
+  | "warning-subtle"
+  | "warning-bold"
   | "positive"
+  | "positive-subtle"
+  | "positive-bold"
   | "critical"
-  | "neutral";
+  | "critical-subtle"
+  | "critical-bold"
+  | "neutral"
+  | "neutral-subtle"
+  | "neutral-bold";
 
 /** Flex direction values */
 type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
@@ -96,17 +110,14 @@ export const Box = ({
   style,
   ...rest
 }: BoxProps) => {
-  const rootClasses = cx(
-    styles.root,
-    background && styles[background],
-    className
-  );
+  const rootClasses = cx(styles.root, className);
 
   return (
     <Component
       className={rootClasses}
       style={
         {
+          "--_bg": background ? `var(--dxy-color-${background})` : undefined,
           "--_gap": gap,
           "--_pa": padding,
           "--_px": paddingInline,

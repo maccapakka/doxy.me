@@ -7,6 +7,7 @@
 
 .root {
   /* Reset private variables to prevent inheritance */
+  --_bg: initial;
   --_pa: initial;
   --_px: initial;
   --_py: initial;
@@ -37,33 +38,6 @@
   padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));
   padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
   border-radius: var(--dxy-spacing-2x);
-}
 
-/* Background color variants */
-.primary {
-  background-color: var(--dxy-color-primary);
-}
-
-.secondary {
-  background-color: var(--dxy-color-secondary);
-}
-
-.accent {
-  background-color: var(--dxy-color-accent);
-}
-
-.warning {
-  background-color: var(--dxy-color-warning);
-}
-
-.positive {
-  background-color: var(--dxy-color-positive);
-}
-
-.critical {
-  background-color: var(--dxy-color-critical);
-}
-
-.neutral {
-  background-color: var(--dxy-color-neutral);
+  background-color: var(--_bg);
 }

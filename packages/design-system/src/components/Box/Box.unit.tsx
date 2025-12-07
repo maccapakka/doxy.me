@@ -122,6 +122,64 @@ describe("Box", () => {
       expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
     });
 
+    it("sets --_jc for all justifyContent values", () => {
+      const justifyValues = [
+        "flex-start",
+        "center",
+        "flex-end",
+        "space-between",
+        "space-around",
+        "space-evenly",
+      ] as const;
+
+      justifyValues.forEach((value) => {
+        const { unmount } = render(
+          <Box justifyContent={value} data-testid="box">
+            Content
+          </Box>
+        );
+        const element = screen.getByTestId("box");
+        expect(element.style.getPropertyValue("--_jc")).toBe(value);
+        unmount();
+      });
+    });
+
+    it("applies justifyContent alongside other flex properties", () => {
+      render(
+        <Box
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          data-testid="box"
+        >
+          Content
+        </Box>
+      );
+      const element = screen.getByTestId("box");
+      expect(element.style.getPropertyValue("--_dir")).toBe("row");
+      expect(element.style.getPropertyValue("--_ai")).toBe("center");
+      expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
+    });
+
+    it("preserves CSS variables when external style prop is passed", () => {
+      render(
+        <Box
+          justifyContent="space-between"
+          alignItems="center"
+          style={{ minHeight: "200px" }}
+          data-testid="box"
+        >
+          Content
+        </Box>
+      );
+      const element = screen.getByTestId("box");
+      // CSS variables should still be set even with external style
+      expect(element.style.getPropertyValue("--_jc")).toBe("space-between");
+      expect(element.style.getPropertyValue("--_ai")).toBe("center");
+      // External style should also be applied
+      expect(element.style.minHeight).toBe("200px");
+    });
+
     it("sets --_as for alignSelf prop", () => {
       render(
         <Box alignSelf="flex-end" data-testid="box">

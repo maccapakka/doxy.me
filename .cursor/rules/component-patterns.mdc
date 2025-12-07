@@ -217,6 +217,42 @@ Reset private variables to `initial` at the start of the rule to prevent inherit
 - **Use** for any numeric prop that multiplies against a base token
 - **Don't use** for boolean/string props - use data attributes or CSS classes instead
 
+### ⚠️ Gotcha: External `style` Props Overwrite CSS Variables
+
+When using `{...rest}` spread, any `style` prop passed by consumers will **overwrite** the component's CSS variables:
+
+```tsx
+// ❌ BUG: style in rest overwrites CSS variables
+<Component
+  style={{ "--_gap": gap, "--_jc": justifyContent } as CSSProperties}
+  {...rest}  // If rest.style exists, it replaces everything above!
+>
+```
+
+**Solution**: Always destructure `style` explicitly and merge it:
+
+```tsx
+export const Box = ({
+  gap = 2,
+  justifyContent,
+  style,  // Destructure explicitly
+  ...rest
+}: BoxProps) => (
+  <div
+    style={{
+      "--_gap": gap,
+      "--_jc": justifyContent,
+      ...style,  // Merge external styles at the end
+    } as CSSProperties}
+    {...rest}
+  >
+    {children}
+  </div>
+);
+```
+
+Also add `style?: CSSProperties` to the props interface for proper typing.
+
 ---
 
 ## Polymorphic Components

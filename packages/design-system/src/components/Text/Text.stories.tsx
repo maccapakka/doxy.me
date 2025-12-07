@@ -79,6 +79,45 @@ const meta: Meta<typeof Text> = {
       ],
       table: { category: "Styling" },
     },
+    align: {
+      description: "Text alignment",
+      control: "select",
+      options: ["left", "center", "right", "justify"],
+      table: { category: "Styling" },
+    },
+    decoration: {
+      description: "Text decoration",
+      control: "select",
+      options: ["underline", "line-through", "none"],
+      table: { category: "Styling" },
+    },
+    transform: {
+      description: "Text transform",
+      control: "select",
+      options: ["uppercase", "lowercase", "capitalize", "none"],
+      table: { category: "Styling" },
+    },
+    italic: {
+      description: "Render text in italic",
+      control: "boolean",
+      table: { category: "Styling" },
+    },
+    truncate: {
+      description: "Truncate text with ellipsis (single line)",
+      control: "boolean",
+      table: { category: "Styling" },
+    },
+    maxLines: {
+      description: "Maximum lines before truncating (multi-line clamp)",
+      control: "number",
+      table: { category: "Styling" },
+    },
+    wrap: {
+      description: "Text wrapping behavior",
+      control: "select",
+      options: ["balance", "pretty", "wrap", "nowrap"],
+      table: { category: "Styling" },
+    },
   },
 };
 
@@ -378,6 +417,238 @@ export const ErrorStates: Story = {
           Your session will expire in 5 minutes.
         </Text>
       </Box>
+    </Box>
+  ),
+};
+
+export const TextAlignment: Story = {
+  name: "Text Alignment",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `align` prop to control text alignment: `left`, `center`, `right`, or `justify`.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={4}>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          align=&quot;left&quot; (default)
+        </Caption>
+        <Text as="p" align="left">
+          The quick brown fox jumps over the lazy dog.
+        </Text>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          align=&quot;center&quot;
+        </Caption>
+        <Text as="p" align="center">
+          The quick brown fox jumps over the lazy dog.
+        </Text>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          align=&quot;right&quot;
+        </Caption>
+        <Text as="p" align="right">
+          The quick brown fox jumps over the lazy dog.
+        </Text>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          align=&quot;justify&quot;
+        </Caption>
+        <Text as="p" align="justify">
+          The quick brown fox jumps over the lazy dog. This text is longer to
+          demonstrate the justify alignment which spreads words evenly across
+          each line.
+        </Text>
+      </Box>
+    </Box>
+  ),
+};
+
+export const TextDecoration: Story = {
+  name: "Text Decoration",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `decoration` prop to add underline or line-through effects.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={4}>
+      <Text decoration="underline">Underlined text</Text>
+      <Text decoration="line-through">Strikethrough text</Text>
+      <Text decoration="none">No decoration (explicit)</Text>
+    </Box>
+  ),
+};
+
+export const TextTransform: Story = {
+  name: "Text Transform",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `transform` prop to change text casing: `uppercase`, `lowercase`, or `capitalize`.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={4}>
+      <Text transform="uppercase">uppercase text</Text>
+      <Text transform="lowercase">LOWERCASE TEXT</Text>
+      <Text transform="capitalize">capitalize each word</Text>
+    </Box>
+  ),
+};
+
+export const ItalicText: Story = {
+  name: "Italic Text",
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `italic` prop to render text in italic style.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={4}>
+      <Text>Normal text</Text>
+      <Text italic>Italic text</Text>
+      <Text variant="featured-1" italic>
+        Featured italic text
+      </Text>
+    </Box>
+  ),
+};
+
+export const Truncation: Story = {
+  name: "Truncation",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use `truncate` for single-line ellipsis or `maxLines` for multi-line clamping.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          truncate (single line)
+        </Caption>
+        <Box style={{ maxWidth: "300px" }}>
+          <Text truncate>
+            This is a very long text that will be truncated with an ellipsis
+            when it exceeds the container width.
+          </Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          maxLines=&#123;2&#125;
+        </Caption>
+        <Box style={{ maxWidth: "300px" }}>
+          <Text maxLines={2}>
+            This is a longer text that will be clamped to exactly two lines. Any
+            content beyond the second line will be hidden with an ellipsis at
+            the end.
+          </Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          maxLines=&#123;3&#125;
+        </Caption>
+        <Box style={{ maxWidth: "300px" }}>
+          <Text maxLines={3}>
+            This is an even longer text that demonstrates three-line clamping.
+            The content will be visible for three full lines before being
+            truncated with an ellipsis. This is useful for card descriptions or
+            preview text.
+          </Text>
+        </Box>
+      </Box>
+    </Box>
+  ),
+};
+
+export const TextWrap: Story = {
+  name: "Text Wrap",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `wrap` prop to control text wrapping. `balance` and `pretty` are particularly useful for headings.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          wrap=&quot;balance&quot; (balances line lengths)
+        </Caption>
+        <Box style={{ maxWidth: "400px" }}>
+          <Title variant="title-2" wrap="balance">
+            A Balanced Heading That Wraps Nicely Across Lines
+          </Title>
+        </Box>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          wrap=&quot;pretty&quot; (avoids orphans)
+        </Caption>
+        <Box style={{ maxWidth: "400px" }}>
+          <Text wrap="pretty">
+            This paragraph uses pretty wrapping which tries to avoid orphan
+            words at the end of a paragraph.
+          </Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={1}>
+        <Caption variant="caption-1" color="secondary">
+          wrap=&quot;nowrap&quot;
+        </Caption>
+        <Text wrap="nowrap">This text will not wrap to the next line.</Text>
+      </Box>
+    </Box>
+  ),
+};
+
+export const CombinedStyles: Story = {
+  name: "Combined Styles",
+  parameters: {
+    docs: {
+      description: {
+        story: "Multiple text styling props can be combined together.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={4}>
+      <Text transform="uppercase" decoration="underline" color="primary">
+        Uppercase underlined primary text
+      </Text>
+      <Text italic color="secondary" align="center" as="p">
+        Centered italic secondary text
+      </Text>
+      <Text
+        variant="featured-2"
+        transform="capitalize"
+        color="accent"
+        decoration="underline"
+      >
+        featured capitalized accent underline
+      </Text>
     </Box>
   ),
 };

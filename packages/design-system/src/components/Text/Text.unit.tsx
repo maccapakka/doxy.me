@@ -234,3 +234,195 @@ describe("Semantic aliases", () => {
     expect(element.tagName).toBe("H1");
   });
 });
+
+describe("Text styling props", () => {
+  describe("align", () => {
+    it("sets --_ta CSS variable for text-align", () => {
+      render(
+        <Text align="center" data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_ta")).toBe("center");
+    });
+
+    it("supports all align values", () => {
+      const values = ["left", "center", "right", "justify"] as const;
+      values.forEach((value) => {
+        const { unmount } = render(
+          <Text align={value} data-testid="text">
+            Content
+          </Text>
+        );
+        const element = screen.getByTestId("text");
+        expect(element.style.getPropertyValue("--_ta")).toBe(value);
+        unmount();
+      });
+    });
+  });
+
+  describe("decoration", () => {
+    it("sets --_td CSS variable for text-decoration", () => {
+      render(
+        <Text decoration="underline" data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_td")).toBe("underline");
+    });
+
+    it("supports all decoration values", () => {
+      const values = ["underline", "line-through", "none"] as const;
+      values.forEach((value) => {
+        const { unmount } = render(
+          <Text decoration={value} data-testid="text">
+            Content
+          </Text>
+        );
+        const element = screen.getByTestId("text");
+        expect(element.style.getPropertyValue("--_td")).toBe(value);
+        unmount();
+      });
+    });
+  });
+
+  describe("transform", () => {
+    it("sets --_tt CSS variable for text-transform", () => {
+      render(
+        <Text transform="uppercase" data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_tt")).toBe("uppercase");
+    });
+
+    it("supports all transform values", () => {
+      const values = ["uppercase", "lowercase", "capitalize", "none"] as const;
+      values.forEach((value) => {
+        const { unmount } = render(
+          <Text transform={value} data-testid="text">
+            Content
+          </Text>
+        );
+        const element = screen.getByTestId("text");
+        expect(element.style.getPropertyValue("--_tt")).toBe(value);
+        unmount();
+      });
+    });
+  });
+
+  describe("italic", () => {
+    it("sets --_fs CSS variable to italic when true", () => {
+      render(
+        <Text italic data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_fs")).toBe("italic");
+    });
+
+    it("does not set --_fs when italic is false", () => {
+      render(
+        <Text italic={false} data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_fs")).toBe("");
+    });
+  });
+
+  describe("truncate", () => {
+    it("applies truncate class when true", () => {
+      render(
+        <Text truncate data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.className).toContain("truncate");
+    });
+
+    it("does not apply truncate class when false", () => {
+      render(
+        <Text truncate={false} data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.className).not.toContain("truncate");
+    });
+  });
+
+  describe("maxLines", () => {
+    it("applies lineClamp class and sets --_lc CSS variable", () => {
+      render(
+        <Text maxLines={3} data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.className).toContain("lineClamp");
+      expect(element.style.getPropertyValue("--_lc")).toBe("3");
+    });
+
+    it("does not apply lineClamp class when not set", () => {
+      render(<Text data-testid="text">Content</Text>);
+      const element = screen.getByTestId("text");
+      expect(element.className).not.toContain("lineClamp");
+    });
+  });
+
+  describe("wrap", () => {
+    it("sets --_tw CSS variable for text-wrap", () => {
+      render(
+        <Text wrap="balance" data-testid="text">
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_tw")).toBe("balance");
+    });
+
+    it("supports all wrap values", () => {
+      const values = ["balance", "pretty", "wrap", "nowrap"] as const;
+      values.forEach((value) => {
+        const { unmount } = render(
+          <Text wrap={value} data-testid="text">
+            Content
+          </Text>
+        );
+        const element = screen.getByTestId("text");
+        expect(element.style.getPropertyValue("--_tw")).toBe(value);
+        unmount();
+      });
+    });
+  });
+
+  describe("combined props", () => {
+    it("supports multiple styling props together", () => {
+      render(
+        <Text
+          align="center"
+          decoration="underline"
+          transform="uppercase"
+          italic
+          wrap="balance"
+          data-testid="text"
+        >
+          Content
+        </Text>
+      );
+      const element = screen.getByTestId("text");
+      expect(element.style.getPropertyValue("--_ta")).toBe("center");
+      expect(element.style.getPropertyValue("--_td")).toBe("underline");
+      expect(element.style.getPropertyValue("--_tt")).toBe("uppercase");
+      expect(element.style.getPropertyValue("--_fs")).toBe("italic");
+      expect(element.style.getPropertyValue("--_tw")).toBe("balance");
+    });
+  });
+});

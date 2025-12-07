@@ -3,12 +3,29 @@
  *
  * Typography variants mapped to design tokens.
  * Color classes for semantic text colors.
+ * Text styling via private CSS custom properties.
  */
 
 .root {
+  /* Reset private variables to prevent inheritance */
+  --_ta: initial;
+  --_td: initial;
+  --_tt: initial;
+  --_fs: initial;
+  --_tw: initial;
+  --_lc: initial;
+
   /* Base reset */
   margin: 0;
+
   font-family: var(--dxy-type-ff-body);
+  font-style: var(--_fs);
+
+  /* Text styling from CSS variables */
+  text-align: var(--_ta);
+  text-decoration: var(--_td);
+  text-transform: var(--_tt);
+  text-wrap: var(--_tw);
 }
 
 /* ========================================
@@ -115,4 +132,23 @@
 
 .neutral {
   color: var(--dxy-color-neutral);
+}
+
+/* ========================================
+ * Text Utilities
+ * ======================================== */
+
+/* Single-line truncation with ellipsis */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Multi-line truncation with line-clamp */
+.lineClamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--_lc);
 }

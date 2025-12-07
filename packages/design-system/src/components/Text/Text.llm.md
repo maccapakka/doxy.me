@@ -23,13 +23,20 @@ import { Title, Heading, Caption } from "@doxy/design-system/components";
 
 ## Props
 
-| Prop        | Type                                                                                                                                        | Default     | Description                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------ |
-| `as`        | `ElementType`                                                                                                                               | `"span"`    | The HTML element to render     |
-| `children`  | `ReactNode`                                                                                                                                 | `undefined` | The content to display         |
-| `className` | `string`                                                                                                                                    | `undefined` | Additional CSS classes         |
-| `variant`   | `'title-1' \| 'title-2' \| 'title-3' \| 'featured-1' \| 'featured-2' \| 'featured-3' \| 'body-1' \| 'body-2' \| 'caption-1' \| 'caption-2'` | `"body-1"`  | Typography variant from tokens |
-| `color`     | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical' \| 'neutral' \| 'inherit'`                                   | `"inherit"` | Text color from design tokens  |
+| Prop         | Type                                                                                                                                        | Default     | Description                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------ |
+| `as`         | `ElementType`                                                                                                                               | `"span"`    | The HTML element to render           |
+| `children`   | `ReactNode`                                                                                                                                 | `undefined` | The content to display               |
+| `className`  | `string`                                                                                                                                    | `undefined` | Additional CSS classes               |
+| `variant`    | `'title-1' \| 'title-2' \| 'title-3' \| 'featured-1' \| 'featured-2' \| 'featured-3' \| 'body-1' \| 'body-2' \| 'caption-1' \| 'caption-2'` | `"body-1"`  | Typography variant from tokens       |
+| `color`      | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical' \| 'neutral' \| 'inherit'`                                   | `"inherit"` | Text color from design tokens        |
+| `align`      | `'left' \| 'center' \| 'right' \| 'justify'`                                                                                                | `undefined` | Text alignment                       |
+| `decoration` | `'underline' \| 'line-through' \| 'none'`                                                                                                   | `undefined` | Text decoration                      |
+| `transform`  | `'uppercase' \| 'lowercase' \| 'capitalize' \| 'none'`                                                                                      | `undefined` | Text transform (case)                |
+| `italic`     | `boolean`                                                                                                                                   | `undefined` | Render text in italic                |
+| `truncate`   | `boolean`                                                                                                                                   | `undefined` | Single-line truncation with ellipsis |
+| `maxLines`   | `number`                                                                                                                                    | `undefined` | Multi-line truncation (line-clamp)   |
+| `wrap`       | `'balance' \| 'pretty' \| 'wrap' \| 'nowrap'`                                                                                               | `undefined` | Text wrapping behavior               |
 
 ## Typography Variants
 
@@ -141,6 +148,78 @@ All aliases accept the same props as Text and are purely semantic - they don't c
 <Caption variant="caption-1" color="critical">
   Password must be at least 8 characters.
 </Caption>
+```
+
+### Text Alignment
+
+```tsx
+<Text align="center">Centered text</Text>
+<Text align="right">Right-aligned text</Text>
+<Text align="justify">Justified text spreads evenly</Text>
+```
+
+### Text Decoration
+
+```tsx
+<Text decoration="underline">Underlined text</Text>
+<Text decoration="line-through">Strikethrough text</Text>
+```
+
+### Text Transform
+
+```tsx
+<Text transform="uppercase">uppercase text</Text>
+<Text transform="lowercase">LOWERCASE TEXT</Text>
+<Text transform="capitalize">capitalize each word</Text>
+```
+
+### Italic Text
+
+```tsx
+<Text italic>Italic text</Text>
+<Text variant="featured-1" italic>Featured italic text</Text>
+```
+
+### Truncation
+
+```tsx
+// Single-line truncation
+<Text truncate>
+  This very long text will be truncated with an ellipsis...
+</Text>
+
+// Multi-line truncation (3 lines max)
+<Text maxLines={3}>
+  This longer text will be clamped to three lines before showing an ellipsis.
+</Text>
+```
+
+### Text Wrap
+
+```tsx
+// Balance line lengths (great for headings)
+<Title variant="title-2" wrap="balance">
+  A Balanced Heading That Wraps Nicely
+</Title>
+
+// Avoid orphans at paragraph end
+<Text wrap="pretty">
+  This paragraph avoids orphan words.
+</Text>
+
+// Prevent wrapping
+<Text wrap="nowrap">This text will not wrap.</Text>
+```
+
+### Combined Styles
+
+```tsx
+<Text transform="uppercase" decoration="underline" color="primary">
+  Uppercase underlined primary text
+</Text>
+<Text italic color="secondary" align="center">
+  Centered italic secondary text
+</Text>
 ```
 
 ## Accessibility

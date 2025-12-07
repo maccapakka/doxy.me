@@ -58,12 +58,13 @@ Colors are defined in oklch format. Each semantic color has 5 programmatically g
 | `--dxy-color-positive` | Success states (Green) |
 | `--dxy-color-critical` | Error states, destructive actions (Red) |
 | `--dxy-color-neutral` | Placeholder, muted backgrounds (Light gray) |
+| `--dxy-color-action` | Action elements (alias of primary) |
 | `--dxy-color-white` | Pure white |
 | `--dxy-color-black` | Pure black |
 
 **Color Variant System:**
 
-Each semantic color (primary, secondary, accent, warning, positive, critical, neutral) has 5 variants:
+Each semantic color (primary, secondary, accent, warning, positive, critical, neutral, action) has 5 variants:
 
 | Variant | Use Case | Formula |
 |---------|----------|---------|

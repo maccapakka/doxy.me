@@ -30,6 +30,7 @@
   --dxy-color-positive: oklch(71.87% 0.167 155.94deg);
   --dxy-color-critical: oklch(63.34% 0.225 19.18deg);
   --dxy-color-neutral: oklch(50.52% 0.027 175.92deg);
+  --dxy-color-action: var(--dxy-color-primary);
   --dxy-color-white: oklch(100% 0 0deg);
   --dxy-color-black: oklch(0% 0 0deg);
 
@@ -233,6 +234,35 @@
   --dxy-color-neutral-active: color-mix(
     in oklch,
     var(--dxy-color-neutral),
+    var(--dxy-color-mix-active-base) var(--dxy-color-mix-active-value)
+  );
+
+  /* ========================================
+   * Action Variants
+   * ======================================== */
+  --dxy-color-action-subtle: color-mix(
+    in oklch,
+    var(--dxy-color-action),
+    var(--dxy-color-mix-subtle-base) var(--dxy-color-mix-subtle-value)
+  );
+  --dxy-color-action-bold: color-mix(
+    in oklch,
+    var(--dxy-color-action),
+    var(--dxy-color-mix-bold-base) var(--dxy-color-mix-bold-value)
+  );
+  --dxy-color-action-hover: color-mix(
+    in oklch,
+    var(--dxy-color-action),
+    var(--dxy-color-mix-hover-base) var(--dxy-color-mix-hover-value)
+  );
+  --dxy-color-action-focus: color-mix(
+    in oklch,
+    var(--dxy-color-action),
+    var(--dxy-color-mix-focus-base) var(--dxy-color-mix-focus-value)
+  );
+  --dxy-color-action-active: color-mix(
+    in oklch,
+    var(--dxy-color-action),
     var(--dxy-color-mix-active-base) var(--dxy-color-mix-active-value)
   );
 

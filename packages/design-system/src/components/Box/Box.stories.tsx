@@ -52,6 +52,11 @@ const meta: Meta<typeof Box> = {
       control: "text",
       table: { category: "Element" },
     },
+    style: {
+      description: "Additional inline styles",
+      control: "object",
+      table: { category: "Element" },
+    },
     // Layout
     direction: {
       description: "Flex direction",

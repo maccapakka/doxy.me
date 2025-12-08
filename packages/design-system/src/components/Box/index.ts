@@ -6,6 +6,7 @@ export {
   Footer,
   Aside,
   Nav,
+  Main,
   Stack,
   Cluster,
   Placeholder,

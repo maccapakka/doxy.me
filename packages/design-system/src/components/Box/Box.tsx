@@ -76,6 +76,8 @@ export interface BoxProps {
   justifySelf?: PlaceSelf;
   /** Gap between children (multiplier of 4px, default: 2 = 8px) */
   gap?: number;
+  /** Margin top (multiplier of 4px) */
+  marginTop?: number;
   /** Padding on all sides (multiplier of 4px) */
   padding?: number;
   /** Padding on block axis / vertical (multiplier of 4px) */
@@ -126,6 +128,7 @@ export const Box = ({
   justifyContent,
   justifySelf,
   gap = 2,
+  marginTop,
   padding,
   paddingBlock,
   paddingInline,
@@ -168,6 +171,7 @@ export const Box = ({
         {
           "--_bg": background ? `var(--dxy-color-${background})` : undefined,
           "--_gap": gap,
+          "--_mt": marginTop,
           "--_pa": padding,
           "--_px": paddingInline,
           "--_py": paddingBlock,
@@ -211,6 +215,9 @@ export const Aside = (props: Omit<BoxProps, "as">) => (
   <Box as="aside" {...props} />
 );
 export const Nav = (props: Omit<BoxProps, "as">) => <Box as="nav" {...props} />;
+export const Main = (props: Omit<BoxProps, "as">) => (
+  <Box as="main" {...props} />
+);
 
 // Layout aliases
 export const Stack = (props: Omit<BoxProps, "direction">) => (
@@ -228,9 +235,18 @@ export const Card = (props: Omit<BoxProps, "background">) => (
     borderRadius={2}
     padding={4}
     elevated
+    width="100%"
     {...props}
   />
 );
-export const Container = (props: Omit<BoxProps, "width">) => (
-  <Box width="100%" maxWidth="1440px" paddingInline={6} {...props} />
+export const Container = (
+  props: Omit<BoxProps, "width" | "paddingInline" | "justifySelf">
+) => (
+  <Box
+    width="100%"
+    maxWidth="1440px"
+    paddingInline={6}
+    justifySelf="center"
+    {...props}
+  />
 );

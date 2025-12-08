@@ -12,6 +12,7 @@
   --_px: initial;
   --_py: initial;
   --_gap: initial;
+  --_mt: initial;
   --_dir: initial;
   --_ai: initial;
   --_as: initial;
@@ -45,6 +46,7 @@
   height: var(--_h);
 
   /* Token-based spacing calculations */
+  margin-block-start: calc(var(--dxy-spacing-base) * var(--_mt));
   padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));
   padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
 

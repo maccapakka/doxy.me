@@ -1198,7 +1198,7 @@ export const ContainerAlias: Story = {
     docs: {
       description: {
         story:
-          "The `Container` alias is a pre-configured Box for page-level centering. It has `width=\"100%\"`, `maxWidth=\"1440px\"`, and `paddingInline={6}` (24px horizontal padding).",
+          'The `Container` alias is a pre-configured Box for page-level centering. It has `width="100%"`, `maxWidth="1440px"`, and `paddingInline={6}` (24px horizontal padding).',
       },
     },
   },

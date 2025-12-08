@@ -2,7 +2,6 @@
  * Text Component Styles
  *
  * Typography variants mapped to design tokens.
- * Color classes for semantic text colors.
  * Text styling via private CSS custom properties.
  */
 
@@ -19,7 +18,9 @@
   margin: 0;
 
   font-family: var(--dxy-type-ff-body);
+  font-weight: var(--_fw);
   font-style: var(--_fs);
+  color: var(--_clr);
 
   /* Text styling from CSS variables */
   text-align: var(--_ta);
@@ -36,7 +37,7 @@
 .title-1 {
   font-family: var(--dxy-type-ff-heading);
   font-size: var(--dxy-type-title-1-size);
-  font-weight: var(--dxy-type-title-1-weight);
+  font-weight: var(--_fw, var(--dxy-type-title-1-weight));
   line-height: var(--dxy-type-title-1-lh);
   color: var(--dxy-color-foreground-headings);
   letter-spacing: var(--dxy-type-title-1-ls);
@@ -45,7 +46,7 @@
 .title-2 {
   font-family: var(--dxy-type-ff-heading);
   font-size: var(--dxy-type-title-2-size);
-  font-weight: var(--dxy-type-title-2-weight);
+  font-weight: var(--_fw, var(--dxy-type-title-2-weight));
   line-height: var(--dxy-type-title-2-lh);
   color: var(--dxy-color-foreground-headings);
   letter-spacing: var(--dxy-type-title-2-ls);
@@ -54,7 +55,7 @@
 .title-3 {
   font-family: var(--dxy-type-ff-heading);
   font-size: var(--dxy-type-title-3-size);
-  font-weight: var(--dxy-type-title-3-weight);
+  font-weight: var(--_fw, var(--dxy-type-title-3-weight));
   line-height: var(--dxy-type-title-3-lh);
   color: var(--dxy-color-foreground-headings);
   letter-spacing: var(--dxy-type-title-3-ls);
@@ -63,21 +64,21 @@
 /* Featured variants */
 .featured-1 {
   font-size: var(--dxy-type-featured-1-size);
-  font-weight: var(--dxy-type-featured-1-weight);
+  font-weight: var(--_fw, var(--dxy-type-featured-1-weight));
   line-height: var(--dxy-type-featured-1-lh);
   color: var(--dxy-color-foreground-headings);
 }
 
 .featured-2 {
   font-size: var(--dxy-type-featured-2-size);
-  font-weight: var(--dxy-type-featured-2-weight);
+  font-weight: var(--_fw, var(--dxy-type-featured-2-weight));
   line-height: var(--dxy-type-featured-2-lh);
   color: var(--dxy-color-foreground-headings);
 }
 
 .featured-3 {
   font-size: var(--dxy-type-featured-3-size);
-  font-weight: var(--dxy-type-featured-3-weight);
+  font-weight: var(--_fw, var(--dxy-type-featured-3-weight));
   line-height: var(--dxy-type-featured-3-lh);
   color: var(--dxy-color-foreground-headings);
 }
@@ -85,59 +86,27 @@
 /* Body variants */
 .body-1 {
   font-size: var(--dxy-type-body-1-size);
-  font-weight: var(--dxy-type-body-1-weight);
+  font-weight: var(--_fw, var(--dxy-type-body-1-weight));
   line-height: var(--dxy-type-body-1-lh);
 }
 
 .body-2 {
   font-size: var(--dxy-type-body-2-size);
-  font-weight: var(--dxy-type-body-2-weight);
+  font-weight: var(--_fw, var(--dxy-type-body-2-weight));
   line-height: var(--dxy-type-body-2-lh);
 }
 
 /* Caption variants */
 .caption-1 {
   font-size: var(--dxy-type-caption-1-size);
-  font-weight: var(--dxy-type-caption-1-weight);
+  font-weight: var(--_fw, var(--dxy-type-caption-1-weight));
   line-height: var(--dxy-type-caption-1-lh);
 }
 
 .caption-2 {
   font-size: var(--dxy-type-caption-2-size);
-  font-weight: var(--dxy-type-caption-2-weight);
+  font-weight: var(--_fw, var(--dxy-type-caption-2-weight));
   line-height: var(--dxy-type-caption-2-lh);
-}
-
-/* ========================================
- * Color Variants
- * ======================================== */
-
-.primary {
-  color: var(--dxy-color-primary);
-}
-
-.secondary {
-  color: var(--dxy-color-secondary);
-}
-
-.accent {
-  color: var(--dxy-color-accent);
-}
-
-.warning {
-  color: var(--dxy-color-warning);
-}
-
-.positive {
-  color: var(--dxy-color-positive);
-}
-
-.critical {
-  color: var(--dxy-color-critical);
-}
-
-.neutral {
-  color: var(--dxy-color-neutral);
 }
 
 /* ========================================

@@ -21,13 +21,28 @@ type TextVariant =
 /** Valid text color tokens */
 type TextColor =
   | "primary"
+  | "primary-subtle"
+  | "primary-bold"
   | "secondary"
+  | "secondary-subtle"
+  | "secondary-bold"
   | "accent"
+  | "accent-subtle"
+  | "accent-bold"
   | "warning"
+  | "warning-subtle"
+  | "warning-bold"
   | "positive"
+  | "positive-subtle"
+  | "positive-bold"
   | "critical"
+  | "critical-subtle"
+  | "critical-bold"
   | "neutral"
-  | "inherit";
+  | "neutral-subtle"
+  | "neutral-bold"
+  | "black"
+  | "white";
 
 /** Text alignment values */
 type TextAlign = "left" | "center" | "right" | "justify";
@@ -41,6 +56,16 @@ type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
 /** Text wrap values */
 type TextWrap = "balance" | "pretty" | "wrap" | "nowrap";
 
+/** Text weight values */
+type TextWeight = "normal" | "semibold" | "bold";
+
+/** Weight mapping to CSS variable values */
+const weightMap: Record<TextWeight, string> = {
+  normal: "var(--dxy-type-weight-normal)",
+  semibold: "var(--dxy-type-weight-medium)",
+  bold: "var(--dxy-type-weight-bold)",
+};
+
 /** Props for the Text component */
 export interface TextProps {
   /** The element type to render as (default: "span") */
@@ -51,7 +76,7 @@ export interface TextProps {
   className?: string;
   /** Typography variant (default: "body-1") */
   variant?: TextVariant;
-  /** Text color from design tokens (default: "inherit") */
+  /** Text color from design tokens */
   color?: TextColor;
   /** Text alignment */
   align?: TextAlign;
@@ -67,6 +92,8 @@ export interface TextProps {
   maxLines?: number;
   /** Text wrapping behavior */
   wrap?: TextWrap;
+  /** Font weight override (normal, semibold, bold) */
+  weight?: TextWeight;
   /** Allow any additional props */
   [key: string]: unknown;
 }
@@ -82,7 +109,7 @@ export const Text = ({
   children,
   className,
   variant = "body-1",
-  color = "inherit",
+  color,
   align,
   decoration,
   transform,
@@ -90,12 +117,12 @@ export const Text = ({
   truncate,
   maxLines,
   wrap,
+  weight,
   ...rest
 }: TextProps) => {
   const rootClasses = cx(
     styles.root,
     styles[variant],
-    color !== "inherit" && styles[color],
     truncate && styles.truncate,
     maxLines && styles.lineClamp,
     className
@@ -106,12 +133,14 @@ export const Text = ({
       className={rootClasses}
       style={
         {
+          "--_clr": color ? `var(--dxy-color-${color})` : undefined,
           "--_ta": align,
           "--_td": decoration,
           "--_tt": transform,
           "--_fs": italic ? "italic" : undefined,
           "--_tw": wrap,
           "--_lc": maxLines,
+          "--_fw": weight ? weightMap[weight] : undefined,
         } as CSSProperties
       }
       {...rest}

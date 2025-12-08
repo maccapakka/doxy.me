@@ -46,6 +46,7 @@
     var(--dxy-color-neutral) 60%,
     transparent
   );
+  --dxy-color-elevation: var(--dxy-color-white);
 
   /* ========================================
    * Primary Variants

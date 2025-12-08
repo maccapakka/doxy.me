@@ -61,6 +61,7 @@ Colors are defined in oklch format. Each semantic color has 5 programmatically g
 | `--dxy-color-action` | Action elements (alias of primary) |
 | `--dxy-color-white` | Pure white |
 | `--dxy-color-black` | Pure black |
+| `--dxy-color-elevation` | Elevated surface background (white) |
 
 **Color Variant System:**
 
@@ -119,6 +120,12 @@ Border radius uses a 4px base unit with a numeric scale (1, 2, 3).
 | `--dxy-border-radius-1` | 4px (base) |
 | `--dxy-border-radius-2` | 8px (base × 2) |
 | `--dxy-border-radius-3` | 12px (base × 3) |
+
+**Elevation Shadows:**
+
+| Token | Value |
+|-------|-------|
+| `--dxy-box-shadow-elevation` | Subtle layered shadow for elevated surfaces |
 
 **Usage in Components:**
 
@@ -182,7 +189,7 @@ Standardized heights for form elements (buttons, inputs, selects, etc.) using co
 |------|----------|
 | `color.css` | Color tokens with base colors, 5 variants per color, and mixing configuration |
 | `spacing.css` | Spacing scale tokens |
-| `borders.css` | Border tokens (border-radius: base, 1, 2, 3) |
+| `borders.css` | Border tokens (border-radius, elevation shadows) |
 | `typography.css` | Typography scale and variant tokens |
 | `forms.css` | Form control height tokens |
 | `index.css` | Imports all tokens + minimal CSS reset |

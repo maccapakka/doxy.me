@@ -1,0 +1,86 @@
+.root {
+  /* Reset to prevent inheritance from parent components */
+  --_size: initial;
+  --_src: initial;
+  --_bg: initial;
+
+  /* Prevent text selection */
+  user-select: none;
+
+  /* Positioning context for status indicator */
+  position: relative;
+
+  /* Center initials text */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Size calculation using spacing base token */
+  width: calc(var(--dxy-spacing-base) * var(--_size));
+  height: calc(var(--dxy-spacing-base) * var(--_size));
+  border: 2px solid var(--dxy-color-white);
+
+  /* Circular shape */
+  border-radius: 50%;
+
+  font-size: calc(var(--dxy-spacing-base) * var(--_size) * 0.4);
+  font-weight: var(--dxy-type-weight-medium);
+
+  /* Initials text styling */
+  color: var(--dxy-color-white);
+
+  /* Fallback background color (shows when no image) */
+  background-color: var(--_bg);
+
+  /* Background image (when src provided) */
+  background-image: var(--_src);
+  background-position: center;
+  background-size: cover;
+}
+
+/* Status indicator dot */
+.status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  box-sizing: content-box;
+
+  /* Size proportional to avatar (roughly 25%) */
+  width: calc(var(--dxy-spacing-base) * var(--_size) * 0.25);
+  height: calc(var(--dxy-spacing-base) * var(--_size) * 0.25);
+
+  /* White border for visibility against avatar */
+  border: 2px solid var(--dxy-color-white);
+
+  /* Circular shape */
+  border-radius: 50%;
+}
+
+/* Status colors */
+.status[data-status="online"] {
+  background-color: var(--dxy-color-positive);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status[data-status="away"] {
+  background-color: var(--dxy-color-warning);
+}
+
+.status[data-status="offline"] {
+  background-color: var(--dxy-color-neutral);
+}
+
+/* Pulse animation for online status */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}

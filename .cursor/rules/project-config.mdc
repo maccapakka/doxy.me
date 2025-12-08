@@ -111,22 +111,24 @@ Spacing uses a 4px base unit with multipliers from 1x to 12x.
 
 ### Border Radius Tokens
 
-Border radius uses an 8px base unit with inner, base, and outer variants.
+Border radius uses a 4px base unit with a numeric scale (1, 2, 3).
 
 | Token | Value |
 |-------|-------|
-| `--dxy-border-radius-base` | 8px |
-| `--dxy-border-radius-inner` | 8px (alias of base) |
-| `--dxy-border-radius-outer` | 16px (base × 2) |
+| `--dxy-border-radius-base` | 4px |
+| `--dxy-border-radius-1` | 4px (base) |
+| `--dxy-border-radius-2` | 8px (base × 2) |
+| `--dxy-border-radius-3` | 12px (base × 3) |
 
 **Usage in Components:**
 
 The Box component accepts `borderRadius` prop with these values:
-- `"base"` (default) - 8px standard rounded corners
-- `"inner"` - 8px, same as base
-- `"outer"` - 16px, larger rounded corners
+- `1` (default) - 4px standard rounded corners
+- `2` - 8px rounded corners
+- `3` - 12px larger rounded corners
 - `"circle"` - 9999px for circular elements
-- `"squircle"` - 8px with `corner-shape: squircle` for iOS-style rounded corners
+
+Note: Use `cornerShape="squircle"` with any border radius for iOS-style rounded corners.
 
 ### Typography Tokens
 
@@ -143,6 +145,7 @@ Typography uses a 1.2 typescale ratio with body-1 (1.6rem = 16px) as the base. T
 | `--dxy-type-lh-body` | Body line-height | 1.6 |
 | `--dxy-type-lh-caption` | Caption line-height | 1.4 |
 | `--dxy-type-weight-normal` | Normal weight | 400 |
+| `--dxy-type-weight-medium` | Medium weight (links, buttons) | 500 |
 | `--dxy-type-weight-bold` | Bold weight | 700 |
 | `--dxy-type-ls-heading` | Heading letter-spacing | -0.022em |
 | `--dxy-type-ff-heading` | Heading font family | Inter, sans-serif |
@@ -163,14 +166,25 @@ Typography uses a 1.2 typescale ratio with body-1 (1.6rem = 16px) as the base. T
 | `--dxy-type-caption-1-*` | ~1.11rem (11px) | 1.4 | normal | - |
 | `--dxy-type-caption-2-*` | ~0.93rem (9px) | 1.4 | normal | - |
 
+### Form Control Tokens
+
+Standardized heights for form elements (buttons, inputs, selects, etc.) using consistent 8px increments.
+
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--dxy-form-control-height-small` | 3.6rem (36px) | Compact form elements |
+| `--dxy-form-control-height` | 4.4rem (44px) | Default form element height |
+| `--dxy-form-control-height-large` | 5.2rem (52px) | Prominent form elements |
+
 ### Token Files
 
 | File | Contents |
 |------|----------|
 | `color.css` | Color tokens with base colors, 5 variants per color, and mixing configuration |
 | `spacing.css` | Spacing scale tokens |
-| `borders.css` | Border tokens (border-radius: base, inner, outer) |
+| `borders.css` | Border tokens (border-radius: base, 1, 2, 3) |
 | `typography.css` | Typography scale and variant tokens |
+| `forms.css` | Form control height tokens |
 | `index.css` | Imports all tokens + minimal CSS reset |
 
 ---

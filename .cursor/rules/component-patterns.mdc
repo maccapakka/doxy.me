@@ -78,6 +78,27 @@ import type { ReactNode, FC } from "react";
 
 ## Styling Patterns
 
+### CSS Module Root Class
+
+The root/wrapper element class in a CSS module must **always** be named `.root`:
+
+```css
+/* ✅ Correct */
+.root {
+  display: flex;
+}
+
+/* ❌ Incorrect - don't name after the component */
+.button {
+  display: flex;
+}
+```
+
+This convention:
+- Provides consistency across all components
+- Makes it clear which class is the root element
+- Simplifies component composition with `styles.root`
+
 ### ClassName Composition
 
 Use the `classnames` library (imported as `cx`) for composing class names. Always extract the composed classes into a `rootClasses` variable before passing to the component:

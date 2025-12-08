@@ -183,8 +183,14 @@ export const HelloWorld: Story = {
             width="100%"
             height="200px"
             background="black"
+            backgroundImage="/drew-cano.jpg"
+            backgroundSize="cover"
+            backgroundPosition="center"
             borderRadius={2}
-          ></Box>
+            padding={2}
+          >
+            <Text>You</Text>
+          </Box>
           <Button>Test your audio and video</Button>
         </Stack>
       </Section>

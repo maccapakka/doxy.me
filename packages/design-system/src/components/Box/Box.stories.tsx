@@ -184,6 +184,28 @@ const meta: Meta<typeof Box> = {
       control: "text",
       table: { category: "Styling" },
     },
+    aspectRatio: {
+      description: "Aspect ratio (CSS value, e.g. '16/9', '1', '4/3')",
+      control: "text",
+      table: { category: "Styling" },
+    },
+    // Background Image
+    backgroundImage: {
+      description: "Background image URL",
+      control: "text",
+      table: { category: "Background" },
+    },
+    backgroundPosition: {
+      description: "Background position (CSS value, e.g. 'center', 'top left')",
+      control: "text",
+      table: { category: "Background" },
+    },
+    backgroundSize: {
+      description: "Background size (CSS value, e.g. 'cover', 'contain')",
+      control: "select",
+      options: [undefined, "cover", "contain", "auto"],
+      table: { category: "Background" },
+    },
     // Grid
     gridTemplateColumns: {
       description:
@@ -1213,6 +1235,146 @@ export const ContainerAlias: Story = {
             Container with max-width 1440px and horizontal padding
           </Text>
         </Container>
+      </Box>
+    </Box>
+  ),
+};
+
+export const BackgroundImage: Story = {
+  name: "Background Image",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use `backgroundImage` with `backgroundSize` and `backgroundPosition` to add background images. Common values: `cover` fills the container, `contain` fits within, and `center` positions the image.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          backgroundSize=&quot;cover&quot; backgroundPosition=&quot;center&quot;
+        </Text>
+        <Box
+          backgroundImage="https://picsum.photos/800/400"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          height="200px"
+          borderRadius={2}
+        />
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          backgroundSize=&quot;contain&quot;
+          backgroundPosition=&quot;center&quot;
+        </Text>
+        <Box
+          backgroundImage="https://picsum.photos/400/400"
+          backgroundSize="contain"
+          backgroundPosition="center"
+          height="200px"
+          borderRadius={2}
+          background="neutral-subtle"
+          style={{ backgroundRepeat: "no-repeat" }}
+        />
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          Hero section with overlay content
+        </Text>
+        <Box
+          backgroundImage="https://picsum.photos/800/300"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          height="200px"
+          borderRadius={2}
+          padding={6}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text
+            variant="title-3"
+            style={{ color: "white", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
+          >
+            Hero Title
+          </Text>
+        </Box>
+      </Box>
+    </Box>
+  ),
+};
+
+export const AspectRatio: Story = {
+  name: "Aspect Ratio",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use `aspectRatio` to maintain consistent proportions. Common ratios: `16/9` for video, `4/3` for photos, `1` for squares. The aspect ratio is maintained regardless of content.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          aspectRatio=&quot;16/9&quot; (video)
+        </Text>
+        <Box
+          aspectRatio="16/9"
+          background="neutral-bold"
+          borderRadius={2}
+          width="300px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>16:9</Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          aspectRatio=&quot;4/3&quot; (photo)
+        </Text>
+        <Box
+          aspectRatio="4/3"
+          background="neutral-bold"
+          borderRadius={2}
+          width="300px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>4:3</Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          aspectRatio=&quot;1&quot; (square)
+        </Text>
+        <Box
+          aspectRatio="1"
+          background="neutral-bold"
+          borderRadius={2}
+          width="150px"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text style={{ color: "white" }}>1:1</Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          Aspect ratio with background image
+        </Text>
+        <Box
+          aspectRatio="21/9"
+          backgroundImage="https://picsum.photos/800/350"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          borderRadius={2}
+          width="100%"
+          maxWidth="500px"
+        />
       </Box>
     </Box>
   ),

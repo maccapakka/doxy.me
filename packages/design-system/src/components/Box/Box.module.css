@@ -8,6 +8,9 @@
 .root {
   /* Reset private variables to prevent inheritance */
   --_bg: initial;
+  --_bgi: initial;
+  --_bgp: initial;
+  --_bgs: initial;
   --_pa: initial;
   --_px: initial;
   --_py: initial;
@@ -22,6 +25,7 @@
   --_w: initial;
   --_mw: initial;
   --_h: initial;
+  --_ar: initial;
   --_gtr: initial;
   --_gtc: initial;
   --_gta: initial;
@@ -29,6 +33,9 @@
 
   /* Default styles */
   display: flex;
+
+  /* stylelint-disable-next-line order/properties-order -- grid-area works on both flex and grid items */
+  grid-area: var(--_ga);
   flex-direction: var(--_dir);
   gap: calc(var(--dxy-spacing-base) * var(--_gap));
   align-items: var(--_ai);
@@ -38,9 +45,7 @@
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
   justify-self: var(--_js);
 
-  /* stylelint-disable-next-line order/properties-order -- grid-area works on both flex and grid items */
-  grid-area: var(--_ga);
-
+  aspect-ratio: var(--_ar);
   width: var(--_w);
   max-width: var(--_mw);
   height: var(--_h);
@@ -51,6 +56,9 @@
   padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
 
   background-color: var(--_bg);
+  background-image: var(--_bgi);
+  background-position: var(--_bgp);
+  background-size: var(--_bgs);
 
   /* stylelint-disable-next-line property-no-unknown -- CSS Spec property */
   corner-shape: var(--_cs);

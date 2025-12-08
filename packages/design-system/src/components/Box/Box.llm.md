@@ -54,11 +54,15 @@ import {
 | `paddingBlock`        | `number`                                                                        | `undefined` | Vertical padding (multiplier of 4px)           |
 | `paddingInline`       | `number`                                                                        | `undefined` | Horizontal padding (multiplier of 4px)         |
 | `background`          | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical'` | `undefined` | Background color from design tokens            |
+| `backgroundImage`     | `string`                                                                        | `undefined` | Background image URL                           |
+| `backgroundPosition`  | `string`                                                                        | `undefined` | Background position (CSS value)                |
+| `backgroundSize`      | `string`                                                                        | `undefined` | Background size (CSS value)                    |
 | `borderRadius`        | `1 \| 2 \| 3 \| 'circle'`                                                       | `1`         | Border radius from design tokens               |
 | `cornerShape`         | `'round' \| 'scoop' \| 'bevel' \| 'notch' \| 'squircle'`                        | `'round'`   | Corner shape style (CSS corner-shape)          |
 | `width`               | `string`                                                                        | `undefined` | Width as CSS value (e.g. "300px", "50%")       |
 | `maxWidth`            | `string`                                                                        | `undefined` | Max width as CSS value (e.g. "1440px", "80ch") |
 | `height`              | `string`                                                                        | `undefined` | Height as CSS value (e.g. "100vh")             |
+| `aspectRatio`         | `string`                                                                        | `undefined` | Aspect ratio (CSS value, e.g. "16/9", "1")     |
 | `gridTemplateColumns` | `string`                                                                        | `undefined` | CSS grid-template-columns (triggers grid mode) |
 | `gridTemplateRows`    | `string`                                                                        | `undefined` | CSS grid-template-rows (triggers grid mode)    |
 | `gridTemplateAreas`   | `string`                                                                        | `undefined` | CSS grid-template-areas (triggers grid mode)   |
@@ -115,6 +119,43 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 <Box background="primary" padding={4}>
   <span style={{ color: "white" }}>Primary background</span>
 </Box>
+```
+
+### Background Image
+
+```tsx
+// Basic background image with cover
+<Box
+  backgroundImage="https://example.com/image.jpg"
+  backgroundSize="cover"
+  backgroundPosition="center"
+  height="300px"
+/>
+
+// Hero section with background
+<Box
+  backgroundImage="/hero-image.jpg"
+  backgroundSize="cover"
+  backgroundPosition="center top"
+  padding={8}
+>
+  <Text style={{ color: "white" }}>Hero content</Text>
+</Box>
+```
+
+### Aspect Ratio
+
+```tsx
+// 16:9 video aspect ratio
+<Box aspectRatio="16/9" background="neutral">
+  Video container
+</Box>
+
+// Square aspect ratio
+<Box aspectRatio="1" background="primary" width="200px" />
+
+// 4:3 photo aspect ratio
+<Box aspectRatio="4/3" backgroundImage="/photo.jpg" backgroundSize="cover" />
 ```
 
 ### Border Radius

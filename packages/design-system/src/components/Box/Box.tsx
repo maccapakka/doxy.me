@@ -86,6 +86,12 @@ export interface BoxProps {
   paddingInline?: number;
   /** Background color from design tokens */
   background?: BackgroundColor;
+  /** Background image URL */
+  backgroundImage?: string;
+  /** Background position (CSS value, e.g., "center", "top left", "50% 50%") */
+  backgroundPosition?: string;
+  /** Background size (CSS value, e.g., "cover", "contain", "100px 200px") */
+  backgroundSize?: string;
   /** Border radius from design tokens or special values (default: 1) */
   borderRadius?: BorderRadius;
   /** Corner shape style (default: "round") */
@@ -96,6 +102,8 @@ export interface BoxProps {
   maxWidth?: string;
   /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
   height?: string;
+  /** Aspect ratio (CSS value, e.g., "16/9", "1", "4/3") */
+  aspectRatio?: string;
   /** Grid template rows (CSS grid-template-rows value, triggers grid display) */
   gridTemplateRows?: string;
   /** Grid template columns (CSS grid-template-columns value, triggers grid display) */
@@ -133,11 +141,15 @@ export const Box = ({
   paddingBlock,
   paddingInline,
   background,
+  backgroundImage,
+  backgroundPosition,
+  backgroundSize,
   borderRadius = 1,
   cornerShape = "round",
   width,
   maxWidth,
   height,
+  aspectRatio,
   gridTemplateRows,
   gridTemplateColumns,
   gridTemplateAreas,
@@ -170,6 +182,9 @@ export const Box = ({
       style={
         {
           "--_bg": background ? `var(--dxy-color-${background})` : undefined,
+          "--_bgi": backgroundImage ? `url(${backgroundImage})` : undefined,
+          "--_bgp": backgroundPosition,
+          "--_bgs": backgroundSize,
           "--_gap": gap,
           "--_mt": marginTop,
           "--_pa": padding,
@@ -184,6 +199,7 @@ export const Box = ({
           "--_w": width,
           "--_mw": maxWidth,
           "--_h": height,
+          "--_ar": aspectRatio,
           "--_gtr": gridTemplateRows,
           "--_gtc": gridTemplateColumns,
           "--_gta": gridTemplateAreas,

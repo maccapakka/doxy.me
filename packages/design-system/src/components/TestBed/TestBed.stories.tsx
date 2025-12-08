@@ -25,7 +25,7 @@ export const HelloWorld: Story = {
             <Text weight="bold" color="secondary">
               Your Provider
             </Text>
-            <Box padding={2} background="neutral-subtle">
+            <Box paddingBlock={2} paddingInline={3} background="neutral-subtle">
               <Stack gap={0}>
                 <Text>Stevie McCann</Text>
                 <Text variant="caption-1">Online</Text>
@@ -179,6 +179,12 @@ export const HelloWorld: Story = {
       </Stack>
       <Section gridArea="camera" alignItems="flex-start">
         <Stack>
+          <Box
+            width="100%"
+            height="200px"
+            background="black"
+            borderRadius={2}
+          ></Box>
           <Button>Test your audio and video</Button>
         </Stack>
       </Section>

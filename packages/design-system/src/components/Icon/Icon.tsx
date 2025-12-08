@@ -8,12 +8,28 @@ import styles from "./Icon.module.css";
 /** Valid color tokens */
 type ColorVariant =
   | "primary"
+  | "primary-subtle"
+  | "primary-bold"
   | "secondary"
+  | "secondary-subtle"
+  | "secondary-bold"
   | "accent"
+  | "accent-subtle"
+  | "accent-bold"
   | "warning"
+  | "warning-subtle"
+  | "warning-bold"
   | "positive"
+  | "positive-subtle"
+  | "positive-bold"
   | "critical"
-  | "neutral";
+  | "critical-subtle"
+  | "critical-bold"
+  | "neutral"
+  | "neutral-subtle"
+  | "neutral-bold"
+  | "black"
+  | "white";
 
 /** Props for the Icon component */
 export interface IconProps {
@@ -44,7 +60,7 @@ export const Icon = ({
   style,
   ...rest
 }: IconProps) => {
-  const rootClasses = cx(styles.root, color && styles[color], className);
+  const rootClasses = cx(styles.root, className);
 
   return (
     <div
@@ -52,6 +68,7 @@ export const Icon = ({
       style={
         {
           "--_size": size,
+          "--_clr": color ? `var(--dxy-color-${color})` : undefined,
           ...style,
         } as CSSProperties
       }

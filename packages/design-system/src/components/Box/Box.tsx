@@ -29,7 +29,8 @@ type BackgroundColor =
   | "neutral-subtle"
   | "neutral-bold"
   | "black"
-  | "white";
+  | "white"
+  | "elevation";
 
 /** Flex direction values */
 type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
@@ -101,6 +102,8 @@ export interface BoxProps {
   gridArea?: string;
   /** Additional inline styles */
   style?: CSSProperties;
+  /** Apply elevation styling (box shadow) */
+  elevated?: boolean;
   /** Allow any additional props */
   [key: string]: unknown;
 }
@@ -134,6 +137,7 @@ export const Box = ({
   gridTemplateAreas,
   gridArea,
   style,
+  elevated,
   ...rest
 }: BoxProps) => {
   const isGridContainer = !!(
@@ -145,6 +149,7 @@ export const Box = ({
   const rootClasses = cx(
     styles.root,
     isGridContainer && styles.grid,
+    elevated && styles.elevated,
     styles[
       borderRadius === "circle"
         ? "borderRadiusCircle"
@@ -212,3 +217,6 @@ export const Cluster = (props: Omit<BoxProps, "direction">) => (
 export const Placeholder = (
   props: Omit<BoxProps, "background" | "padding">
 ) => <Box background="neutral" padding={4} {...props} />;
+export const Card = (props: Omit<BoxProps, "background">) => (
+  <Box background="elevation" borderRadius={2} padding={4} {...props} />
+);

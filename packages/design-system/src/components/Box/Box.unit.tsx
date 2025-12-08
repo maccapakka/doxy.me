@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Box } from "./Box";
+import { Box, Card } from "./Box";
 
 describe("Box", () => {
   describe("rendering", () => {
@@ -575,6 +575,77 @@ describe("Box", () => {
       expect(box.style.getPropertyValue("--_gta")).toBe(
         "'header header' 'sidebar main'"
       );
+    });
+  });
+
+  describe("elevated prop", () => {
+    it("applies elevated class when elevated is true", () => {
+      const { container } = render(<Box elevated>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("elevated");
+    });
+
+    it("does not apply elevated class when elevated is false", () => {
+      const { container } = render(<Box elevated={false}>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).not.toContain("elevated");
+    });
+
+    it("does not apply elevated class by default", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).not.toContain("elevated");
+    });
+  });
+
+  describe("elevation background", () => {
+    it("sets --_bg CSS variable with elevation color", () => {
+      const { container } = render(<Box background="elevation">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-elevation)"
+      );
+    });
+  });
+
+  describe("Card alias", () => {
+    it("renders with elevation background", () => {
+      const { container } = render(<Card>Content</Card>);
+      const card = container.firstChild as HTMLElement;
+
+      expect(card.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-elevation)"
+      );
+    });
+
+    it("applies elevated class", () => {
+      const { container } = render(<Card>Content</Card>);
+      const card = container.firstChild as HTMLElement;
+
+      expect(card.className).toContain("elevated");
+    });
+
+    it("accepts other Box props", () => {
+      const { container } = render(
+        <Card padding={4} borderRadius={2}>
+          Content
+        </Card>
+      );
+      const card = container.firstChild as HTMLElement;
+
+      expect(card.style.getPropertyValue("--_pa")).toBe("4");
+      expect(card.className).toContain("borderRadius2");
+    });
+
+    it("renders children correctly", () => {
+      const { container } = render(<Card>Card content</Card>);
+      const card = container.firstChild as HTMLElement;
+
+      expect(card.textContent).toBe("Card content");
     });
   });
 });

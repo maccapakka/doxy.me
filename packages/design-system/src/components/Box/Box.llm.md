@@ -17,6 +17,9 @@ import {
   Footer,
   Aside,
 } from "@doxy/design-system/components";
+
+// Layout aliases
+import { Stack, Cluster, Card } from "@doxy/design-system/components";
 ```
 
 ## Usage
@@ -53,6 +56,7 @@ import {
 | `gridTemplateRows`    | `string`                                                                        | `undefined` | CSS grid-template-rows (triggers grid mode)    |
 | `gridTemplateAreas`   | `string`                                                                        | `undefined` | CSS grid-template-areas (triggers grid mode)   |
 | `gridArea`            | `string`                                                                        | `undefined` | CSS grid-area for child placement              |
+| `elevated`            | `boolean`                                                                       | `undefined` | Apply elevation styling (box shadow)           |
 
 ## Spacing Values
 
@@ -127,6 +131,29 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 <Box borderRadius={2} cornerShape="bevel">Cut corners</Box>
 <Box borderRadius={2} cornerShape="notch">Inverse bevels</Box>
 <Box borderRadius={2} cornerShape="squircle">iOS-style superellipse</Box>
+```
+
+### Elevation
+
+```tsx
+// Apply elevation styling (box shadow)
+<Box elevated padding={4}>
+  Elevated box with shadow
+</Box>
+
+// Combine with elevation background
+<Box elevated background="elevation" padding={4}>
+  Elevated surface
+</Box>
+```
+
+### Card Alias
+
+The `Card` alias is a pre-configured elevated Box with the elevation background:
+
+```tsx
+// Card automatically has background="elevation" and elevated
+<Card padding={4}>Card content with elevation styling</Card>
 ```
 
 ### Logical Padding (Block/Inline)

@@ -79,3 +79,8 @@
 .borderRadiusCircle {
   border-radius: 9999px;
 }
+
+/* Elevation styling */
+.elevated {
+  box-shadow: var(--dxy-box-shadow-elevation);
+}

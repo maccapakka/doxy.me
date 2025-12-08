@@ -9,6 +9,7 @@ import {
   Stack,
   Cluster,
   Placeholder,
+  Card,
 } from "./Box";
 import { Text } from "../Text";
 
@@ -145,7 +146,13 @@ const meta: Meta<typeof Box> = {
         "neutral-bold",
         "black",
         "white",
+        "elevation",
       ],
+      table: { category: "Styling" },
+    },
+    elevated: {
+      description: "Apply elevation styling (box shadow)",
+      control: "boolean",
       table: { category: "Styling" },
     },
     borderRadius: {
@@ -1099,6 +1106,70 @@ export const GridLayout: Story = {
             <Text>Footer</Text>
           </Box>
         </Box>
+      </Box>
+    </Box>
+  ),
+};
+
+export const Elevated: Story = {
+  name: "Elevated",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Apply elevation styling with the `elevated` prop. This adds a subtle box shadow. Combine with `background="elevation"` for a complete elevated surface look.',
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6} padding={4} background="neutral-subtle">
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          elevated (shadow only)
+        </Text>
+        <Box elevated padding={4}>
+          <Text>Elevated box with shadow</Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          elevated + background=&quot;elevation&quot;
+        </Text>
+        <Box elevated background="elevation" padding={4}>
+          <Text>Elevated surface with white background and shadow</Text>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          elevated + borderRadius=&#123;2&#125;
+        </Text>
+        <Box elevated background="elevation" padding={4} borderRadius={2}>
+          <Text>Elevated box with larger border radius</Text>
+        </Box>
+      </Box>
+    </Box>
+  ),
+};
+
+export const CardAlias: Story = {
+  name: "Card Alias",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `Card` alias is a pre-configured elevated Box with `background="elevation"` and `elevated` styling. Use it for card-like UI elements that need elevation.',
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6} padding={4} background="neutral-subtle">
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          {"<Card>"}
+        </Text>
+        <Card>
+          <Text>Card with default styling</Text>
+        </Card>
       </Box>
     </Box>
   ),

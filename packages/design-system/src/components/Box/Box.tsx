@@ -116,6 +116,10 @@ export interface BoxProps {
   style?: CSSProperties;
   /** Apply elevation styling (box shadow) */
   elevated?: boolean;
+  /** Opacity value (0-1, standard CSS) */
+  opacity?: number;
+  /** Backdrop filter CSS value (e.g., "blur(50px)", "blur(10px) saturate(180%)") */
+  backdropFilter?: string;
   /** Allow any additional props */
   [key: string]: unknown;
 }
@@ -156,6 +160,8 @@ export const Box = ({
   gridArea,
   style,
   elevated,
+  opacity,
+  backdropFilter,
   ...rest
 }: BoxProps) => {
   const isGridContainer = !!(
@@ -204,6 +210,8 @@ export const Box = ({
           "--_gtc": gridTemplateColumns,
           "--_gta": gridTemplateAreas,
           "--_ga": gridArea,
+          "--_op": opacity,
+          "--_bf": backdropFilter,
           ...style,
         } as CSSProperties
       }

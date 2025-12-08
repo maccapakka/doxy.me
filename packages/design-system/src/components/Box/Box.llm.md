@@ -68,6 +68,8 @@ import {
 | `gridTemplateAreas`   | `string`                                                                        | `undefined` | CSS grid-template-areas (triggers grid mode)   |
 | `gridArea`            | `string`                                                                        | `undefined` | CSS grid-area for child placement              |
 | `elevated`            | `boolean`                                                                       | `undefined` | Apply elevation styling (box shadow)           |
+| `opacity`             | `number`                                                                        | `undefined` | Opacity value (0-1, standard CSS)              |
+| `backdropFilter`      | `string`                                                                        | `undefined` | Backdrop filter CSS value (e.g., "blur(50px)") |
 
 ## Spacing Values
 
@@ -192,6 +194,42 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 // Combine with elevation background
 <Box elevated background="elevation" padding={4}>
   Elevated surface
+</Box>
+```
+
+### Opacity
+
+```tsx
+// Semi-transparent box
+<Box background="primary" opacity={0.5} padding={4}>
+  50% opacity
+</Box>
+
+// Fully transparent
+<Box background="accent" opacity={0} padding={4}>
+  Invisible
+</Box>
+```
+
+### Backdrop Filter
+
+```tsx
+// Frosted glass effect
+<Box
+  background="white"
+  opacity={0.8}
+  backdropFilter="blur(50px)"
+  padding={4}
+>
+  Frosted glass overlay
+</Box>
+
+// Combined filters
+<Box
+  backdropFilter="blur(10px) saturate(180%)"
+  padding={4}
+>
+  Blurred and saturated backdrop
 </Box>
 ```
 

@@ -30,6 +30,8 @@
   --_gtc: initial;
   --_gta: initial;
   --_ga: initial;
+  --_op: initial;
+  --_bf: initial;
 
   /* Default styles */
   display: flex;
@@ -55,10 +57,12 @@
   padding-block: calc(var(--dxy-spacing-base) * var(--_py, var(--_pa, 0)));
   padding-inline: calc(var(--dxy-spacing-base) * var(--_px, var(--_pa, 0)));
 
+  opacity: var(--_op);
   background-color: var(--_bg);
   background-image: var(--_bgi);
   background-position: var(--_bgp);
   background-size: var(--_bgs);
+  backdrop-filter: var(--_bf);
 
   /* stylelint-disable-next-line property-no-unknown -- CSS Spec property */
   corner-shape: var(--_cs);

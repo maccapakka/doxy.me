@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Box, Card } from "./Box";
+import { Box, Card, Nav, Container } from "./Box";
 
 describe("Box", () => {
   describe("rendering", () => {
@@ -366,6 +366,13 @@ describe("Box", () => {
       expect(box.style.getPropertyValue("--_w")).toBe("300px");
     });
 
+    it("sets --_mw CSS variable for maxWidth", () => {
+      const { container } = render(<Box maxWidth="1440px">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_mw")).toBe("1440px");
+    });
+
     it("sets --_h CSS variable for height", () => {
       const { container } = render(<Box height="100vh">Content</Box>);
       const box = container.firstChild as HTMLElement;
@@ -646,6 +653,64 @@ describe("Box", () => {
       const card = container.firstChild as HTMLElement;
 
       expect(card.textContent).toBe("Card content");
+    });
+  });
+
+  describe("Nav alias", () => {
+    it("renders as nav element", () => {
+      const { container } = render(<Nav>Content</Nav>);
+      const nav = container.firstChild as HTMLElement;
+
+      expect(nav.tagName).toBe("NAV");
+    });
+
+    it("accepts Box props", () => {
+      const { container } = render(
+        <Nav padding={4} gap={2}>
+          Content
+        </Nav>
+      );
+      const nav = container.firstChild as HTMLElement;
+
+      expect(nav.style.getPropertyValue("--_pa")).toBe("4");
+      expect(nav.style.getPropertyValue("--_gap")).toBe("2");
+    });
+  });
+
+  describe("Container alias", () => {
+    it("sets width to 100%", () => {
+      const { container } = render(<Container>Content</Container>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_w")).toBe("100%");
+    });
+
+    it("sets maxWidth to 1440px", () => {
+      const { container } = render(<Container>Content</Container>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_mw")).toBe("1440px");
+    });
+
+    it("sets paddingInline to 6", () => {
+      const { container } = render(<Container>Content</Container>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_px")).toBe("6");
+    });
+
+    it("accepts other Box props", () => {
+      const { container } = render(
+        <Container padding={4} background="primary">
+          Content
+        </Container>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_pa")).toBe("4");
+      expect(box.style.getPropertyValue("--_bg")).toBe(
+        "var(--dxy-color-primary)"
+      );
     });
   });
 });

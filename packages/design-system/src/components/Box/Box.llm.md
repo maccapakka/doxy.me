@@ -16,10 +16,16 @@ import {
   Header,
   Footer,
   Aside,
+  Nav,
 } from "@doxy/design-system/components";
 
 // Layout aliases
-import { Stack, Cluster, Card } from "@doxy/design-system/components";
+import {
+  Stack,
+  Cluster,
+  Card,
+  Container,
+} from "@doxy/design-system/components";
 ```
 
 ## Usage
@@ -51,6 +57,7 @@ import { Stack, Cluster, Card } from "@doxy/design-system/components";
 | `borderRadius`        | `1 \| 2 \| 3 \| 'circle'`                                                       | `1`         | Border radius from design tokens               |
 | `cornerShape`         | `'round' \| 'scoop' \| 'bevel' \| 'notch' \| 'squircle'`                        | `'round'`   | Corner shape style (CSS corner-shape)          |
 | `width`               | `string`                                                                        | `undefined` | Width as CSS value (e.g. "300px", "50%")       |
+| `maxWidth`            | `string`                                                                        | `undefined` | Max width as CSS value (e.g. "1440px", "80ch") |
 | `height`              | `string`                                                                        | `undefined` | Height as CSS value (e.g. "100vh")             |
 | `gridTemplateColumns` | `string`                                                                        | `undefined` | CSS grid-template-columns (triggers grid mode) |
 | `gridTemplateRows`    | `string`                                                                        | `undefined` | CSS grid-template-rows (triggers grid mode)    |
@@ -156,6 +163,15 @@ The `Card` alias is a pre-configured elevated Box with the elevation background:
 <Card padding={4}>Card content with elevation styling</Card>
 ```
 
+### Container Alias
+
+The `Container` alias is a pre-configured Box for page-level centering with max-width:
+
+```tsx
+// Container has width="100%", maxWidth="1440px", and paddingInline={6}
+<Container>Centered page content with max-width constraint</Container>
+```
+
 ### Logical Padding (Block/Inline)
 
 ```tsx
@@ -222,6 +238,7 @@ Pre-configured aliases for semantic HTML elements:
 <Header padding={4}>...</Header>          // <header>
 <Footer padding={4}>...</Footer>          // <footer>
 <Aside padding={4}>...</Aside>            // <aside>
+<Nav padding={4}>...</Nav>                // <nav>
 ```
 
 ### Semantic Layout Example

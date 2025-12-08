@@ -28,6 +28,9 @@ html {
 }
 
 body {
+  display: flex;
+  justify-content: center;
+
   font-family: var(--dxy-type-ff-body);
   font-size: var(--dxy-type-body-1-size);
   line-height: var(--dxy-type-body-1-lh);

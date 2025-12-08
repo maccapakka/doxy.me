@@ -6,10 +6,12 @@ import {
   Header,
   Footer,
   Aside,
+  Nav,
   Stack,
   Cluster,
   Placeholder,
   Card,
+  Container,
 } from "./Box";
 import { Text } from "../Text";
 
@@ -169,6 +171,11 @@ const meta: Meta<typeof Box> = {
     },
     width: {
       description: "Width of the box (CSS width value)",
+      control: "text",
+      table: { category: "Styling" },
+    },
+    maxWidth: {
+      description: "Max width of the box (CSS max-width value)",
       control: "text",
       table: { category: "Styling" },
     },
@@ -761,6 +768,16 @@ export const SemanticElements: Story = {
           </Text>
         </Aside>
       </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          {"<Nav>"}
+        </Text>
+        <Nav padding={4} background="secondary">
+          <Text style={{ color: "white" }}>
+            Renders as &lt;nav&gt; — for navigation sections
+          </Text>
+        </Nav>
+      </Box>
     </Box>
   ),
 };
@@ -1170,6 +1187,32 @@ export const CardAlias: Story = {
         <Card>
           <Text>Card with default styling</Text>
         </Card>
+      </Box>
+    </Box>
+  ),
+};
+
+export const ContainerAlias: Story = {
+  name: "Container Alias",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The `Container` alias is a pre-configured Box for page-level centering. It has `width=\"100%\"`, `maxWidth=\"1440px\"`, and `paddingInline={6}` (24px horizontal padding).",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6} background="neutral-subtle">
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          {"<Container>"}
+        </Text>
+        <Container background="secondary" padding={4}>
+          <Text style={{ color: "white" }}>
+            Container with max-width 1440px and horizontal padding
+          </Text>
+        </Container>
       </Box>
     </Box>
   ),

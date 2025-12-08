@@ -19,6 +19,7 @@
   --_js: initial;
   --_cs: initial;
   --_w: initial;
+  --_mw: initial;
   --_h: initial;
   --_gtr: initial;
   --_gtc: initial;
@@ -40,6 +41,7 @@
   grid-area: var(--_ga);
 
   width: var(--_w);
+  max-width: var(--_mw);
   height: var(--_h);
 
   /* Token-based spacing calculations */

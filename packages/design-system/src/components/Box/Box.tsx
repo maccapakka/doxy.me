@@ -90,6 +90,8 @@ export interface BoxProps {
   cornerShape?: CornerShape;
   /** Width as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
   width?: string;
+  /** Max width as any CSS value (e.g., "1440px", "80ch") */
+  maxWidth?: string;
   /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
   height?: string;
   /** Grid template rows (CSS grid-template-rows value, triggers grid display) */
@@ -131,6 +133,7 @@ export const Box = ({
   borderRadius = 1,
   cornerShape = "round",
   width,
+  maxWidth,
   height,
   gridTemplateRows,
   gridTemplateColumns,
@@ -175,6 +178,7 @@ export const Box = ({
           "--_js": justifySelf,
           "--_cs": cornerShape,
           "--_w": width,
+          "--_mw": maxWidth,
           "--_h": height,
           "--_gtr": gridTemplateRows,
           "--_gtc": gridTemplateColumns,
@@ -206,6 +210,7 @@ export const Footer = (props: Omit<BoxProps, "as">) => (
 export const Aside = (props: Omit<BoxProps, "as">) => (
   <Box as="aside" {...props} />
 );
+export const Nav = (props: Omit<BoxProps, "as">) => <Box as="nav" {...props} />;
 
 // Layout aliases
 export const Stack = (props: Omit<BoxProps, "direction">) => (
@@ -218,5 +223,14 @@ export const Placeholder = (
   props: Omit<BoxProps, "background" | "padding">
 ) => <Box background="neutral" padding={4} {...props} />;
 export const Card = (props: Omit<BoxProps, "background">) => (
-  <Box background="elevation" borderRadius={2} padding={4} {...props} />
+  <Box
+    background="elevation"
+    borderRadius={2}
+    padding={4}
+    elevated
+    {...props}
+  />
+);
+export const Container = (props: Omit<BoxProps, "width">) => (
+  <Box width="100%" maxWidth="1440px" paddingInline={6} {...props} />
 );

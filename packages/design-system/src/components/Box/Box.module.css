@@ -20,6 +20,10 @@
   --_cs: initial;
   --_w: initial;
   --_h: initial;
+  --_gtr: initial;
+  --_gtc: initial;
+  --_gta: initial;
+  --_ga: initial;
 
   /* Default styles */
   display: flex;
@@ -32,6 +36,9 @@
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
   justify-self: var(--_js);
 
+  /* stylelint-disable-next-line order/properties-order -- grid-area works on both flex and grid items */
+  grid-area: var(--_ga);
+
   width: var(--_w);
   height: var(--_h);
 
@@ -41,20 +48,32 @@
 
   background-color: var(--_bg);
 
+  /* stylelint-disable-next-line property-no-unknown -- CSS Spec property */
   corner-shape: var(--_cs);
 }
 
+/* Grid display mode - applied when grid-template-* props are provided */
+.grid {
+  display: grid;
+
+  /* stylelint-disable declaration-block-no-redundant-longhand-properties, order/properties-order */
+  grid-template-areas: var(--_gta);
+  grid-template-rows: var(--_gtr);
+  grid-template-columns: var(--_gtc);
+  /* stylelint-enable declaration-block-no-redundant-longhand-properties, order/properties-order */
+}
+
 /* Border radius variants */
-.borderRadiusBase {
-  border-radius: var(--dxy-border-radius-base);
+.borderRadius1 {
+  border-radius: var(--dxy-border-radius-1);
 }
 
-.borderRadiusInner {
-  border-radius: var(--dxy-border-radius-inner);
+.borderRadius2 {
+  border-radius: var(--dxy-border-radius-2);
 }
 
-.borderRadiusOuter {
-  border-radius: var(--dxy-border-radius-outer);
+.borderRadius3 {
+  border-radius: var(--dxy-border-radius-3);
 }
 
 .borderRadiusCircle {

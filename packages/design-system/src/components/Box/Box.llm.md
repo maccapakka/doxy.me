@@ -1,6 +1,6 @@
 # Box
 
-A foundational layout primitive component for flexbox layouts. Box is the building block for creating layouts with consistent spacing using design tokens.
+A foundational layout primitive component for flexbox and grid layouts. Box is the building block for creating layouts with consistent spacing using design tokens. It automatically switches between flexbox and CSS Grid based on which props are provided.
 
 ## Import
 
@@ -30,25 +30,29 @@ import {
 
 ## Props
 
-| Prop             | Type                                                                            | Default     | Description                              |
-| ---------------- | ------------------------------------------------------------------------------- | ----------- | ---------------------------------------- |
-| `as`             | `ElementType`                                                                   | `"div"`     | The HTML element to render               |
-| `children`       | `ReactNode`                                                                     | `undefined` | The content to display inside the Box    |
-| `className`      | `string`                                                                        | `undefined` | Additional CSS classes                   |
-| `direction`      | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'`                        | `undefined` | Flex direction                           |
-| `alignItems`     | `'start' \| 'center' \| 'end' \| 'stretch' \| 'baseline'`                       | `undefined` | Align items on cross axis                |
-| `alignSelf`      | `'start' \| 'center' \| 'end' \| 'stretch' \| 'baseline'`                       | `undefined` | Align self on cross axis                 |
-| `justifyContent` | `'start' \| 'center' \| 'end' \| 'between' \| 'around' \| 'evenly'`             | `undefined` | Justify content on main axis             |
-| `justifySelf`    | `'start' \| 'center' \| 'end' \| 'stretch'`                                     | `undefined` | Justify self on main axis                |
-| `gap`            | `number`                                                                        | `2` (8px)   | Gap between children (multiplier of 4px) |
-| `padding`        | `number`                                                                        | `undefined` | Padding on all sides (multiplier of 4px) |
-| `paddingBlock`   | `number`                                                                        | `undefined` | Vertical padding (multiplier of 4px)     |
-| `paddingInline`  | `number`                                                                        | `undefined` | Horizontal padding (multiplier of 4px)   |
-| `background`     | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical'` | `undefined` | Background color from design tokens      |
-| `borderRadius`   | `'base' \| 'outer' \| 'inner' \| 'circle'`                                      | `'base'`    | Border radius from design tokens         |
-| `cornerShape`    | `'round' \| 'scoop' \| 'bevel' \| 'notch' \| 'squircle'`                        | `'round'`   | Corner shape style (CSS corner-shape)    |
-| `width`          | `string`                                                                        | `undefined` | Width as CSS value (e.g. "300px", "50%") |
-| `height`         | `string`                                                                        | `undefined` | Height as CSS value (e.g. "100vh")       |
+| Prop                  | Type                                                                            | Default     | Description                                    |
+| --------------------- | ------------------------------------------------------------------------------- | ----------- | ---------------------------------------------- |
+| `as`                  | `ElementType`                                                                   | `"div"`     | The HTML element to render                     |
+| `children`            | `ReactNode`                                                                     | `undefined` | The content to display inside the Box          |
+| `className`           | `string`                                                                        | `undefined` | Additional CSS classes                         |
+| `direction`           | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'`                        | `undefined` | Flex direction                                 |
+| `alignItems`          | `'start' \| 'center' \| 'end' \| 'stretch' \| 'baseline'`                       | `undefined` | Align items on cross axis                      |
+| `alignSelf`           | `'start' \| 'center' \| 'end' \| 'stretch' \| 'baseline'`                       | `undefined` | Align self on cross axis                       |
+| `justifyContent`      | `'start' \| 'center' \| 'end' \| 'between' \| 'around' \| 'evenly'`             | `undefined` | Justify content on main axis                   |
+| `justifySelf`         | `'start' \| 'center' \| 'end' \| 'stretch'`                                     | `undefined` | Justify self on main axis                      |
+| `gap`                 | `number`                                                                        | `2` (8px)   | Gap between children (multiplier of 4px)       |
+| `padding`             | `number`                                                                        | `undefined` | Padding on all sides (multiplier of 4px)       |
+| `paddingBlock`        | `number`                                                                        | `undefined` | Vertical padding (multiplier of 4px)           |
+| `paddingInline`       | `number`                                                                        | `undefined` | Horizontal padding (multiplier of 4px)         |
+| `background`          | `'primary' \| 'secondary' \| 'accent' \| 'warning' \| 'positive' \| 'critical'` | `undefined` | Background color from design tokens            |
+| `borderRadius`        | `1 \| 2 \| 3 \| 'circle'`                                                       | `1`         | Border radius from design tokens               |
+| `cornerShape`         | `'round' \| 'scoop' \| 'bevel' \| 'notch' \| 'squircle'`                        | `'round'`   | Corner shape style (CSS corner-shape)          |
+| `width`               | `string`                                                                        | `undefined` | Width as CSS value (e.g. "300px", "50%")       |
+| `height`              | `string`                                                                        | `undefined` | Height as CSS value (e.g. "100vh")             |
+| `gridTemplateColumns` | `string`                                                                        | `undefined` | CSS grid-template-columns (triggers grid mode) |
+| `gridTemplateRows`    | `string`                                                                        | `undefined` | CSS grid-template-rows (triggers grid mode)    |
+| `gridTemplateAreas`   | `string`                                                                        | `undefined` | CSS grid-template-areas (triggers grid mode)   |
+| `gridArea`            | `string`                                                                        | `undefined` | CSS grid-area for child placement              |
 
 ## Spacing Values
 
@@ -62,9 +66,9 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 
 ## Default Styles
 
-- `display: flex`
+- `display: flex` (switches to `display: grid` when grid-template-\* props provided)
 - `gap: 8px` (2x token)
-- `border-radius: 8px` (base token, default)
+- `border-radius: 4px` (1 token, default)
 
 ## Examples
 
@@ -105,10 +109,10 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 ### Border Radius
 
 ```tsx
-// Token-based border radius
-<Box borderRadius="base">Default (8px)</Box>
-<Box borderRadius="inner">Inner (8px)</Box>
-<Box borderRadius="outer">Outer (16px)</Box>
+// Numeric scale border radius
+<Box borderRadius={1}>1 (4px, default)</Box>
+<Box borderRadius={2}>2 (8px)</Box>
+<Box borderRadius={3}>3 (12px)</Box>
 
 // Special values
 <Box borderRadius="circle">Perfect circle (9999px)</Box>
@@ -118,11 +122,11 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
 
 ```tsx
 // Control corner shape style (CSS corner-shape property)
-<Box borderRadius="outer" cornerShape="round">Standard rounded corners (default)</Box>
-<Box borderRadius="outer" cornerShape="scoop">Inward curves</Box>
-<Box borderRadius="outer" cornerShape="bevel">Cut corners</Box>
-<Box borderRadius="outer" cornerShape="notch">Inverse bevels</Box>
-<Box borderRadius="outer" cornerShape="squircle">iOS-style superellipse</Box>
+<Box borderRadius={2} cornerShape="round">Standard rounded corners (default)</Box>
+<Box borderRadius={2} cornerShape="scoop">Inward curves</Box>
+<Box borderRadius={2} cornerShape="bevel">Cut corners</Box>
+<Box borderRadius={2} cornerShape="notch">Inverse bevels</Box>
+<Box borderRadius={2} cornerShape="squircle">iOS-style superellipse</Box>
 ```
 
 ### Logical Padding (Block/Inline)
@@ -132,6 +136,41 @@ Spacing props (`gap`, `padding`, `paddingBlock`, `paddingInline`) accept any num
   Vertical: 32px, Horizontal: 16px
 </Box>
 ```
+
+### CSS Grid Layout
+
+Box automatically switches to CSS Grid when `gridTemplateColumns`, `gridTemplateRows`, or `gridTemplateAreas` is provided:
+
+```tsx
+// Simple column grid
+<Box gridTemplateColumns="1fr 1fr 1fr" gap={4}>
+  <div>Column 1</div>
+  <div>Column 2</div>
+  <div>Column 3</div>
+</Box>
+
+// Fixed + flexible columns
+<Box gridTemplateColumns="200px 1fr 100px" gap={4}>
+  <div>Sidebar</div>
+  <div>Main</div>
+  <div>Aside</div>
+</Box>
+
+// Named grid areas
+<Box
+  gridTemplateAreas="'header header' 'sidebar main' 'footer footer'"
+  gridTemplateColumns="200px 1fr"
+  gridTemplateRows="auto 1fr auto"
+  gap={4}
+>
+  <Box gridArea="header">Header</Box>
+  <Box gridArea="sidebar">Sidebar</Box>
+  <Box gridArea="main">Main Content</Box>
+  <Box gridArea="footer">Footer</Box>
+</Box>
+```
+
+Note: `gridArea` can be used on any Box (it doesn't trigger grid mode) - it's for placing children within a parent grid.
 
 ### Polymorphic Rendering
 

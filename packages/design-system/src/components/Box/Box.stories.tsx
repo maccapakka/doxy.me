@@ -151,7 +151,7 @@ const meta: Meta<typeof Box> = {
     borderRadius: {
       description: "Border radius from design tokens or special values",
       control: "select",
-      options: ["base", "outer", "inner", "circle"],
+      options: [1, 2, 3, "circle"],
       table: { category: "Styling" },
     },
     cornerShape: {
@@ -169,6 +169,31 @@ const meta: Meta<typeof Box> = {
       description: "Height of the box (CSS height value)",
       control: "text",
       table: { category: "Styling" },
+    },
+    // Grid
+    gridTemplateColumns: {
+      description:
+        "CSS grid-template-columns value. Setting this triggers grid display mode.",
+      control: "text",
+      table: { category: "Grid" },
+    },
+    gridTemplateRows: {
+      description:
+        "CSS grid-template-rows value. Setting this triggers grid display mode.",
+      control: "text",
+      table: { category: "Grid" },
+    },
+    gridTemplateAreas: {
+      description:
+        "CSS grid-template-areas value. Setting this triggers grid display mode.",
+      control: "text",
+      table: { category: "Grid" },
+    },
+    gridArea: {
+      description:
+        "CSS grid-area value for placement in parent grid. Does not trigger grid display.",
+      control: "text",
+      table: { category: "Grid" },
     },
   },
 };
@@ -739,7 +764,7 @@ export const BorderRadius: Story = {
     docs: {
       description: {
         story:
-          "Control border radius with design tokens or special values. Use `base` (default, 8px), `inner` (8px), or `outer` (16px) for standard rounded corners. Use `circle` for circular elements.",
+          "Control border radius with a numeric scale. Use `1` (default, 4px), `2` (8px), or `3` (12px) for standard rounded corners. Use `circle` for circular elements.",
       },
     },
   },
@@ -747,7 +772,7 @@ export const BorderRadius: Story = {
     <Box direction="row" gap={6}>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="inner"
+          borderRadius={1}
           padding={6}
           background="neutral-bold"
           width="120px"
@@ -755,19 +780,19 @@ export const BorderRadius: Story = {
           justifyContent="center"
           alignItems="center"
         >
-          <Text style={{ color: "white" }}>Inner</Text>
+          <Text style={{ color: "white" }}>1</Text>
         </Box>
         <Text
           variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
         >
-          inner (8px)
+          1 (4px, default)
         </Text>
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="base"
+          borderRadius={2}
           padding={6}
           background="neutral-bold"
           width="120px"
@@ -775,19 +800,19 @@ export const BorderRadius: Story = {
           justifyContent="center"
           alignItems="center"
         >
-          <Text style={{ color: "white" }}>Base</Text>
+          <Text style={{ color: "white" }}>2</Text>
         </Box>
         <Text
           variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
         >
-          base (8px, default)
+          2 (8px)
         </Text>
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={3}
           padding={6}
           background="neutral-bold"
           width="120px"
@@ -795,14 +820,14 @@ export const BorderRadius: Story = {
           justifyContent="center"
           alignItems="center"
         >
-          <Text style={{ color: "white" }}>Outer</Text>
+          <Text style={{ color: "white" }}>3</Text>
         </Box>
         <Text
           variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
         >
-          outer (16px)
+          3 (12px)
         </Text>
       </Box>
       <Box direction="column" gap={2} alignItems="center">
@@ -843,7 +868,7 @@ export const CornerShape: Story = {
     <Box direction="row" gap={6}>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={2}
           cornerShape="round"
           padding={6}
           background="neutral-bold"
@@ -864,7 +889,7 @@ export const CornerShape: Story = {
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={2}
           cornerShape="scoop"
           padding={6}
           background="neutral-bold"
@@ -885,7 +910,7 @@ export const CornerShape: Story = {
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={2}
           cornerShape="bevel"
           padding={6}
           background="neutral-bold"
@@ -906,7 +931,7 @@ export const CornerShape: Story = {
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={2}
           cornerShape="notch"
           padding={6}
           background="neutral-bold"
@@ -927,7 +952,7 @@ export const CornerShape: Story = {
       </Box>
       <Box direction="column" gap={2} alignItems="center">
         <Box
-          borderRadius="outer"
+          borderRadius={2}
           cornerShape="squircle"
           padding={6}
           background="neutral-bold"
@@ -981,6 +1006,99 @@ export const LayoutAliases: Story = {
           <Placeholder>Item 2</Placeholder>
           <Placeholder>Item 3</Placeholder>
         </Cluster>
+      </Box>
+    </Box>
+  ),
+};
+
+export const GridLayout: Story = {
+  name: "Grid Layout",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Box automatically switches to CSS Grid when `gridTemplateColumns`, `gridTemplateRows`, or `gridTemplateAreas` props are provided. Use `gridArea` on child Boxes to place them in named areas.",
+      },
+    },
+  },
+  render: () => (
+    <Box direction="column" gap={6}>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          gridTemplateColumns="1fr 1fr 1fr"
+        </Text>
+        <Box
+          gridTemplateColumns="1fr 1fr 1fr"
+          gap={4}
+          padding={4}
+          background="secondary"
+        >
+          <Placeholder>1</Placeholder>
+          <Placeholder>2</Placeholder>
+          <Placeholder>3</Placeholder>
+          <Placeholder>4</Placeholder>
+          <Placeholder>5</Placeholder>
+          <Placeholder>6</Placeholder>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          gridTemplateColumns="200px 1fr 100px"
+        </Text>
+        <Box
+          gridTemplateColumns="200px 1fr 100px"
+          gap={4}
+          padding={4}
+          background="secondary"
+        >
+          <Placeholder>Fixed 200px</Placeholder>
+          <Placeholder>Flexible</Placeholder>
+          <Placeholder>Fixed 100px</Placeholder>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          gridTemplateColumns + gridTemplateRows
+        </Text>
+        <Box
+          gridTemplateColumns="1fr 1fr"
+          gridTemplateRows="100px 150px"
+          gap={4}
+          padding={4}
+          background="secondary"
+        >
+          <Placeholder>Row 1</Placeholder>
+          <Placeholder>Row 1</Placeholder>
+          <Placeholder>Row 2 (taller)</Placeholder>
+          <Placeholder>Row 2 (taller)</Placeholder>
+        </Box>
+      </Box>
+      <Box direction="column" gap={2}>
+        <Text variant="body-2" color="secondary">
+          gridTemplateAreas with named regions
+        </Text>
+        <Box
+          gridTemplateAreas="'header header' 'sidebar main' 'footer footer'"
+          gridTemplateColumns="200px 1fr"
+          gridTemplateRows="auto 1fr auto"
+          gap={4}
+          padding={4}
+          background="secondary"
+          height="300px"
+        >
+          <Box gridArea="header" background="primary" padding={4}>
+            <Text style={{ color: "white" }}>Header</Text>
+          </Box>
+          <Box gridArea="sidebar" background="accent" padding={4}>
+            <Text style={{ color: "white" }}>Sidebar</Text>
+          </Box>
+          <Box gridArea="main" background="positive" padding={4}>
+            <Text style={{ color: "white" }}>Main Content</Text>
+          </Box>
+          <Box gridArea="footer" background="warning" padding={4}>
+            <Text>Footer</Text>
+          </Box>
+        </Box>
       </Box>
     </Box>
   ),

@@ -375,32 +375,32 @@ describe("Box", () => {
   });
 
   describe("border radius props", () => {
-    it("applies borderRadiusBase class by default", () => {
+    it("applies borderRadius1 class by default", () => {
       const { container } = render(<Box>Content</Box>);
       const box = container.firstChild as HTMLElement;
 
-      expect(box.className).toContain("borderRadiusBase");
+      expect(box.className).toContain("borderRadius1");
     });
 
-    it("applies borderRadiusBase class", () => {
-      const { container } = render(<Box borderRadius="base">Content</Box>);
+    it("applies borderRadius1 class", () => {
+      const { container } = render(<Box borderRadius={1}>Content</Box>);
       const box = container.firstChild as HTMLElement;
 
-      expect(box.className).toContain("borderRadiusBase");
+      expect(box.className).toContain("borderRadius1");
     });
 
-    it("applies borderRadiusInner class", () => {
-      const { container } = render(<Box borderRadius="inner">Content</Box>);
+    it("applies borderRadius2 class", () => {
+      const { container } = render(<Box borderRadius={2}>Content</Box>);
       const box = container.firstChild as HTMLElement;
 
-      expect(box.className).toContain("borderRadiusInner");
+      expect(box.className).toContain("borderRadius2");
     });
 
-    it("applies borderRadiusOuter class", () => {
-      const { container } = render(<Box borderRadius="outer">Content</Box>);
+    it("applies borderRadius3 class", () => {
+      const { container } = render(<Box borderRadius={3}>Content</Box>);
       const box = container.firstChild as HTMLElement;
 
-      expect(box.className).toContain("borderRadiusOuter");
+      expect(box.className).toContain("borderRadius3");
     });
 
     it("applies borderRadiusCircle class", () => {
@@ -478,6 +478,103 @@ describe("Box", () => {
         "var(--dxy-color-primary)"
       );
       expect(box.style.color).toBe("red");
+    });
+  });
+
+  describe("grid props", () => {
+    it("applies grid class when gridTemplateColumns is provided", () => {
+      const { container } = render(
+        <Box gridTemplateColumns="1fr 1fr">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("grid");
+    });
+
+    it("applies grid class when gridTemplateRows is provided", () => {
+      const { container } = render(
+        <Box gridTemplateRows="auto 1fr auto">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("grid");
+    });
+
+    it("applies grid class when gridTemplateAreas is provided", () => {
+      const { container } = render(
+        <Box gridTemplateAreas="'header header' 'sidebar main'">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("grid");
+    });
+
+    it("does not apply grid class when only gridArea is provided", () => {
+      const { container } = render(<Box gridArea="header">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).not.toContain("grid");
+    });
+
+    it("does not apply grid class by default", () => {
+      const { container } = render(<Box>Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).not.toContain("grid");
+    });
+
+    it("sets --_gtc CSS variable for gridTemplateColumns", () => {
+      const { container } = render(
+        <Box gridTemplateColumns="1fr 2fr 1fr">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_gtc")).toBe("1fr 2fr 1fr");
+    });
+
+    it("sets --_gtr CSS variable for gridTemplateRows", () => {
+      const { container } = render(
+        <Box gridTemplateRows="100px auto 50px">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_gtr")).toBe("100px auto 50px");
+    });
+
+    it("sets --_gta CSS variable for gridTemplateAreas", () => {
+      const { container } = render(
+        <Box gridTemplateAreas="'a b' 'c d'">Content</Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_gta")).toBe("'a b' 'c d'");
+    });
+
+    it("sets --_ga CSS variable for gridArea", () => {
+      const { container } = render(<Box gridArea="sidebar">Content</Box>);
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.style.getPropertyValue("--_ga")).toBe("sidebar");
+    });
+
+    it("applies grid class with multiple template props", () => {
+      const { container } = render(
+        <Box
+          gridTemplateColumns="1fr 1fr"
+          gridTemplateRows="auto 1fr"
+          gridTemplateAreas="'header header' 'sidebar main'"
+        >
+          Content
+        </Box>
+      );
+      const box = container.firstChild as HTMLElement;
+
+      expect(box.className).toContain("grid");
+      expect(box.style.getPropertyValue("--_gtc")).toBe("1fr 1fr");
+      expect(box.style.getPropertyValue("--_gtr")).toBe("auto 1fr");
+      expect(box.style.getPropertyValue("--_gta")).toBe(
+        "'header header' 'sidebar main'"
+      );
     });
   });
 });

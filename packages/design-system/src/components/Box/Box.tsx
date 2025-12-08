@@ -50,7 +50,7 @@ type JustifyContent =
 type PlaceSelf = "flex-start" | "center" | "flex-end" | "stretch";
 
 /** Border radius values */
-type BorderRadius = "base" | "outer" | "inner" | "circle";
+type BorderRadius = 1 | 2 | 3 | "circle";
 
 /** Corner shape values */
 type CornerShape = "round" | "scoop" | "bevel" | "notch" | "squircle";
@@ -83,7 +83,7 @@ export interface BoxProps {
   paddingInline?: number;
   /** Background color from design tokens */
   background?: BackgroundColor;
-  /** Border radius from design tokens or special values (default: "base") */
+  /** Border radius from design tokens or special values (default: 1) */
   borderRadius?: BorderRadius;
   /** Corner shape style (default: "round") */
   cornerShape?: CornerShape;
@@ -91,6 +91,14 @@ export interface BoxProps {
   width?: string;
   /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
   height?: string;
+  /** Grid template rows (CSS grid-template-rows value, triggers grid display) */
+  gridTemplateRows?: string;
+  /** Grid template columns (CSS grid-template-columns value, triggers grid display) */
+  gridTemplateColumns?: string;
+  /** Grid template areas (CSS grid-template-areas value, triggers grid display) */
+  gridTemplateAreas?: string;
+  /** Grid area for placement in parent grid (CSS grid-area value) */
+  gridArea?: string;
   /** Additional inline styles */
   style?: CSSProperties;
   /** Allow any additional props */
@@ -117,22 +125,33 @@ export const Box = ({
   paddingBlock,
   paddingInline,
   background,
-  borderRadius = "base",
+  borderRadius = 1,
   cornerShape = "round",
   width,
   height,
+  gridTemplateRows,
+  gridTemplateColumns,
+  gridTemplateAreas,
+  gridArea,
   style,
   ...rest
 }: BoxProps) => {
-  // Map borderRadius prop to CSS class
-  const borderRadiusClass = {
-    base: styles.borderRadiusBase,
-    inner: styles.borderRadiusInner,
-    outer: styles.borderRadiusOuter,
-    circle: styles.borderRadiusCircle,
-  }[borderRadius];
+  const isGridContainer = !!(
+    gridTemplateRows ||
+    gridTemplateColumns ||
+    gridTemplateAreas
+  );
 
-  const rootClasses = cx(styles.root, borderRadiusClass, className);
+  const rootClasses = cx(
+    styles.root,
+    isGridContainer && styles.grid,
+    styles[
+      borderRadius === "circle"
+        ? "borderRadiusCircle"
+        : `borderRadius${borderRadius}`
+    ],
+    className
+  );
 
   return (
     <Component
@@ -152,6 +171,10 @@ export const Box = ({
           "--_cs": cornerShape,
           "--_w": width,
           "--_h": height,
+          "--_gtr": gridTemplateRows,
+          "--_gtc": gridTemplateColumns,
+          "--_gta": gridTemplateAreas,
+          "--_ga": gridArea,
           ...style,
         } as CSSProperties
       }

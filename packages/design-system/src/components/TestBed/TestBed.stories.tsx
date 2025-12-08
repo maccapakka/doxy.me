@@ -180,16 +180,21 @@ export const HelloWorld: Story = {
       <Section gridArea="camera" alignItems="flex-start">
         <Stack>
           <Box
+            elevated
             width="100%"
             height="200px"
+            alignItems="flex-end"
             background="black"
             backgroundImage="/drew-cano.jpg"
             backgroundSize="cover"
             backgroundPosition="center"
             borderRadius={2}
-            padding={2}
+            paddingInline={4}
+            paddingBlock={3}
           >
-            <Text>You</Text>
+            <Text weight="bold" color="white" elevated>
+              You
+            </Text>
           </Box>
           <Button>Test your audio and video</Button>
         </Stack>

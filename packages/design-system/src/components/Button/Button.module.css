@@ -1,0 +1,264 @@
+/**
+ * Button Component Styles
+ *
+ * Uses design tokens for colors, spacing, and typography.
+ * Color variants use a private --_color variable with color-mix for states.
+ */
+
+.root {
+  --_clr: initial;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: var(--dxy-spacing-2x);
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: var(--dxy-border-radius-base);
+
+  font-family: var(--dxy-type-ff-body);
+  font-weight: var(--dxy-type-weight-medium);
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.root:disabled {
+  cursor: not-allowed;
+  color: var(--dxy-color-disabled-foreground);
+  background-color: var(--dxy-color-disabled);
+}
+
+.root:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
+}
+
+.root:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+ * Icon
+ * ======================================== */
+.icon {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+/* ========================================
+ * Sizes
+ * ======================================== */
+.small {
+  height: var(--dxy-form-control-height-small);
+  padding-inline: var(--dxy-spacing-3x);
+  font-size: var(--dxy-type-body-2-size);
+  line-height: var(--dxy-type-body-2-lh);
+}
+
+.medium {
+  height: var(--dxy-form-control-height);
+  padding-inline: var(--dxy-spacing-4x);
+  border-radius: var(--dxy-border-radius-2);
+
+  font-size: var(--dxy-type-body-1-size);
+  line-height: var(--dxy-type-body-1-lh);
+}
+
+.large {
+  height: var(--dxy-form-control-height-large);
+  padding-inline: var(--dxy-spacing-5x);
+  border-radius: var(--dxy-border-radius-2);
+
+  font-size: var(--dxy-type-featured-3-size);
+  line-height: var(--dxy-type-featured-3-lh);
+}
+
+/* ========================================
+ * Full Width
+ * ======================================== */
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ========================================
+ * Icon Only
+ * ======================================== */
+
+.iconOnly {
+  aspect-ratio: 1;
+  padding-inline: 0;
+}
+
+/* ========================================
+ * Colors
+ * ======================================== */
+
+.action {
+  --_clr: var(--dxy-color-action);
+}
+
+.positive {
+  --_clr: var(--dxy-color-positive);
+}
+
+.critical {
+  --_clr: var(--dxy-color-critical);
+}
+
+.neutral {
+  --_clr: var(--dxy-color-neutral);
+}
+
+/* ========================================
+ * Variants
+ * ======================================== */
+
+.solid {
+  color: var(--dxy-color-white);
+  background-color: var(--_clr);
+}
+
+.solid:not(:disabled):hover {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-hover-base) var(--dxy-color-mix-hover-value)
+  );
+}
+
+.solid:not(:disabled):active {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-active-base) var(--dxy-color-mix-active-value)
+  );
+}
+
+.outline {
+  border: 1px solid var(--_clr);
+  color: var(--_clr);
+  background-color: transparent;
+}
+
+.outline:disabled {
+  border-color: var(--dxy-color-disabled);
+}
+
+.outline:not(:disabled):hover {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-subtle-base) var(--dxy-color-mix-subtle-value)
+  );
+}
+
+.outline:not(:disabled):active {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-subtle-base) 80%
+  );
+}
+
+.ghost {
+  color: var(--_clr);
+  background-color: transparent;
+}
+
+.ghost:not(:disabled):hover {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-subtle-base) var(--dxy-color-mix-subtle-value)
+  );
+}
+
+.ghost:not(:disabled):active {
+  background-color: color-mix(
+    in oklch,
+    var(--_clr),
+    var(--dxy-color-mix-subtle-base) 80%
+  );
+}
+
+/* ========================================
+ * Inherit Color
+ * Uses currentColor for text/icons with
+ * semi-transparent backgrounds for states.
+ * Ideal for buttons on dark backgrounds.
+ * ======================================== */
+
+.inherit {
+  --_clr: currentcolor;
+}
+
+/* Ghost/Outline inherit - use semi-transparent currentColor for hover states */
+.ghost.inherit:not(:disabled):hover,
+.outline.inherit:not(:disabled):hover {
+  background-color: color-mix(in oklch, currentcolor, transparent 88%);
+}
+
+.ghost.inherit:not(:disabled):active,
+.outline.inherit:not(:disabled):active {
+  background-color: color-mix(in oklch, currentcolor, transparent 80%);
+}
+
+/* Solid inherit - semi-transparent background with inherited text */
+.solid.inherit {
+  color: currentcolor;
+  background-color: color-mix(in oklch, currentcolor, transparent 80%);
+}
+
+.solid.inherit:not(:disabled):hover {
+  background-color: color-mix(in oklch, currentcolor, transparent 70%);
+}
+
+.solid.inherit:not(:disabled):active {
+  background-color: color-mix(in oklch, currentcolor, transparent 60%);
+}
+
+/* ========================================
+ * Unstyled States (Advanced)
+ * Removes built-in hover, active, and focus
+ * visual styles for custom implementations.
+ * ======================================== */
+
+/* Reset focus-visible outline */
+.root.unstyledStates:focus-visible {
+  outline: unset;
+}
+
+/* Reset active transform */
+.root.unstyledStates:not(:disabled):active {
+  transform: none;
+}
+
+/* Reset hover/active background for outline and ghost - stay transparent */
+:is(.outline, .ghost).unstyledStates:not(:disabled):hover,
+:is(.outline, .ghost).unstyledStates:not(:disabled):active {
+  background-color: transparent;
+}
+
+/* Reset hover/active background for solid - keep base color */
+.solid.unstyledStates:not(:disabled):hover,
+.solid.unstyledStates:not(:disabled):active {
+  background-color: var(--_clr);
+}
+
+/* Reset inherit color variant states */
+:is(.outline, .ghost).inherit.unstyledStates:not(:disabled):hover,
+:is(.outline, .ghost).inherit.unstyledStates:not(:disabled):active {
+  background-color: transparent;
+}
+
+.solid.inherit.unstyledStates:not(:disabled):hover,
+.solid.inherit.unstyledStates:not(:disabled):active {
+  background-color: color-mix(in oklch, currentcolor, transparent 80%);
+}

@@ -1,5 +1,5 @@
 // Barrel file - re-exports all components
-export * from "./ExampleButton";
 export * from "./Box";
-export * from "./Text";
+export * from "./Button";
 export * from "./Icon";
+export * from "./Text";

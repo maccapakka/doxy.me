@@ -127,3 +127,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: var(--_lc);
 }
+
+/* Elevation styling */
+.elevated {
+  text-shadow: var(--dxy-text-shadow-elevation);
+}

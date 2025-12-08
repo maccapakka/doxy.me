@@ -94,6 +94,8 @@ export interface TextProps {
   wrap?: TextWrap;
   /** Font weight override (normal, semibold, bold) */
   weight?: TextWeight;
+  /** Apply elevation styling (box shadow) */
+  elevated?: boolean;
   /** Allow any additional props */
   [key: string]: unknown;
 }
@@ -118,6 +120,7 @@ export const Text = ({
   maxLines,
   wrap,
   weight,
+  elevated,
   ...rest
 }: TextProps) => {
   const rootClasses = cx(
@@ -125,6 +128,7 @@ export const Text = ({
     styles[variant],
     truncate && styles.truncate,
     maxLines && styles.lineClamp,
+    elevated && styles.elevated,
     className
   );
 

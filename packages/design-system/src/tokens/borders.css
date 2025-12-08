@@ -1,14 +1,15 @@
 /**
  * Border Tokens
  *
- * Border radius uses an 8px base unit with inner, base, and outer variants.
+ * Border radius uses a 4px base unit with a numeric scale (1, 2, 3).
  */
 
 :root {
   /* Base border radius unit */
-  --dxy-border-radius-base: 8px;
+  --dxy-border-radius-base: 4px;
 
   /* Border radius scale */
-  --dxy-border-radius-inner: var(--dxy-border-radius-base);
-  --dxy-border-radius-outer: calc(var(--dxy-border-radius-base) * 2);
+  --dxy-border-radius-1: var(--dxy-border-radius-base);
+  --dxy-border-radius-2: calc(var(--dxy-border-radius-base) * 2);
+  --dxy-border-radius-3: calc(var(--dxy-border-radius-base) * 4);
 }

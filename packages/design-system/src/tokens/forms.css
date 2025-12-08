@@ -1,0 +1,12 @@
+/**
+ * Form Control Tokens
+ *
+ * Standardized heights for form elements (buttons, inputs, selects, etc.)
+ * Uses consistent 8px increments: 36px / 44px / 52px
+ */
+
+:root {
+  --dxy-form-control-height-small: 3.6rem; /* 36px */
+  --dxy-form-control-height: 4.4rem; /* 44px */
+  --dxy-form-control-height-large: 5.2rem; /* 52px */
+}

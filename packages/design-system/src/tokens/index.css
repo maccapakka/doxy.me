@@ -10,6 +10,7 @@
 @import url("./spacing.css");
 @import url("./borders.css");
 @import url("./typography.css");
+@import url("./forms.css");
 
 /* Minimal CSS Reset */
 *,
@@ -62,4 +63,9 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+a,
+button {
+  font-weight: var(--dxy-type-weight-medium);
 }

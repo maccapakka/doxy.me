@@ -1,0 +1,14 @@
+---
+description: "Design token location and naming convention"
+globs:
+  - "packages/design-system/**/*"
+alwaysApply: false
+---
+
+# Design Token System
+
+Tokens are in `packages/design-system/src/tokens/` using the `--dxy-` prefix.
+
+## Naming Convention
+
+All tokens use `--dxy-{category}-{name}` pattern. Read the CSS files for current values.

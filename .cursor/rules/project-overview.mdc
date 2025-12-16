@@ -1,0 +1,35 @@
+---
+description: "Doxy monorepo structure and navigation"
+alwaysApply: true
+---
+
+# Doxy Project Overview
+
+## Workspaces
+
+| Name | Location |
+|------|----------|
+| `@doxy/webapp` | `apps/web` |
+| `@doxy/design-system` | `packages/design-system` |
+| `@doxy/eslint-config` | `packages/eslint-config` |
+| `@doxy/typescript-config` | `packages/typescript-config` |
+
+## Key Locations
+
+| Resource | Location |
+|----------|----------|
+| Scripts | Root `package.json` |
+| Design tokens | `packages/design-system/src/tokens/` |
+| Component generator | `pnpm generate:component` |
+
+## Quick Commands
+
+```bash
+pnpm dev              # Run dev servers
+pnpm storybook        # Run Storybook
+pnpm test             # Run tests
+pnpm lint             # Run all linters
+pnpm generate:component  # Scaffold new component
+```
+
+For full script list, see root `package.json`.

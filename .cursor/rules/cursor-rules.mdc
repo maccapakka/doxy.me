@@ -11,9 +11,8 @@ The `.cursor/rules/` directory contains project conventions that guide AI assist
 
 Update the relevant `.mdc` file when:
 
-1. **Adding/removing npm scripts or workspaces** - Update `project-config.mdc`
-2. **Modifying design tokens** - Update `project-config.mdc`
-3. **Changing pnpm patterns or monorepo structure** - Update `pnpm-monorepo.mdc`
+1. **Adding/removing workspaces** - Update `project-overview.mdc`
+2. **Changing pnpm patterns or monorepo structure** - Update `pnpm-monorepo.mdc`
 4. **Changing component conventions** - Update `component-patterns.mdc`
 5. **Changing test/docs requirements** - Update `component-documentation.mdc`
 6. **New rule files added** - Update this file's table
@@ -31,10 +30,12 @@ When making a change that affects conventions:
 
 | File | Purpose | Update When |
 |------|---------|-------------|
+| `project-overview.mdc` | Monorepo structure and navigation | Workspaces change |
+| `design-tokens.mdc` | Token location and naming convention | Token conventions change |
+| `linting.mdc` | Lint-before-output enforcement | Linting workflow changes |
 | `component-patterns.mdc` | Component structure, styling, CSS vars, TypeScript | Component conventions change |
-| `component-documentation.mdc` | Test and LLM documentation requirements | Testing/docs conventions change |
+| `component-documentation.mdc` | Test and Storybook requirements | Testing/docs conventions change |
 | `pnpm-monorepo.mdc` | Generic pnpm and monorepo conventions | Dependency/structure patterns change |
-| `project-config.mdc` | Project-specific: workspaces, scripts, tokens | Scripts, workspaces, or tokens change |
 | `cursor-rules.mdc` | This file - meta rules | New rule files added |
 
 ## Creating New Rule Files

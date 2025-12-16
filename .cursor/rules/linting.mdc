@@ -1,0 +1,12 @@
+---
+description: lint-before-output
+globs: ["**/*.css","**/*.ts","**/*.tsx"]
+---
+
+When modifying CSS → run `pnpm lint:css:fix` then `pnpm lint:css`.
+When modifying TS/TSX → run `pnpm lint:js:fix` then `pnpm lint:js`.
+
+Do not proceed with final output if lint errors remain.
+Fix errors in code only.
+Never add ignore/disable comments.
+List commands run.

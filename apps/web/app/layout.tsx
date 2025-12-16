@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Doxy",
   description: "Doxy design system test",
+  title: "Doxy",
 };
 
 export default function RootLayout({

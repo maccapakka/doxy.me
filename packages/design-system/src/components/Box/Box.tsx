@@ -165,11 +165,10 @@ export const Box = ({
   width,
   ...rest
 }: BoxProps) => {
-  const isGridContainer = !!(
-    gridTemplateRows ||
-    gridTemplateColumns ||
-    gridTemplateAreas
-  );
+  const isGridContainer =
+    gridTemplateRows !== undefined ||
+    gridTemplateColumns !== undefined ||
+    gridTemplateAreas !== undefined;
 
   const rootClasses = cx(
     styles.root,
@@ -178,7 +177,7 @@ export const Box = ({
     styles[
       borderRadius === "circle"
         ? "borderRadiusCircle"
-        : `borderRadius${borderRadius}`
+        : `borderRadius${String(borderRadius)}`
     ],
     className
   );

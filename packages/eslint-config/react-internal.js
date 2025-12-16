@@ -69,6 +69,7 @@ export const config = [
     files: ["**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
     rules: {
       "@typescript-eslint/no-empty-function": "off",
+      "storybook/no-redundant-story-name": "off", // Redundant to enforce name matching export
     },
   },
   {

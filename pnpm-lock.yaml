@@ -64,12 +64,30 @@ importers:
       stylelint-config-standard:
         specifier: ^39.0.1
         version: 39.0.1(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-declaration-strict-value:
+        specifier: ^1.10.11
+        version: 1.10.11(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-high-performance-animation:
+        specifier: ^1.11.0
+        version: 1.11.0(stylelint@16.26.1(typescript@5.9.2))
       stylelint-order:
         specifier: ^7.0.0
         version: 7.0.0(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-plugin-defensive-css:
+        specifier: ^1.0.4
+        version: 1.0.4(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-plugin-logical-css:
+        specifier: ^1.2.3
+        version: 1.2.3(stylelint@16.26.1(typescript@5.9.2))
       stylelint-prettier:
         specifier: ^5.0.3
         version: 5.0.3(prettier@3.6.2)(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-rem-over-px:
+        specifier: ^1.0.2
+        version: 1.0.2(stylelint@16.26.1(typescript@5.9.2))
+      stylelint-use-nesting:
+        specifier: ^6.0.1
+        version: 6.0.1(stylelint@16.26.1(typescript@5.9.2))
       turbo:
         specifier: ^2.6.3
         version: 2.6.3
@@ -3937,11 +3955,34 @@ packages:
     peerDependencies:
       stylelint: ^16.23.0
 
+  stylelint-declaration-strict-value@1.10.11:
+    resolution: {integrity: sha512-oVQvhZlFZAiDz9r2BPFZLtTGm1A2JVhdKObKAJoTjFfR4F/NpApC4bMBTxf4sZS76Na3njYKVOaAaKSZ4+FU+g==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: '>=7 <=16'
+
+  stylelint-high-performance-animation@1.11.0:
+    resolution: {integrity: sha512-bo+VfSH5RmjVmu61BZeN4cBK+PGHpG5jfvaUsw0db+1sAqKuEGjzmxEbf271/Jq3HJHj8wyi/rCg1IcxxnIiiQ==}
+    peerDependencies:
+      stylelint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+
   stylelint-order@7.0.0:
     resolution: {integrity: sha512-rSWxx0KscYfxU02wEskKXES9lkRzuuONMMNkZ7SUc6uiF3tDKm7e+sE0Ax/SBlG4TUf1sp1R6f3/SlsPGmzthg==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       stylelint: ^16.18.0
+
+  stylelint-plugin-defensive-css@1.0.4:
+    resolution: {integrity: sha512-8H5z8u+k/C88s1guEGwpcdZlbPhUdu0qHkQphqidCCchryx3/c95IFKiwg3aEhiXjADqdsOvMtckbqNDpjuU9g==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: ^14.0.0 || ^15.0.0 || ^16.0.0
+
+  stylelint-plugin-logical-css@1.2.3:
+    resolution: {integrity: sha512-yzSDrw4yyZJosgMablqqQzCeJmsPRAK/H7X1XzliQkYvoC/ZHBfHKos27dQEwwSLBUaYg+7nJ1ct7OlST4iqZA==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: ^14.0.0 || ^15.0.0 || ^16.0.0
 
   stylelint-prettier@5.0.3:
     resolution: {integrity: sha512-B6V0oa35ekRrKZlf+6+jA+i50C4GXJ7X1PPmoCqSUoXN6BrNF6NhqqhanvkLjqw2qgvrS0wjdpeC+Tn06KN3jw==}
@@ -3949,6 +3990,17 @@ packages:
     peerDependencies:
       prettier: '>=3.0.0'
       stylelint: '>=16.0.0'
+
+  stylelint-rem-over-px@1.0.2:
+    resolution: {integrity: sha512-7TowHma52Hm7skkE9lQZOZG80gWfAoemKkkX0hJdTxD1jr1f0cfR/u06VBgkbDUZSHNSkIOYwPfQ9XmtJdlFVQ==}
+    peerDependencies:
+      stylelint: '>= 8'
+
+  stylelint-use-nesting@6.0.1:
+    resolution: {integrity: sha512-3wA3DXKSkn1+RpEY22XHkiWRjiQNVuzWEmlERSkd2QtWZz1jaSKb63MHRnhtZTr+0v75NpgIOABsYU9Vcl97mw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      stylelint: '>= 16.9.0'
 
   stylelint@16.26.1:
     resolution: {integrity: sha512-v20V59/crfc8sVTAtge0mdafI3AdnzQ2KsWe6v523L4OA1bJO02S7MO2oyXDCS6iWb9ckIPnqAFVItqSBQr7jw==}
@@ -8305,16 +8357,42 @@ snapshots:
       stylelint: 16.26.1(typescript@5.9.2)
       stylelint-config-recommended: 17.0.0(stylelint@16.26.1(typescript@5.9.2))
 
+  stylelint-declaration-strict-value@1.10.11(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
+      stylelint: 16.26.1(typescript@5.9.2)
+
+  stylelint-high-performance-animation@1.11.0(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
+      postcss-value-parser: 4.2.0
+      stylelint: 16.26.1(typescript@5.9.2)
+
   stylelint-order@7.0.0(stylelint@16.26.1(typescript@5.9.2)):
     dependencies:
       postcss: 8.5.6
       postcss-sorting: 9.1.0(postcss@8.5.6)
       stylelint: 16.26.1(typescript@5.9.2)
 
+  stylelint-plugin-defensive-css@1.0.4(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
+      stylelint: 16.26.1(typescript@5.9.2)
+
+  stylelint-plugin-logical-css@1.2.3(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
+      stylelint: 16.26.1(typescript@5.9.2)
+
   stylelint-prettier@5.0.3(prettier@3.6.2)(stylelint@16.26.1(typescript@5.9.2)):
     dependencies:
       prettier: 3.6.2
       prettier-linter-helpers: 1.0.0
+      stylelint: 16.26.1(typescript@5.9.2)
+
+  stylelint-rem-over-px@1.0.2(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
+      postcss-value-parser: 4.2.0
+      stylelint: 16.26.1(typescript@5.9.2)
+
+  stylelint-use-nesting@6.0.1(stylelint@16.26.1(typescript@5.9.2)):
+    dependencies:
       stylelint: 16.26.1(typescript@5.9.2)
 
   stylelint@16.26.1(typescript@5.9.2):

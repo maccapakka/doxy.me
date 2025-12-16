@@ -12,6 +12,7 @@
 
   /* Center initials text */
   display: inline-flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
 
@@ -41,8 +42,8 @@
 /* Status indicator dot */
 .status {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  inset-block-end: 0;
+  inset-inline-end: 0;
 
   box-sizing: content-box;
 

@@ -16,7 +16,7 @@
   --_py: initial;
   --_gap: initial;
   --_mt: initial;
-  --_dir: initial;
+  --_dir: row;
   --_ai: initial;
   --_as: initial;
   --_jc: initial;
@@ -35,21 +35,16 @@
 
   /* Default styles */
   display: flex;
-
-  /* stylelint-disable-next-line order/properties-order -- grid-area works on both flex and grid items */
   grid-area: var(--_ga);
-  flex-direction: var(--_dir);
+  flex-flow: var(--_dir) nowrap;
   gap: calc(var(--dxy-spacing-base) * var(--_gap));
+  place-self: var(--_as) var(--_js);
   align-items: var(--_ai);
-  /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-  align-self: var(--_as);
   justify-content: var(--_jc);
-  /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-  justify-self: var(--_js);
 
   aspect-ratio: var(--_ar);
   width: var(--_w);
-  max-width: var(--_mw);
+  max-inline-size: var(--_mw);
   height: var(--_h);
 
   /* Token-based spacing calculations */
@@ -64,19 +59,15 @@
   background-size: var(--_bgs);
   backdrop-filter: var(--_bf);
 
-  /* stylelint-disable-next-line property-no-unknown -- CSS Spec property */
   corner-shape: var(--_cs);
 }
 
 /* Grid display mode - applied when grid-template-* props are provided */
 .grid {
   display: grid;
-
-  /* stylelint-disable declaration-block-no-redundant-longhand-properties, order/properties-order */
   grid-template-areas: var(--_gta);
-  grid-template-rows: var(--_gtr);
   grid-template-columns: var(--_gtc);
-  /* stylelint-enable declaration-block-no-redundant-longhand-properties, order/properties-order */
+  grid-template-rows: var(--_gtr);
 }
 
 /* Border radius variants */

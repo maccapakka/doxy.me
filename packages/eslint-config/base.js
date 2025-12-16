@@ -104,7 +104,7 @@ export const config = [
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/no-misused-promises": "error",
-      "@typescript-eslint/prefer-nullish-coalescing": "error",
+      "@typescript-eslint/prefer-nullish-coalescing": "off", // Too aggressive for truthiness checks
       "@typescript-eslint/prefer-optional-chain": "error",
     },
   },

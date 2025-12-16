@@ -165,10 +165,11 @@ export const Box = ({
   width,
   ...rest
 }: BoxProps) => {
-  const isGridContainer =
-    gridTemplateRows !== undefined ||
-    gridTemplateColumns !== undefined ||
-    gridTemplateAreas !== undefined;
+  const isGridContainer = !!(
+    gridTemplateRows ||
+    gridTemplateColumns ||
+    gridTemplateAreas
+  );
 
   const rootClasses = cx(
     styles.root,

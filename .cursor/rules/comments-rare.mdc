@@ -1,0 +1,13 @@
+---
+description: comments-rare
+globs: ["**/*"]
+alwaysApply: true
+---
+
+Write comments only if they prevent likely misunderstanding.
+
+No narration, no obvious comments, no step-by-step.
+
+Prefer clear names/types over comments.
+
+Allowed: public API docs, non-obvious logic, TODO w/ reason, safety/security notes.

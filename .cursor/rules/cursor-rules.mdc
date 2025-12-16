@@ -36,6 +36,7 @@ When making a change that affects conventions:
 | `component-patterns.mdc` | Component structure, styling, CSS vars, TypeScript | Component conventions change |
 | `component-documentation.mdc` | Test and Storybook requirements | Testing/docs conventions change |
 | `pnpm-monorepo.mdc` | Generic pnpm and monorepo conventions | Dependency/structure patterns change |
+| `comments-rare.mdc` | Minimal commenting convention | Commenting style changes |
 | `cursor-rules.mdc` | This file - meta rules | New rule files added |
 
 ## Creating New Rule Files

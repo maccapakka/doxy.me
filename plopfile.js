@@ -48,11 +48,6 @@ export default function (plop) {
         path: "packages/design-system/src/components/{{pascalCase name}}/{{pascalCase name}}.module.css",
         templateFile: "plop-templates/component/Component.module.css.hbs",
       },
-      {
-        type: "add",
-        path: "packages/design-system/src/components/{{pascalCase name}}/{{pascalCase name}}.llm.md",
-        templateFile: "plop-templates/component/Component.llm.md.hbs",
-      },
       // Update barrel file to export the new component
       {
         type: "append",

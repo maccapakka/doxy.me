@@ -1,14 +1,15 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
 import { Icon } from "./Icon";
 
 const TestIcon = (
   <svg
     data-testid="test-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>Test Icon</title>
     <circle cx="12" cy="12" r="10" />
@@ -28,56 +29,56 @@ describe("Icon", () => {
   });
 
   it("applies custom size", () => {
-    const { container } = render(<Icon svg={TestIcon} size={8} />);
+    const { container } = render(<Icon size={8} svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper).toHaveStyle({ "--_size": "8" });
   });
 
   it("applies primary color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="primary" />);
+    const { container } = render(<Icon color="primary" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("primary");
   });
 
   it("applies secondary color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="secondary" />);
+    const { container } = render(<Icon color="secondary" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("secondary");
   });
 
   it("applies accent color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="accent" />);
+    const { container } = render(<Icon color="accent" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("accent");
   });
 
   it("applies warning color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="warning" />);
+    const { container } = render(<Icon color="warning" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("warning");
   });
 
   it("applies positive color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="positive" />);
+    const { container } = render(<Icon color="positive" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("positive");
   });
 
   it("applies critical color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="critical" />);
+    const { container } = render(<Icon color="critical" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("critical");
   });
 
   it("applies neutral color variant", () => {
-    const { container } = render(<Icon svg={TestIcon} color="neutral" />);
+    const { container } = render(<Icon color="neutral" svg={TestIcon} />);
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("neutral");
   });
 
   it("applies additional className", () => {
     const { container } = render(
-      <Icon svg={TestIcon} className="custom-class" />
+      <Icon className="custom-class" svg={TestIcon} />
     );
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper.className).toContain("custom-class");
@@ -85,7 +86,7 @@ describe("Icon", () => {
 
   it("applies additional inline styles", () => {
     const { container } = render(
-      <Icon svg={TestIcon} style={{ marginTop: "10px" }} />
+      <Icon style={{ marginTop: "10px" }} svg={TestIcon} />
     );
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper).toHaveStyle({ marginTop: "10px" });
@@ -93,7 +94,7 @@ describe("Icon", () => {
 
   it("passes through additional HTML attributes", () => {
     const { container } = render(
-      <Icon svg={TestIcon} data-custom="test-value" />
+      <Icon data-custom="test-value" svg={TestIcon} />
     );
     const iconWrapper = container.firstChild as HTMLElement;
     expect(iconWrapper).toHaveAttribute("data-custom", "test-value");

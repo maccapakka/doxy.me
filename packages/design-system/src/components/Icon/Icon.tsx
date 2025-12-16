@@ -1,51 +1,52 @@
 "use client";
 
 import type { CSSProperties, ReactElement } from "react";
+
 import cx from "classnames";
 
 import styles from "./Icon.module.css";
 
-/** Valid color tokens */
-type ColorVariant =
-  | "primary"
-  | "primary-subtle"
-  | "primary-bold"
-  | "secondary"
-  | "secondary-subtle"
-  | "secondary-bold"
-  | "accent"
-  | "accent-subtle"
-  | "accent-bold"
-  | "warning"
-  | "warning-subtle"
-  | "warning-bold"
-  | "positive"
-  | "positive-subtle"
-  | "positive-bold"
-  | "critical"
-  | "critical-subtle"
-  | "critical-bold"
-  | "neutral"
-  | "neutral-subtle"
-  | "neutral-bold"
-  | "black"
-  | "white";
-
 /** Props for the Icon component */
 export interface IconProps {
-  /** The SVG element to render */
-  svg: ReactElement;
-  /** Size multiplier (multiplier of 4px, default: 6 = 24px) */
-  size?: number;
-  /** Color variant from design tokens */
-  color?: ColorVariant;
-  /** Additional CSS classes */
-  className?: string;
-  /** Additional inline styles */
-  style?: CSSProperties;
   /** Allow pass-through HTML attributes */
   [key: string]: unknown;
+  /** Additional CSS classes */
+  className?: string;
+  /** Color variant from design tokens */
+  color?: ColorVariant;
+  /** Size multiplier (multiplier of 4px, default: 6 = 24px) */
+  size?: number;
+  /** Additional inline styles */
+  style?: CSSProperties;
+  /** The SVG element to render */
+  svg: ReactElement;
 }
+
+/** Valid color tokens */
+type ColorVariant =
+  | "accent"
+  | "accent-bold"
+  | "accent-subtle"
+  | "black"
+  | "critical"
+  | "critical-bold"
+  | "critical-subtle"
+  | "neutral"
+  | "neutral-bold"
+  | "neutral-subtle"
+  | "positive"
+  | "positive-bold"
+  | "positive-subtle"
+  | "primary"
+  | "primary-bold"
+  | "primary-subtle"
+  | "secondary"
+  | "secondary-bold"
+  | "secondary-subtle"
+  | "warning"
+  | "warning-bold"
+  | "warning-subtle"
+  | "white";
 
 /**
  * Icon is a wrapper component for SVG icons that provides consistent sizing and coloring.
@@ -53,11 +54,11 @@ export interface IconProps {
  * It accepts an SVG element and applies design token-based colors and spacing-based sizes.
  */
 export const Icon = ({
-  svg,
-  size = 6,
-  color,
   className,
+  color,
+  size = 6,
   style,
+  svg,
   ...rest
 }: IconProps) => {
   const rootClasses = cx(styles.root, className);
@@ -67,8 +68,8 @@ export const Icon = ({
       className={rootClasses}
       style={
         {
-          "--_size": size,
           "--_clr": color ? `var(--dxy-color-${color})` : undefined,
+          "--_size": size,
           ...style,
         } as CSSProperties
       }

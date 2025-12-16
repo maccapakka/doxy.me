@@ -1,58 +1,59 @@
 "use client";
 
 import type { CSSProperties } from "react";
+
 import cx from "classnames";
 
 import styles from "./Avatar.module.css";
 
-/** Valid color tokens */
-type ColorVariant =
-  | "primary"
-  | "primary-subtle"
-  | "primary-bold"
-  | "secondary"
-  | "secondary-subtle"
-  | "secondary-bold"
-  | "accent"
-  | "accent-subtle"
-  | "accent-bold"
-  | "warning"
-  | "warning-subtle"
-  | "warning-bold"
-  | "positive"
-  | "positive-subtle"
-  | "positive-bold"
-  | "critical"
-  | "critical-subtle"
-  | "critical-bold"
-  | "neutral"
-  | "neutral-subtle"
-  | "neutral-bold"
-  | "black"
-  | "white";
-
-/** User presence status */
-type StatusVariant = "online" | "away" | "offline";
-
 /** Props for the Avatar component */
 export interface AvatarProps {
-  /** Image URL to display */
-  src?: string;
+  /** Allow pass-through HTML attributes */
+  [key: string]: unknown;
+  /** Additional CSS classes */
+  className?: string;
+  /** Background color variant from design tokens (used when no image) */
+  color?: ColorVariant;
   /** Fallback text when no image is provided */
   initials?: string;
   /** Size multiplier (multiplier of 4px, default: 6 = 24px) */
   size?: number;
-  /** Background color variant from design tokens (used when no image) */
-  color?: ColorVariant;
+  /** Image URL to display */
+  src?: string;
   /** User presence status indicator */
   status?: StatusVariant;
-  /** Additional CSS classes */
-  className?: string;
   /** Additional inline styles */
   style?: CSSProperties;
-  /** Allow pass-through HTML attributes */
-  [key: string]: unknown;
 }
+
+/** Valid color tokens */
+type ColorVariant =
+  | "accent"
+  | "accent-bold"
+  | "accent-subtle"
+  | "black"
+  | "critical"
+  | "critical-bold"
+  | "critical-subtle"
+  | "neutral"
+  | "neutral-bold"
+  | "neutral-subtle"
+  | "positive"
+  | "positive-bold"
+  | "positive-subtle"
+  | "primary"
+  | "primary-bold"
+  | "primary-subtle"
+  | "secondary"
+  | "secondary-bold"
+  | "secondary-subtle"
+  | "warning"
+  | "warning-bold"
+  | "warning-subtle"
+  | "white";
+
+/** User presence status */
+type StatusVariant = "away" | "offline" | "online";
 
 /**
  * Avatar is a component for displaying user images or initials fallback.
@@ -61,12 +62,12 @@ export interface AvatarProps {
  * When no image is available, it shows colored initials.
  */
 export const Avatar = ({
-  src,
+  className,
+  color = "primary",
   initials,
   size = 6,
-  color = "primary",
+  src,
   status,
-  className,
   style,
   ...rest
 }: AvatarProps) => {
@@ -77,9 +78,9 @@ export const Avatar = ({
       className={rootClasses}
       style={
         {
+          "--_bg": `var(--dxy-color-${color})`,
           "--_size": size,
           "--_src": src ? `url(${src})` : undefined,
-          "--_bg": `var(--dxy-color-${color})`,
           ...style,
         } as CSSProperties
       }

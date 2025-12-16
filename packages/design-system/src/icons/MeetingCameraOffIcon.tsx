@@ -1,12 +1,12 @@
 export const MeetingCameraOffIcon = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={1.5}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>Meeting Camera Off</title>
     <path d="m0.75 0.75 22.5 22.5" />

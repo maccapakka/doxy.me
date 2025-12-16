@@ -1,5 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+
 import { Button } from "./Button";
 
 // Mock icon element for testing
@@ -165,13 +166,13 @@ describe("Button", () => {
 
   describe("icon-only", () => {
     it("renders icon-only button without children", () => {
-      render(<Button icon={MockIcon} aria-label="Mock action" />);
+      render(<Button aria-label="Mock action" icon={MockIcon} />);
       expect(screen.getByRole("button")).toBeInTheDocument();
       expect(screen.getByTestId("mock-icon")).toBeInTheDocument();
     });
 
     it("applies iconOnly class when only icon is present", () => {
-      render(<Button icon={MockIcon} aria-label="Mock action" />);
+      render(<Button aria-label="Mock action" icon={MockIcon} />);
       const button = screen.getByRole("button");
       expect(button.className).toContain("iconOnly");
     });
@@ -191,7 +192,7 @@ describe("Button", () => {
 
   describe("aria-label", () => {
     it("applies aria-label attribute when provided", () => {
-      render(<Button icon={MockIcon} aria-label="Favorite" />);
+      render(<Button aria-label="Favorite" icon={MockIcon} />);
       const button = screen.getByRole("button");
       expect(button).toHaveAttribute("aria-label", "Favorite");
     });

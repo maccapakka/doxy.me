@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "./Button";
-import { Text } from "../Text";
-import { Box, Cluster } from "../Box";
+
 import { DotsIcon } from "../../icons/DotsIcon";
 import { LayoutIcon } from "../../icons/LayoutIcon";
 import { MicrophoneIcon } from "../../icons/MicrophoneIcon";
+import { Box, Cluster } from "../Box";
+import { Text } from "../Text";
+import { Button } from "./Button";
 
 // Mock icon elements for stories
 const StarIcon = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>Star</title>
     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -20,13 +21,13 @@ const StarIcon = (
 
 const SettingsIcon = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth={2}
     strokeLinecap="round"
     strokeLinejoin="round"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>Settings</title>
     <circle cx="12" cy="12" r="3" />
@@ -35,92 +36,95 @@ const SettingsIcon = (
 );
 
 const meta: Meta<typeof Button> = {
-  component: Button,
-  title: "Components/Button",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      subtitle: "A clickable element for user actions",
-      description: {
-        component:
-          "Button is a versatile component supporting 3 variants (solid, outline, ghost), 4 colors (action, positive, critical, neutral), 3 sizes (small, medium, large), optional icons, icon-only mode, and full-width mode. All styles use design tokens for consistent theming.",
-      },
-    },
-  },
   argTypes: {
+    // Accessibility
+    "aria-label": {
+      control: "text",
+      description: "Accessible label for icon-only buttons",
+      table: { category: "Accessibility" },
+    },
     // Element
     children: {
+      control: "text",
       description:
         "The content to display inside the button (optional for icon-only buttons)",
-      control: "text",
       table: { category: "Element" },
     },
     className: {
-      description: "Additional CSS classes",
       control: "text",
+      description: "Additional CSS classes",
       table: { category: "Element" },
     },
     // Styling
     color: {
+      control: "select",
       description: "The color of the button",
-      control: "select",
       options: ["action", "positive", "critical", "neutral", "inherit"],
-      table: { category: "Styling" },
-    },
-    variant: {
-      description: "The visual variant of the button",
-      control: "select",
-      options: ["solid", "outline", "ghost"],
-      table: { category: "Styling" },
-    },
-    size: {
-      description: "The size of the button",
-      control: "select",
-      options: ["small", "medium", "large"],
-      table: { category: "Styling" },
-    },
-    icon: {
-      description: "Icon element to display before the label",
-      control: false,
-      table: { category: "Styling" },
-    },
-    fullWidth: {
-      description: "Whether the button takes full container width",
-      control: "boolean",
       table: { category: "Styling" },
     },
     // State
     disabled: {
-      description: "Whether the button is disabled",
       control: "boolean",
+      description: "Whether the button is disabled",
       table: { category: "State" },
+    },
+    fullWidth: {
+      control: "boolean",
+      description: "Whether the button takes full container width",
+      table: { category: "Styling" },
+    },
+    icon: {
+      control: false,
+      description: "Icon element to display before the label",
+      table: { category: "Styling" },
     },
     // Events
     onClick: {
-      description: "Click handler",
       action: "clicked",
+      description: "Click handler",
       table: { category: "Events" },
     },
-    // Accessibility
-    "aria-label": {
-      description: "Accessible label for icon-only buttons",
-      control: "text",
-      table: { category: "Accessibility" },
+    size: {
+      control: "select",
+      description: "The size of the button",
+      options: ["small", "medium", "large"],
+      table: { category: "Styling" },
     },
     // Advanced
     unstyledStates: {
+      control: "boolean",
       description:
         "Removes built-in hover, active, and focus visual styles for custom implementations",
-      control: "boolean",
       table: { category: "Advanced" },
     },
+    variant: {
+      control: "select",
+      description: "The visual variant of the button",
+      options: ["solid", "outline", "ghost"],
+      table: { category: "Styling" },
+    },
   },
+  component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Button is a versatile component supporting 3 variants (solid, outline, ghost), 4 colors (action, positive, critical, neutral), 3 sizes (small, medium, large), optional icons, icon-only mode, and full-width mode. All styles use design tokens for consistent theming.",
+      },
+      subtitle: "A clickable element for user actions",
+    },
+  },
+  tags: ["autodocs"],
+  title: "Components/Button",
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
+  args: {
+    children: "Button",
+  },
   name: "Default",
   parameters: {
     docs: {
@@ -128,9 +132,6 @@ export const Default: Story = {
         story: "The default button with action color and medium size.",
       },
     },
-  },
-  args: {
-    children: "Button",
   },
 };
 
@@ -146,19 +147,19 @@ export const AllColors: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="action">Action</Button>
         <Text variant="body-2">Primary actions (default)</Text>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="positive">Positive</Button>
         <Text variant="body-2">Success / confirmation actions</Text>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="critical">Critical</Button>
         <Text variant="body-2">Destructive / danger actions</Text>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="neutral">Neutral</Button>
         <Text variant="body-2">Muted / secondary actions</Text>
       </Box>
@@ -178,56 +179,56 @@ export const Variants: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Solid (default)
       </Text>
       <Box gap={3}>
-        <Button variant="solid" color="action">
+        <Button color="action" variant="solid">
           Action
         </Button>
-        <Button variant="solid" color="positive">
+        <Button color="positive" variant="solid">
           Positive
         </Button>
-        <Button variant="solid" color="critical">
+        <Button color="critical" variant="solid">
           Critical
         </Button>
-        <Button variant="solid" color="neutral">
+        <Button color="neutral" variant="solid">
           Neutral
         </Button>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Outline
       </Text>
       <Box gap={3}>
-        <Button variant="outline" color="action">
+        <Button color="action" variant="outline">
           Action
         </Button>
-        <Button variant="outline" color="positive">
+        <Button color="positive" variant="outline">
           Positive
         </Button>
-        <Button variant="outline" color="critical">
+        <Button color="critical" variant="outline">
           Critical
         </Button>
-        <Button variant="outline" color="neutral">
+        <Button color="neutral" variant="outline">
           Neutral
         </Button>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Ghost
       </Text>
       <Box gap={3}>
-        <Button variant="ghost" color="action">
+        <Button color="action" variant="ghost">
           Action
         </Button>
-        <Button variant="ghost" color="positive">
+        <Button color="positive" variant="ghost">
           Positive
         </Button>
-        <Button variant="ghost" color="critical">
+        <Button color="critical" variant="ghost">
           Critical
         </Button>
-        <Button variant="ghost" color="neutral">
+        <Button color="neutral" variant="ghost">
           Neutral
         </Button>
       </Box>
@@ -247,23 +248,23 @@ export const AllSizes: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button size="small">Small</Button>
-        <Button size="small" icon={StarIcon}>
+        <Button icon={StarIcon} size="small">
           With Icon
         </Button>
         <Text variant="body-2">Compact size</Text>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button size="medium">Medium</Button>
-        <Button size="medium" icon={StarIcon}>
+        <Button icon={StarIcon} size="medium">
           With Icon
         </Button>
         <Text variant="body-2">Default size</Text>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button size="large">Large</Button>
-        <Button size="large" icon={StarIcon}>
+        <Button icon={StarIcon} size="large">
           With Icon
         </Button>
         <Text variant="body-2">Larger size</Text>
@@ -284,11 +285,11 @@ export const WithIcon: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button icon={StarIcon}>Favorite</Button>
         <Button icon={SettingsIcon}>Settings</Button>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="positive" icon={StarIcon}>
           Save
         </Button>
@@ -312,97 +313,97 @@ export const IconOnly: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         All Sizes
       </Text>
-      <Box gap={3} alignItems="center">
-        <Button size="small" icon={StarIcon} aria-label="Favorite" />
-        <Button size="medium" icon={StarIcon} aria-label="Favorite" />
-        <Button size="large" icon={StarIcon} aria-label="Favorite" />
+      <Box alignItems="center" gap={3}>
+        <Button aria-label="Favorite" icon={StarIcon} size="small" />
+        <Button aria-label="Favorite" icon={StarIcon} size="medium" />
+        <Button aria-label="Favorite" icon={StarIcon} size="large" />
         <Text variant="body-2">Small, Medium, Large</Text>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         All Colors (Solid)
       </Text>
-      <Box gap={3} alignItems="center">
-        <Button icon={StarIcon} color="action" aria-label="Action" />
-        <Button icon={StarIcon} color="positive" aria-label="Positive" />
-        <Button icon={StarIcon} color="critical" aria-label="Critical" />
-        <Button icon={StarIcon} color="neutral" aria-label="Neutral" />
+      <Box alignItems="center" gap={3}>
+        <Button aria-label="Action" color="action" icon={StarIcon} />
+        <Button aria-label="Positive" color="positive" icon={StarIcon} />
+        <Button aria-label="Critical" color="critical" icon={StarIcon} />
+        <Button aria-label="Neutral" color="neutral" icon={StarIcon} />
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         All Colors (Outline)
       </Text>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button
-          variant="outline"
-          icon={StarIcon}
-          color="action"
           aria-label="Action"
+          color="action"
+          icon={StarIcon}
+          variant="outline"
         />
         <Button
-          variant="outline"
-          icon={StarIcon}
-          color="positive"
           aria-label="Positive"
+          color="positive"
+          icon={StarIcon}
+          variant="outline"
         />
         <Button
-          variant="outline"
-          icon={StarIcon}
-          color="critical"
           aria-label="Critical"
+          color="critical"
+          icon={StarIcon}
+          variant="outline"
         />
         <Button
-          variant="outline"
-          icon={StarIcon}
-          color="neutral"
           aria-label="Neutral"
+          color="neutral"
+          icon={StarIcon}
+          variant="outline"
         />
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         All Colors (Ghost)
       </Text>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button
-          variant="ghost"
-          icon={StarIcon}
-          color="action"
           aria-label="Action"
+          color="action"
+          icon={StarIcon}
+          variant="ghost"
         />
         <Button
-          variant="ghost"
-          icon={StarIcon}
-          color="positive"
           aria-label="Positive"
+          color="positive"
+          icon={StarIcon}
+          variant="ghost"
         />
         <Button
-          variant="ghost"
-          icon={StarIcon}
-          color="critical"
           aria-label="Critical"
+          color="critical"
+          icon={StarIcon}
+          variant="ghost"
         />
         <Button
-          variant="ghost"
-          icon={StarIcon}
-          color="neutral"
           aria-label="Neutral"
+          color="neutral"
+          icon={StarIcon}
+          variant="ghost"
         />
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Different Icons
       </Text>
-      <Box gap={3} alignItems="center">
-        <Button icon={StarIcon} aria-label="Favorite" />
-        <Button icon={SettingsIcon} aria-label="Settings" />
-        <Button icon={StarIcon} color="critical" aria-label="Remove favorite" />
+      <Box alignItems="center" gap={3}>
+        <Button aria-label="Favorite" icon={StarIcon} />
+        <Button aria-label="Settings" icon={SettingsIcon} />
+        <Button aria-label="Remove favorite" color="critical" icon={StarIcon} />
         <Button
+          aria-label="Open settings"
           icon={SettingsIcon}
           variant="outline"
-          aria-label="Open settings"
         />
       </Box>
     </Box>
@@ -421,10 +422,10 @@ export const FullWidth: Story = {
   render: () => (
     <Box direction="column" gap={3} style={{ maxWidth: 400 }}>
       <Button fullWidth>Full Width Button</Button>
-      <Button fullWidth color="positive" icon={StarIcon}>
+      <Button color="positive" fullWidth icon={StarIcon}>
         Full Width with Icon
       </Button>
-      <Button fullWidth color="critical" size="large">
+      <Button color="critical" fullWidth size="large">
         Large Full Width
       </Button>
     </Box>
@@ -443,16 +444,16 @@ export const DisabledStates: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Solid
       </Text>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button disabled>Disabled</Button>
         <Button disabled icon={StarIcon}>
           With Icon
         </Button>
       </Box>
-      <Box gap={3} alignItems="center">
+      <Box alignItems="center" gap={3}>
         <Button color="positive" disabled>
           Positive
         </Button>
@@ -461,42 +462,42 @@ export const DisabledStates: Story = {
         </Button>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Outline
       </Text>
-      <Box gap={3} alignItems="center">
-        <Button variant="outline" disabled>
+      <Box alignItems="center" gap={3}>
+        <Button disabled variant="outline">
           Disabled
         </Button>
-        <Button variant="outline" disabled icon={StarIcon}>
+        <Button disabled icon={StarIcon} variant="outline">
           With Icon
         </Button>
       </Box>
-      <Box gap={3} alignItems="center">
-        <Button variant="outline" color="positive" disabled>
+      <Box alignItems="center" gap={3}>
+        <Button color="positive" disabled variant="outline">
           Positive
         </Button>
-        <Button variant="outline" color="critical" disabled>
+        <Button color="critical" disabled variant="outline">
           Critical
         </Button>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Ghost
       </Text>
-      <Box gap={3} alignItems="center">
-        <Button variant="ghost" disabled>
+      <Box alignItems="center" gap={3}>
+        <Button disabled variant="ghost">
           Disabled
         </Button>
-        <Button variant="ghost" disabled icon={StarIcon}>
+        <Button disabled icon={StarIcon} variant="ghost">
           With Icon
         </Button>
       </Box>
-      <Box gap={3} alignItems="center">
-        <Button variant="ghost" color="positive" disabled>
+      <Box alignItems="center" gap={3}>
+        <Button color="positive" disabled variant="ghost">
           Positive
         </Button>
-        <Button variant="ghost" color="critical" disabled>
+        <Button color="critical" disabled variant="ghost">
           Critical
         </Button>
       </Box>
@@ -517,177 +518,177 @@ export const ColorsBySize: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={4}>
-        <Text variant="featured-2" as="h2">
+        <Text as="h2" variant="featured-2">
           Solid
         </Text>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Small
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button size="small" color="action">
+          <Button color="action" size="small">
             Action
           </Button>
-          <Button size="small" color="positive">
+          <Button color="positive" size="small">
             Positive
           </Button>
-          <Button size="small" color="critical">
+          <Button color="critical" size="small">
             Critical
           </Button>
-          <Button size="small" color="neutral">
+          <Button color="neutral" size="small">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Medium
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button size="medium" color="action">
+          <Button color="action" size="medium">
             Action
           </Button>
-          <Button size="medium" color="positive">
+          <Button color="positive" size="medium">
             Positive
           </Button>
-          <Button size="medium" color="critical">
+          <Button color="critical" size="medium">
             Critical
           </Button>
-          <Button size="medium" color="neutral">
+          <Button color="neutral" size="medium">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Large
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button size="large" color="action">
+          <Button color="action" size="large">
             Action
           </Button>
-          <Button size="large" color="positive">
+          <Button color="positive" size="large">
             Positive
           </Button>
-          <Button size="large" color="critical">
+          <Button color="critical" size="large">
             Critical
           </Button>
-          <Button size="large" color="neutral">
+          <Button color="neutral" size="large">
             Neutral
           </Button>
         </Box>
       </Box>
 
       <Box direction="column" gap={4}>
-        <Text variant="featured-2" as="h2">
+        <Text as="h2" variant="featured-2">
           Outline
         </Text>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Small
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="outline" size="small" color="action">
+          <Button color="action" size="small" variant="outline">
             Action
           </Button>
-          <Button variant="outline" size="small" color="positive">
+          <Button color="positive" size="small" variant="outline">
             Positive
           </Button>
-          <Button variant="outline" size="small" color="critical">
+          <Button color="critical" size="small" variant="outline">
             Critical
           </Button>
-          <Button variant="outline" size="small" color="neutral">
+          <Button color="neutral" size="small" variant="outline">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Medium
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="outline" size="medium" color="action">
+          <Button color="action" size="medium" variant="outline">
             Action
           </Button>
-          <Button variant="outline" size="medium" color="positive">
+          <Button color="positive" size="medium" variant="outline">
             Positive
           </Button>
-          <Button variant="outline" size="medium" color="critical">
+          <Button color="critical" size="medium" variant="outline">
             Critical
           </Button>
-          <Button variant="outline" size="medium" color="neutral">
+          <Button color="neutral" size="medium" variant="outline">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Large
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="outline" size="large" color="action">
+          <Button color="action" size="large" variant="outline">
             Action
           </Button>
-          <Button variant="outline" size="large" color="positive">
+          <Button color="positive" size="large" variant="outline">
             Positive
           </Button>
-          <Button variant="outline" size="large" color="critical">
+          <Button color="critical" size="large" variant="outline">
             Critical
           </Button>
-          <Button variant="outline" size="large" color="neutral">
+          <Button color="neutral" size="large" variant="outline">
             Neutral
           </Button>
         </Box>
       </Box>
 
       <Box direction="column" gap={4}>
-        <Text variant="featured-2" as="h2">
+        <Text as="h2" variant="featured-2">
           Ghost
         </Text>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Small
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="ghost" size="small" color="action">
+          <Button color="action" size="small" variant="ghost">
             Action
           </Button>
-          <Button variant="ghost" size="small" color="positive">
+          <Button color="positive" size="small" variant="ghost">
             Positive
           </Button>
-          <Button variant="ghost" size="small" color="critical">
+          <Button color="critical" size="small" variant="ghost">
             Critical
           </Button>
-          <Button variant="ghost" size="small" color="neutral">
+          <Button color="neutral" size="small" variant="ghost">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Medium
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="ghost" size="medium" color="action">
+          <Button color="action" size="medium" variant="ghost">
             Action
           </Button>
-          <Button variant="ghost" size="medium" color="positive">
+          <Button color="positive" size="medium" variant="ghost">
             Positive
           </Button>
-          <Button variant="ghost" size="medium" color="critical">
+          <Button color="critical" size="medium" variant="ghost">
             Critical
           </Button>
-          <Button variant="ghost" size="medium" color="neutral">
+          <Button color="neutral" size="medium" variant="ghost">
             Neutral
           </Button>
         </Box>
 
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Large
         </Text>
         <Box gap={2} style={{ flexWrap: "wrap" }}>
-          <Button variant="ghost" size="large" color="action">
+          <Button color="action" size="large" variant="ghost">
             Action
           </Button>
-          <Button variant="ghost" size="large" color="positive">
+          <Button color="positive" size="large" variant="ghost">
             Positive
           </Button>
-          <Button variant="ghost" size="large" color="critical">
+          <Button color="critical" size="large" variant="ghost">
             Critical
           </Button>
-          <Button variant="ghost" size="large" color="neutral">
+          <Button color="neutral" size="large" variant="ghost">
             Neutral
           </Button>
         </Box>
@@ -708,7 +709,7 @@ export const InheritColor: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Ghost Variant
       </Text>
       <Box
@@ -718,19 +719,19 @@ export const InheritColor: Story = {
         style={{ color: "white" }}
       >
         <Cluster gap={3}>
-          <Button variant="ghost" color="inherit" icon={MicrophoneIcon}>
+          <Button color="inherit" icon={MicrophoneIcon} variant="ghost">
             Microphone
           </Button>
-          <Button variant="ghost" color="inherit" icon={DotsIcon}>
+          <Button color="inherit" icon={DotsIcon} variant="ghost">
             More
           </Button>
-          <Button variant="ghost" color="inherit" icon={LayoutIcon}>
+          <Button color="inherit" icon={LayoutIcon} variant="ghost">
             Layout
           </Button>
         </Cluster>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Outline Variant
       </Text>
       <Box
@@ -740,19 +741,19 @@ export const InheritColor: Story = {
         style={{ color: "white" }}
       >
         <Cluster gap={3}>
-          <Button variant="outline" color="inherit" icon={MicrophoneIcon}>
+          <Button color="inherit" icon={MicrophoneIcon} variant="outline">
             Microphone
           </Button>
-          <Button variant="outline" color="inherit" icon={DotsIcon}>
+          <Button color="inherit" icon={DotsIcon} variant="outline">
             More
           </Button>
-          <Button variant="outline" color="inherit" icon={LayoutIcon}>
+          <Button color="inherit" icon={LayoutIcon} variant="outline">
             Layout
           </Button>
         </Cluster>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Solid Variant
       </Text>
       <Box
@@ -762,19 +763,19 @@ export const InheritColor: Story = {
         style={{ color: "white" }}
       >
         <Cluster gap={3}>
-          <Button variant="solid" color="inherit" icon={MicrophoneIcon}>
+          <Button color="inherit" icon={MicrophoneIcon} variant="solid">
             Microphone
           </Button>
-          <Button variant="solid" color="inherit" icon={DotsIcon}>
+          <Button color="inherit" icon={DotsIcon} variant="solid">
             More
           </Button>
-          <Button variant="solid" color="inherit" icon={LayoutIcon}>
+          <Button color="inherit" icon={LayoutIcon} variant="solid">
             Layout
           </Button>
         </Cluster>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Icon Only
       </Text>
       <Box
@@ -785,27 +786,27 @@ export const InheritColor: Story = {
       >
         <Cluster gap={3}>
           <Button
-            variant="ghost"
+            aria-label="Microphone"
             color="inherit"
             icon={MicrophoneIcon}
-            aria-label="Microphone"
+            variant="ghost"
           />
           <Button
-            variant="ghost"
+            aria-label="More options"
             color="inherit"
             icon={DotsIcon}
-            aria-label="More options"
+            variant="ghost"
           />
           <Button
-            variant="ghost"
+            aria-label="Layout"
             color="inherit"
             icon={LayoutIcon}
-            aria-label="Layout"
+            variant="ghost"
           />
         </Cluster>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         All Sizes
       </Text>
       <Box
@@ -814,14 +815,14 @@ export const InheritColor: Story = {
         padding={4}
         style={{ color: "white" }}
       >
-        <Cluster gap={3} alignItems="center">
-          <Button variant="ghost" color="inherit" size="small">
+        <Cluster alignItems="center" gap={3}>
+          <Button color="inherit" size="small" variant="ghost">
             Small
           </Button>
-          <Button variant="ghost" color="inherit" size="medium">
+          <Button color="inherit" size="medium" variant="ghost">
             Medium
           </Button>
-          <Button variant="ghost" color="inherit" size="large">
+          <Button color="inherit" size="large" variant="ghost">
             Large
           </Button>
         </Cluster>
@@ -842,7 +843,7 @@ export const UnstyledStates: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         Default (with built-in state styles)
       </Text>
       <Box gap={3}>
@@ -851,7 +852,7 @@ export const UnstyledStates: Story = {
         <Button variant="ghost">Hover me</Button>
       </Box>
 
-      <Text variant="featured-3" as="h3">
+      <Text as="h3" variant="featured-3">
         With unstyledStates (no built-in state styles)
       </Text>
       <Box gap={3}>
@@ -864,7 +865,7 @@ export const UnstyledStates: Story = {
         </Button>
       </Box>
 
-      <Text variant="body-2" style={{ maxWidth: 500 }}>
+      <Text style={{ maxWidth: 500 }} variant="body-2">
         Hover or focus the buttons above to compare. The bottom row has no
         visual feedback on hover/active/focus, allowing you to add custom styles
         via className.

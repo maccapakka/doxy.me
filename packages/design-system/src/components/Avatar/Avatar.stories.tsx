@@ -1,53 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Avatar } from "./Avatar";
+
 import { Box } from "../Box";
 import { Text } from "../Text";
+import { Avatar } from "./Avatar";
 
 const meta: Meta<typeof Avatar> = {
-  component: Avatar,
-  title: "Components/Avatar",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      subtitle: "Display user images or initials fallback",
-      description: {
-        component:
-          "Avatar displays a user's profile image in a circular frame. When no image is available, it shows colored initials as a fallback. Uses the spacing token system for consistent sizing.",
-      },
-    },
-  },
   argTypes: {
     // Element
     className: {
+      control: "text",
       description: "Additional CSS classes",
-      control: "text",
       table: { category: "Element" },
-    },
-    style: {
-      description: "Additional inline styles",
-      control: "object",
-      table: { category: "Element" },
-    },
-    // Content
-    src: {
-      description: "Image URL to display",
-      control: "text",
-      table: { category: "Content" },
-    },
-    initials: {
-      description: "Fallback text when no image is provided",
-      control: "text",
-      table: { category: "Content" },
-    },
-    // Styling
-    size: {
-      description: "Size multiplier (4px base, default 6 = 24px)",
-      control: { type: "range", min: 4, max: 20 },
-      table: { category: "Styling" },
     },
     color: {
-      description: "Background color for initials fallback",
       control: "select",
+      description: "Background color for initials fallback",
       options: [
         "primary",
         "primary-subtle",
@@ -73,20 +40,57 @@ const meta: Meta<typeof Avatar> = {
       ],
       table: { category: "Styling" },
     },
+    initials: {
+      control: "text",
+      description: "Fallback text when no image is provided",
+      table: { category: "Content" },
+    },
+    // Styling
+    size: {
+      control: { max: 20, min: 4, type: "range" },
+      description: "Size multiplier (4px base, default 6 = 24px)",
+      table: { category: "Styling" },
+    },
+    // Content
+    src: {
+      control: "text",
+      description: "Image URL to display",
+      table: { category: "Content" },
+    },
     // State
     status: {
-      description: "User presence status indicator",
       control: "select",
+      description: "User presence status indicator",
       options: [undefined, "online", "away", "offline"],
       table: { category: "State" },
     },
+    style: {
+      control: "object",
+      description: "Additional inline styles",
+      table: { category: "Element" },
+    },
   },
+  component: Avatar,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Avatar displays a user's profile image in a circular frame. When no image is available, it shows colored initials as a fallback. Uses the spacing token system for consistent sizing.",
+      },
+      subtitle: "Display user images or initials fallback",
+    },
+  },
+  tags: ["autodocs"],
+  title: "Components/Avatar",
 };
 
 export default meta;
 type Story = StoryObj<typeof Avatar>;
 
 export const Default: Story = {
+  args: {
+    initials: "JD",
+  },
   name: "Default",
   parameters: {
     docs: {
@@ -96,12 +100,13 @@ export const Default: Story = {
       },
     },
   },
-  args: {
-    initials: "JD",
-  },
 };
 
 export const WithImage: Story = {
+  args: {
+    initials: "DC",
+    src: "/drew-cano.jpg",
+  },
   name: "With Image",
   parameters: {
     docs: {
@@ -110,10 +115,6 @@ export const WithImage: Story = {
           "Avatar with an image source. The image is displayed in a circular frame with cover fit.",
       },
     },
-  },
-  args: {
-    src: "/drew-cano.jpg",
-    initials: "DC",
   },
 };
 
@@ -128,7 +129,7 @@ export const Sizes: Story = {
     },
   },
   render: () => (
-    <Box direction="row" alignItems="center" gap={4}>
+    <Box alignItems="center" direction="row" gap={4}>
       <Box alignItems="center" gap={2}>
         <Avatar initials="SM" size={6} />
         <Text variant="caption-1">6 (24px)</Text>
@@ -162,31 +163,31 @@ export const Colors: Story = {
   render: () => (
     <Box direction="row" gap={4} wrap="wrap">
       <Box alignItems="center" gap={2}>
-        <Avatar initials="PR" color="primary" size={10} />
+        <Avatar color="primary" initials="PR" size={10} />
         <Text variant="caption-1">primary</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="SC" color="secondary" size={10} />
+        <Avatar color="secondary" initials="SC" size={10} />
         <Text variant="caption-1">secondary</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="AC" color="accent" size={10} />
+        <Avatar color="accent" initials="AC" size={10} />
         <Text variant="caption-1">accent</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="WR" color="warning" size={10} />
+        <Avatar color="warning" initials="WR" size={10} />
         <Text variant="caption-1">warning</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="PS" color="positive" size={10} />
+        <Avatar color="positive" initials="PS" size={10} />
         <Text variant="caption-1">positive</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="CR" color="critical" size={10} />
+        <Avatar color="critical" initials="CR" size={10} />
         <Text variant="caption-1">critical</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="NT" color="neutral" size={10} />
+        <Avatar color="neutral" initials="NT" size={10} />
         <Text variant="caption-1">neutral</Text>
       </Box>
     </Box>
@@ -206,15 +207,15 @@ export const ImageWithFallback: Story = {
   render: () => (
     <Box direction="row" gap={4}>
       <Box alignItems="center" gap={2}>
-        <Avatar src="/drew-cano.jpg" initials="DC" size={12} color="accent" />
+        <Avatar color="accent" initials="DC" size={12} src="/drew-cano.jpg" />
         <Text variant="caption-1">Valid image</Text>
       </Box>
       <Box alignItems="center" gap={2}>
         <Avatar
-          src="/non-existent.jpg"
+          color="accent"
           initials="NE"
           size={12}
-          color="accent"
+          src="/non-existent.jpg"
         />
         <Text variant="caption-1">Invalid image</Text>
       </Box>
@@ -235,19 +236,19 @@ export const StatusIndicator: Story = {
   render: () => (
     <Box direction="row" gap={6}>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="ON" status="online" size={12} color="accent" />
+        <Avatar color="accent" initials="ON" size={12} status="online" />
         <Text variant="caption-1">online</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="AW" status="away" size={12} color="accent" />
+        <Avatar color="accent" initials="AW" size={12} status="away" />
         <Text variant="caption-1">away</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="OF" status="offline" size={12} color="accent" />
+        <Avatar color="accent" initials="OF" size={12} status="offline" />
         <Text variant="caption-1">offline</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar initials="NS" size={12} color="accent" />
+        <Avatar color="accent" initials="NS" size={12} />
         <Text variant="caption-1">no status</Text>
       </Box>
     </Box>
@@ -267,15 +268,15 @@ export const StatusWithImage: Story = {
   render: () => (
     <Box direction="row" gap={6}>
       <Box alignItems="center" gap={2}>
-        <Avatar src="/drew-cano.jpg" initials="DC" status="online" size={14} />
+        <Avatar initials="DC" size={14} src="/drew-cano.jpg" status="online" />
         <Text variant="caption-1">Online</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar src="/drew-cano.jpg" initials="DC" status="away" size={14} />
+        <Avatar initials="DC" size={14} src="/drew-cano.jpg" status="away" />
         <Text variant="caption-1">Away</Text>
       </Box>
       <Box alignItems="center" gap={2}>
-        <Avatar src="/drew-cano.jpg" initials="DC" status="offline" size={14} />
+        <Avatar initials="DC" size={14} src="/drew-cano.jpg" status="offline" />
         <Text variant="caption-1">Offline</Text>
       </Box>
     </Box>

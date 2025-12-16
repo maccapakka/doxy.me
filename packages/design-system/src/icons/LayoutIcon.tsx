@@ -1,12 +1,12 @@
 export const LayoutIcon = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={1.5}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>Layout</title>
     <path d="M10.5 12.526a0.978 0.978 0 0 1 -0.975 0.98h-7.8a0.977 0.977 0 0 1 -0.975 -0.98V1.736a0.978 0.978 0 0 1 0.976 -0.98l7.8 0.013a0.978 0.978 0 0 1 0.974 0.98Z" />

@@ -1,103 +1,104 @@
 "use client";
 
 import type { CSSProperties, ElementType, ReactNode } from "react";
+
 import cx from "classnames";
 
 import styles from "./Text.module.css";
 
-/** Valid typography variants */
-type TextVariant =
-  | "title-1"
-  | "title-2"
-  | "title-3"
-  | "featured-1"
-  | "featured-2"
-  | "featured-3"
-  | "body-1"
-  | "body-2"
-  | "caption-1"
-  | "caption-2";
+/** Text alignment values */
+type TextAlign = "center" | "justify" | "left" | "right";
 
 /** Valid text color tokens */
 type TextColor =
-  | "primary"
-  | "primary-subtle"
-  | "primary-bold"
-  | "secondary"
-  | "secondary-subtle"
-  | "secondary-bold"
   | "accent"
-  | "accent-subtle"
   | "accent-bold"
-  | "warning"
-  | "warning-subtle"
-  | "warning-bold"
-  | "positive"
-  | "positive-subtle"
-  | "positive-bold"
-  | "critical"
-  | "critical-subtle"
-  | "critical-bold"
-  | "neutral"
-  | "neutral-subtle"
-  | "neutral-bold"
+  | "accent-subtle"
   | "black"
+  | "critical"
+  | "critical-bold"
+  | "critical-subtle"
+  | "neutral"
+  | "neutral-bold"
+  | "neutral-subtle"
+  | "positive"
+  | "positive-bold"
+  | "positive-subtle"
+  | "primary"
+  | "primary-bold"
+  | "primary-subtle"
+  | "secondary"
+  | "secondary-bold"
+  | "secondary-subtle"
+  | "warning"
+  | "warning-bold"
+  | "warning-subtle"
   | "white";
 
-/** Text alignment values */
-type TextAlign = "left" | "center" | "right" | "justify";
-
 /** Text decoration values */
-type TextDecoration = "underline" | "line-through" | "none";
+type TextDecoration = "line-through" | "none" | "underline";
 
 /** Text transform values */
-type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
+type TextTransform = "capitalize" | "lowercase" | "none" | "uppercase";
 
-/** Text wrap values */
-type TextWrap = "balance" | "pretty" | "wrap" | "nowrap";
+/** Valid typography variants */
+type TextVariant =
+  | "body-1"
+  | "body-2"
+  | "caption-1"
+  | "caption-2"
+  | "featured-1"
+  | "featured-2"
+  | "featured-3"
+  | "title-1"
+  | "title-2"
+  | "title-3";
 
 /** Text weight values */
-type TextWeight = "normal" | "semibold" | "bold";
+type TextWeight = "bold" | "normal" | "semibold";
+
+/** Text wrap values */
+type TextWrap = "balance" | "nowrap" | "pretty" | "wrap";
 
 /** Weight mapping to CSS variable values */
 const weightMap: Record<TextWeight, string> = {
+  bold: "var(--dxy-type-weight-bold)",
   normal: "var(--dxy-type-weight-normal)",
   semibold: "var(--dxy-type-weight-medium)",
-  bold: "var(--dxy-type-weight-bold)",
 };
 
 /** Props for the Text component */
 export interface TextProps {
+  /** Allow any additional props */
+  [key: string]: unknown;
+  /** Text alignment */
+  align?: TextAlign;
   /** The element type to render as (default: "span") */
   as?: ElementType;
   /** The content to display */
   children?: ReactNode;
   /** Additional CSS classes */
   className?: string;
-  /** Typography variant (default: "body-1") */
-  variant?: TextVariant;
   /** Text color from design tokens */
   color?: TextColor;
-  /** Text alignment */
-  align?: TextAlign;
   /** Text decoration (underline, line-through, none) */
   decoration?: TextDecoration;
-  /** Text transform (uppercase, lowercase, capitalize, none) */
-  transform?: TextTransform;
-  /** Render text in italic */
-  italic?: boolean;
-  /** Truncate text with ellipsis (single line) */
-  truncate?: boolean;
-  /** Maximum number of lines before truncating (multi-line clamp) */
-  maxLines?: number;
-  /** Text wrapping behavior */
-  wrap?: TextWrap;
-  /** Font weight override (normal, semibold, bold) */
-  weight?: TextWeight;
   /** Apply elevation styling (box shadow) */
   elevated?: boolean;
-  /** Allow any additional props */
-  [key: string]: unknown;
+  /** Render text in italic */
+  italic?: boolean;
+  /** Maximum number of lines before truncating (multi-line clamp) */
+  maxLines?: number;
+  /** Text transform (uppercase, lowercase, capitalize, none) */
+  transform?: TextTransform;
+  /** Truncate text with ellipsis (single line) */
+  truncate?: boolean;
+  /** Typography variant (default: "body-1") */
+  variant?: TextVariant;
+  /** Font weight override (normal, semibold, bold) */
+  weight?: TextWeight;
+  /** Text wrapping behavior */
+  wrap?: TextWrap;
 }
 
 /**
@@ -107,20 +108,20 @@ export interface TextProps {
  * from design tokens, and semantic color options.
  */
 export const Text = ({
+  align,
   as: Component = "span",
   children,
   className,
-  variant = "body-1",
   color,
-  align,
   decoration,
-  transform,
-  italic,
-  truncate,
-  maxLines,
-  wrap,
-  weight,
   elevated,
+  italic,
+  maxLines,
+  transform,
+  truncate,
+  variant = "body-1",
+  weight,
+  wrap,
   ...rest
 }: TextProps) => {
   const rootClasses = cx(
@@ -138,13 +139,13 @@ export const Text = ({
       style={
         {
           "--_clr": color ? `var(--dxy-color-${color})` : undefined,
+          "--_fs": italic ? "italic" : undefined,
+          "--_fw": weight ? weightMap[weight] : undefined,
+          "--_lc": maxLines,
           "--_ta": align,
           "--_td": decoration,
           "--_tt": transform,
-          "--_fs": italic ? "italic" : undefined,
           "--_tw": wrap,
-          "--_lc": maxLines,
-          "--_fw": weight ? weightMap[weight] : undefined,
         } as CSSProperties
       }
       {...rest}

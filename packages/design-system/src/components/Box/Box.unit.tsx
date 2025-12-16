@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Box, Card, Nav, Container } from "./Box";
+
+import { Box, Card, Container, Nav } from "./Box";
 
 describe("Box", () => {
   describe("rendering", () => {
@@ -29,7 +30,7 @@ describe("Box", () => {
 
     it("passes through additional props", () => {
       const { container } = render(
-        <Box data-testid="test-box" aria-label="Test">
+        <Box aria-label="Test" data-testid="test-box">
           Content
         </Box>
       );
@@ -567,9 +568,9 @@ describe("Box", () => {
     it("applies grid class with multiple template props", () => {
       const { container } = render(
         <Box
+          gridTemplateAreas="'header header' 'sidebar main'"
           gridTemplateColumns="1fr 1fr"
           gridTemplateRows="auto 1fr"
-          gridTemplateAreas="'header header' 'sidebar main'"
         >
           Content
         </Box>
@@ -638,7 +639,7 @@ describe("Box", () => {
 
     it("accepts other Box props", () => {
       const { container } = render(
-        <Card padding={4} borderRadius={2}>
+        <Card borderRadius={2} padding={4}>
           Content
         </Card>
       );
@@ -666,7 +667,7 @@ describe("Box", () => {
 
     it("accepts Box props", () => {
       const { container } = render(
-        <Nav padding={4} gap={2}>
+        <Nav gap={2} padding={4}>
           Content
         </Nav>
       );
@@ -701,7 +702,7 @@ describe("Box", () => {
 
     it("accepts other Box props", () => {
       const { container } = render(
-        <Container padding={4} background="primary">
+        <Container background="primary" padding={4}>
           Content
         </Container>
       );

@@ -1,89 +1,25 @@
 "use client";
 
 import type { CSSProperties, ElementType, ReactNode } from "react";
+
 import cx from "classnames";
 
 import styles from "./Box.module.css";
 
-/** Valid background color tokens */
-type BackgroundColor =
-  | "primary"
-  | "primary-subtle"
-  | "primary-bold"
-  | "secondary"
-  | "secondary-subtle"
-  | "secondary-bold"
-  | "accent"
-  | "accent-subtle"
-  | "accent-bold"
-  | "warning"
-  | "warning-subtle"
-  | "warning-bold"
-  | "positive"
-  | "positive-subtle"
-  | "positive-bold"
-  | "critical"
-  | "critical-subtle"
-  | "critical-bold"
-  | "neutral"
-  | "neutral-subtle"
-  | "neutral-bold"
-  | "black"
-  | "white"
-  | "elevation";
-
-/** Flex direction values */
-type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
-
-/** Align items values (CSS values) */
-type AlignItems = "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
-
-/** Justify content values (CSS values) */
-type JustifyContent =
-  | "flex-start"
-  | "center"
-  | "flex-end"
-  | "space-between"
-  | "space-around"
-  | "space-evenly";
-
-/** Justify/align self values (CSS values) */
-type PlaceSelf = "flex-start" | "center" | "flex-end" | "stretch";
-
-/** Border radius values */
-type BorderRadius = 1 | 2 | 3 | "circle";
-
-/** Corner shape values */
-type CornerShape = "round" | "scoop" | "bevel" | "notch" | "squircle";
-
 /** Props for the Box component */
 export interface BoxProps {
-  /** The element type to render as (default: "div") */
-  as?: ElementType;
-  /** The content to display inside the Box */
-  children?: ReactNode;
-  /** Additional CSS classes */
-  className?: string;
-  /** Flex direction */
-  direction?: FlexDirection;
+  /** Allow any additional props */
+  [key: string]: unknown;
   /** Align items on the cross axis */
   alignItems?: AlignItems;
   /** Align self on the cross axis */
   alignSelf?: PlaceSelf;
-  /** Justify content on the main axis */
-  justifyContent?: JustifyContent;
-  /** Justify self on the main axis */
-  justifySelf?: PlaceSelf;
-  /** Gap between children (multiplier of 4px, default: 2 = 8px) */
-  gap?: number;
-  /** Margin top (multiplier of 4px) */
-  marginTop?: number;
-  /** Padding on all sides (multiplier of 4px) */
-  padding?: number;
-  /** Padding on block axis / vertical (multiplier of 4px) */
-  paddingBlock?: number;
-  /** Padding on inline axis / horizontal (multiplier of 4px) */
-  paddingInline?: number;
+  /** The element type to render as (default: "div") */
+  as?: ElementType;
+  /** Aspect ratio (CSS value, e.g., "16/9", "1", "4/3") */
+  aspectRatio?: string;
+  /** Backdrop filter CSS value (e.g., "blur(50px)", "blur(10px) saturate(180%)") */
+  backdropFilter?: string;
   /** Background color from design tokens */
   background?: BackgroundColor;
   /** Background image URL */
@@ -94,35 +30,100 @@ export interface BoxProps {
   backgroundSize?: string;
   /** Border radius from design tokens or special values (default: 1) */
   borderRadius?: BorderRadius;
+  /** The content to display inside the Box */
+  children?: ReactNode;
+  /** Additional CSS classes */
+  className?: string;
   /** Corner shape style (default: "round") */
   cornerShape?: CornerShape;
-  /** Width as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
-  width?: string;
-  /** Max width as any CSS value (e.g., "1440px", "80ch") */
-  maxWidth?: string;
-  /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
-  height?: string;
-  /** Aspect ratio (CSS value, e.g., "16/9", "1", "4/3") */
-  aspectRatio?: string;
-  /** Grid template rows (CSS grid-template-rows value, triggers grid display) */
-  gridTemplateRows?: string;
-  /** Grid template columns (CSS grid-template-columns value, triggers grid display) */
-  gridTemplateColumns?: string;
-  /** Grid template areas (CSS grid-template-areas value, triggers grid display) */
-  gridTemplateAreas?: string;
-  /** Grid area for placement in parent grid (CSS grid-area value) */
-  gridArea?: string;
-  /** Additional inline styles */
-  style?: CSSProperties;
+  /** Flex direction */
+  direction?: FlexDirection;
   /** Apply elevation styling (box shadow) */
   elevated?: boolean;
+  /** Gap between children (multiplier of 4px, default: 2 = 8px) */
+  gap?: number;
+  /** Grid area for placement in parent grid (CSS grid-area value) */
+  gridArea?: string;
+  /** Grid template areas (CSS grid-template-areas value, triggers grid display) */
+  gridTemplateAreas?: string;
+  /** Grid template columns (CSS grid-template-columns value, triggers grid display) */
+  gridTemplateColumns?: string;
+  /** Grid template rows (CSS grid-template-rows value, triggers grid display) */
+  gridTemplateRows?: string;
+  /** Height as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
+  height?: string;
+  /** Justify content on the main axis */
+  justifyContent?: JustifyContent;
+  /** Justify self on the main axis */
+  justifySelf?: PlaceSelf;
+  /** Margin top (multiplier of 4px) */
+  marginTop?: number;
+  /** Max width as any CSS value (e.g., "1440px", "80ch") */
+  maxWidth?: string;
   /** Opacity value (0-1, standard CSS) */
   opacity?: number;
-  /** Backdrop filter CSS value (e.g., "blur(50px)", "blur(10px) saturate(180%)") */
-  backdropFilter?: string;
-  /** Allow any additional props */
-  [key: string]: unknown;
+  /** Padding on all sides (multiplier of 4px) */
+  padding?: number;
+  /** Padding on block axis / vertical (multiplier of 4px) */
+  paddingBlock?: number;
+  /** Padding on inline axis / horizontal (multiplier of 4px) */
+  paddingInline?: number;
+  /** Additional inline styles */
+  style?: CSSProperties;
+  /** Width as any CSS value (e.g., "300px", "50%", "100vh", "auto") */
+  width?: string;
 }
+
+/** Align items values (CSS values) */
+type AlignItems = "baseline" | "center" | "flex-end" | "flex-start" | "stretch";
+
+/** Valid background color tokens */
+type BackgroundColor =
+  | "accent"
+  | "accent-bold"
+  | "accent-subtle"
+  | "black"
+  | "critical"
+  | "critical-bold"
+  | "critical-subtle"
+  | "elevation"
+  | "neutral"
+  | "neutral-bold"
+  | "neutral-subtle"
+  | "positive"
+  | "positive-bold"
+  | "positive-subtle"
+  | "primary"
+  | "primary-bold"
+  | "primary-subtle"
+  | "secondary"
+  | "secondary-bold"
+  | "secondary-subtle"
+  | "warning"
+  | "warning-bold"
+  | "warning-subtle"
+  | "white";
+
+/** Border radius values */
+type BorderRadius = 1 | 2 | 3 | "circle";
+
+/** Corner shape values */
+type CornerShape = "bevel" | "notch" | "round" | "scoop" | "squircle";
+
+/** Flex direction values */
+type FlexDirection = "column" | "column-reverse" | "row" | "row-reverse";
+
+/** Justify content values (CSS values) */
+type JustifyContent =
+  | "center"
+  | "flex-end"
+  | "flex-start"
+  | "space-around"
+  | "space-between"
+  | "space-evenly";
+
+/** Justify/align self values (CSS values) */
+type PlaceSelf = "center" | "flex-end" | "flex-start" | "stretch";
 
 /**
  * Box is a foundational layout primitive for flexbox layouts.
@@ -131,37 +132,37 @@ export interface BoxProps {
  * and flexbox alignment properties.
  */
 export const Box = ({
-  as: Component = "div",
-  children,
-  className,
-  direction,
   alignItems,
   alignSelf,
-  justifyContent,
-  justifySelf,
-  gap = 2,
-  marginTop,
-  padding,
-  paddingBlock,
-  paddingInline,
+  as: Component = "div",
+  aspectRatio,
+  backdropFilter,
   background,
   backgroundImage,
   backgroundPosition,
   backgroundSize,
   borderRadius = 1,
+  children,
+  className,
   cornerShape = "round",
-  width,
-  maxWidth,
-  height,
-  aspectRatio,
-  gridTemplateRows,
-  gridTemplateColumns,
-  gridTemplateAreas,
-  gridArea,
-  style,
+  direction,
   elevated,
+  gap = 2,
+  gridArea,
+  gridTemplateAreas,
+  gridTemplateColumns,
+  gridTemplateRows,
+  height,
+  justifyContent,
+  justifySelf,
+  marginTop,
+  maxWidth,
   opacity,
-  backdropFilter,
+  padding,
+  paddingBlock,
+  paddingInline,
+  style,
+  width,
   ...rest
 }: BoxProps) => {
   const isGridContainer = !!(
@@ -187,31 +188,31 @@ export const Box = ({
       className={rootClasses}
       style={
         {
+          "--_ai": alignItems,
+          "--_ar": aspectRatio,
+          "--_as": alignSelf,
+          "--_bf": backdropFilter,
           "--_bg": background ? `var(--dxy-color-${background})` : undefined,
           "--_bgi": backgroundImage ? `url(${backgroundImage})` : undefined,
           "--_bgp": backgroundPosition,
           "--_bgs": backgroundSize,
+          "--_cs": cornerShape,
+          "--_dir": direction,
+          "--_ga": gridArea,
           "--_gap": gap,
+          "--_gta": gridTemplateAreas,
+          "--_gtc": gridTemplateColumns,
+          "--_gtr": gridTemplateRows,
+          "--_h": height,
+          "--_jc": justifyContent,
+          "--_js": justifySelf,
           "--_mt": marginTop,
+          "--_mw": maxWidth,
+          "--_op": opacity,
           "--_pa": padding,
           "--_px": paddingInline,
           "--_py": paddingBlock,
-          "--_dir": direction,
-          "--_ai": alignItems,
-          "--_as": alignSelf,
-          "--_jc": justifyContent,
-          "--_js": justifySelf,
-          "--_cs": cornerShape,
           "--_w": width,
-          "--_mw": maxWidth,
-          "--_h": height,
-          "--_ar": aspectRatio,
-          "--_gtr": gridTemplateRows,
-          "--_gtc": gridTemplateColumns,
-          "--_gta": gridTemplateAreas,
-          "--_ga": gridArea,
-          "--_op": opacity,
-          "--_bf": backdropFilter,
           ...style,
         } as CSSProperties
       }
@@ -257,20 +258,20 @@ export const Card = (props: Omit<BoxProps, "background">) => (
   <Box
     background="elevation"
     borderRadius={2}
-    padding={4}
     elevated
+    padding={4}
     width="100%"
     {...props}
   />
 );
 export const Container = (
-  props: Omit<BoxProps, "width" | "paddingInline" | "justifySelf">
+  props: Omit<BoxProps, "justifySelf" | "paddingInline" | "width">
 ) => (
   <Box
-    width="100%"
+    justifySelf="center"
     maxWidth="1440px"
     paddingInline={6}
-    justifySelf="center"
+    width="100%"
     {...props}
   />
 );

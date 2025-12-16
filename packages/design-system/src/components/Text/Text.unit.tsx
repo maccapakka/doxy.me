@@ -1,6 +1,7 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Text, Title, Heading, Caption } from "./Text";
+import { describe, expect, it } from "vitest";
+
+import { Caption, Heading, Text, Title } from "./Text";
 
 describe("Text", () => {
   it("renders children correctly", () => {
@@ -45,7 +46,7 @@ describe("Text", () => {
 
     it("applies title-1 variant", () => {
       render(
-        <Text variant="title-1" data-testid="text">
+        <Text data-testid="text" variant="title-1">
           Content
         </Text>
       );
@@ -55,7 +56,7 @@ describe("Text", () => {
 
     it("applies title-2 variant", () => {
       render(
-        <Text variant="title-2" data-testid="text">
+        <Text data-testid="text" variant="title-2">
           Content
         </Text>
       );
@@ -65,7 +66,7 @@ describe("Text", () => {
 
     it("applies title-3 variant", () => {
       render(
-        <Text variant="title-3" data-testid="text">
+        <Text data-testid="text" variant="title-3">
           Content
         </Text>
       );
@@ -75,7 +76,7 @@ describe("Text", () => {
 
     it("applies featured-1 variant", () => {
       render(
-        <Text variant="featured-1" data-testid="text">
+        <Text data-testid="text" variant="featured-1">
           Content
         </Text>
       );
@@ -85,7 +86,7 @@ describe("Text", () => {
 
     it("applies featured-2 variant", () => {
       render(
-        <Text variant="featured-2" data-testid="text">
+        <Text data-testid="text" variant="featured-2">
           Content
         </Text>
       );
@@ -95,7 +96,7 @@ describe("Text", () => {
 
     it("applies featured-3 variant", () => {
       render(
-        <Text variant="featured-3" data-testid="text">
+        <Text data-testid="text" variant="featured-3">
           Content
         </Text>
       );
@@ -105,7 +106,7 @@ describe("Text", () => {
 
     it("applies body-2 variant", () => {
       render(
-        <Text variant="body-2" data-testid="text">
+        <Text data-testid="text" variant="body-2">
           Content
         </Text>
       );
@@ -115,7 +116,7 @@ describe("Text", () => {
 
     it("applies caption-1 variant", () => {
       render(
-        <Text variant="caption-1" data-testid="text">
+        <Text data-testid="text" variant="caption-1">
           Content
         </Text>
       );
@@ -125,7 +126,7 @@ describe("Text", () => {
 
     it("applies caption-2 variant", () => {
       render(
-        <Text variant="caption-2" data-testid="text">
+        <Text data-testid="text" variant="caption-2">
           Content
         </Text>
       );
@@ -192,7 +193,7 @@ describe("Text", () => {
 describe("Semantic aliases", () => {
   it("Title renders with Text props", () => {
     render(
-      <Title variant="title-1" data-testid="title">
+      <Title data-testid="title" variant="title-1">
         Page Title
       </Title>
     );
@@ -203,7 +204,7 @@ describe("Semantic aliases", () => {
 
   it("Heading renders with Text props", () => {
     render(
-      <Heading variant="featured-1" data-testid="heading">
+      <Heading data-testid="heading" variant="featured-1">
         Section Heading
       </Heading>
     );
@@ -214,7 +215,7 @@ describe("Semantic aliases", () => {
 
   it("Caption renders with Text props", () => {
     render(
-      <Caption variant="caption-1" color="secondary" data-testid="caption">
+      <Caption color="secondary" data-testid="caption" variant="caption-1">
         Image caption
       </Caption>
     );
@@ -265,7 +266,7 @@ describe("Text styling props", () => {
   describe("decoration", () => {
     it("sets --_td CSS variable for text-decoration", () => {
       render(
-        <Text decoration="underline" data-testid="text">
+        <Text data-testid="text" decoration="underline">
           Content
         </Text>
       );
@@ -277,7 +278,7 @@ describe("Text styling props", () => {
       const values = ["underline", "line-through", "none"] as const;
       values.forEach((value) => {
         const { unmount } = render(
-          <Text decoration={value} data-testid="text">
+          <Text data-testid="text" decoration={value}>
             Content
           </Text>
         );
@@ -291,7 +292,7 @@ describe("Text styling props", () => {
   describe("transform", () => {
     it("sets --_tt CSS variable for text-transform", () => {
       render(
-        <Text transform="uppercase" data-testid="text">
+        <Text data-testid="text" transform="uppercase">
           Content
         </Text>
       );
@@ -303,7 +304,7 @@ describe("Text styling props", () => {
       const values = ["uppercase", "lowercase", "capitalize", "none"] as const;
       values.forEach((value) => {
         const { unmount } = render(
-          <Text transform={value} data-testid="text">
+          <Text data-testid="text" transform={value}>
             Content
           </Text>
         );
@@ -317,7 +318,7 @@ describe("Text styling props", () => {
   describe("italic", () => {
     it("sets --_fs CSS variable to italic when true", () => {
       render(
-        <Text italic data-testid="text">
+        <Text data-testid="text" italic>
           Content
         </Text>
       );
@@ -327,7 +328,7 @@ describe("Text styling props", () => {
 
     it("does not set --_fs when italic is false", () => {
       render(
-        <Text italic={false} data-testid="text">
+        <Text data-testid="text" italic={false}>
           Content
         </Text>
       );
@@ -339,7 +340,7 @@ describe("Text styling props", () => {
   describe("truncate", () => {
     it("applies truncate class when true", () => {
       render(
-        <Text truncate data-testid="text">
+        <Text data-testid="text" truncate>
           Content
         </Text>
       );
@@ -349,7 +350,7 @@ describe("Text styling props", () => {
 
     it("does not apply truncate class when false", () => {
       render(
-        <Text truncate={false} data-testid="text">
+        <Text data-testid="text" truncate={false}>
           Content
         </Text>
       );
@@ -361,7 +362,7 @@ describe("Text styling props", () => {
   describe("maxLines", () => {
     it("applies lineClamp class and sets --_lc CSS variable", () => {
       render(
-        <Text maxLines={3} data-testid="text">
+        <Text data-testid="text" maxLines={3}>
           Content
         </Text>
       );
@@ -380,7 +381,7 @@ describe("Text styling props", () => {
   describe("wrap", () => {
     it("sets --_tw CSS variable for text-wrap", () => {
       render(
-        <Text wrap="balance" data-testid="text">
+        <Text data-testid="text" wrap="balance">
           Content
         </Text>
       );
@@ -392,7 +393,7 @@ describe("Text styling props", () => {
       const values = ["balance", "pretty", "wrap", "nowrap"] as const;
       values.forEach((value) => {
         const { unmount } = render(
-          <Text wrap={value} data-testid="text">
+          <Text data-testid="text" wrap={value}>
             Content
           </Text>
         );
@@ -408,11 +409,11 @@ describe("Text styling props", () => {
       render(
         <Text
           align="center"
-          decoration="underline"
-          transform="uppercase"
-          italic
-          wrap="balance"
           data-testid="text"
+          decoration="underline"
+          italic
+          transform="uppercase"
+          wrap="balance"
         >
           Content
         </Text>

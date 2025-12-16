@@ -1,26 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Text, Title, Heading, Caption } from "./Text";
+
 import type { TextProps } from "./Text";
+
 import { Box, Stack } from "../Box";
+import { Caption, Heading, Text, Title } from "./Text";
 
 const meta: Meta<typeof Text> = {
-  component: Text,
-  title: "Components/Text",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      subtitle: "A foundational typography primitive with semantic aliases",
-      description: {
-        component:
-          "Text renders typography using design tokens from a 1.2 typescale. It supports 10 variants from `title-1` (largest) to `caption-2` (smallest), semantic colors, and polymorphic rendering via the `as` prop. Use the `Title`, `Heading`, and `Caption` aliases for improved code readability.",
-      },
-    },
-  },
   argTypes: {
+    align: {
+      control: "select",
+      description: "Text alignment",
+      options: ["left", "center", "right", "justify"],
+      table: { category: "Styling" },
+    },
     // Element
     as: {
-      description: "The element type to render",
       control: "select",
+      description: "The element type to render",
       options: [
         "span",
         "p",
@@ -36,19 +32,62 @@ const meta: Meta<typeof Text> = {
       table: { category: "Element" },
     },
     children: {
-      description: "The content to display",
       control: "text",
+      description: "The content to display",
       table: { category: "Element" },
     },
     className: {
-      description: "Additional CSS classes",
       control: "text",
+      description: "Additional CSS classes",
       table: { category: "Element" },
+    },
+    // Styling
+    color: {
+      control: "select",
+      description: "Text color from design tokens",
+      options: [
+        "inherit",
+        "primary",
+        "secondary",
+        "accent",
+        "warning",
+        "positive",
+        "critical",
+        "neutral",
+      ],
+      table: { category: "Styling" },
+    },
+    decoration: {
+      control: "select",
+      description: "Text decoration",
+      options: ["underline", "line-through", "none"],
+      table: { category: "Styling" },
+    },
+    italic: {
+      control: "boolean",
+      description: "Render text in italic",
+      table: { category: "Styling" },
+    },
+    maxLines: {
+      control: "number",
+      description: "Maximum lines before truncating (multi-line clamp)",
+      table: { category: "Styling" },
+    },
+    transform: {
+      control: "select",
+      description: "Text transform",
+      options: ["uppercase", "lowercase", "capitalize", "none"],
+      table: { category: "Styling" },
+    },
+    truncate: {
+      control: "boolean",
+      description: "Truncate text with ellipsis (single line)",
+      table: { category: "Styling" },
     },
     // Typography
     variant: {
-      description: "Typography variant from design tokens",
       control: "select",
+      description: "Typography variant from design tokens",
       options: [
         "title-1",
         "title-2",
@@ -63,62 +102,25 @@ const meta: Meta<typeof Text> = {
       ],
       table: { category: "Typography" },
     },
-    // Styling
-    color: {
-      description: "Text color from design tokens",
-      control: "select",
-      options: [
-        "inherit",
-        "primary",
-        "secondary",
-        "accent",
-        "warning",
-        "positive",
-        "critical",
-        "neutral",
-      ],
-      table: { category: "Styling" },
-    },
-    align: {
-      description: "Text alignment",
-      control: "select",
-      options: ["left", "center", "right", "justify"],
-      table: { category: "Styling" },
-    },
-    decoration: {
-      description: "Text decoration",
-      control: "select",
-      options: ["underline", "line-through", "none"],
-      table: { category: "Styling" },
-    },
-    transform: {
-      description: "Text transform",
-      control: "select",
-      options: ["uppercase", "lowercase", "capitalize", "none"],
-      table: { category: "Styling" },
-    },
-    italic: {
-      description: "Render text in italic",
-      control: "boolean",
-      table: { category: "Styling" },
-    },
-    truncate: {
-      description: "Truncate text with ellipsis (single line)",
-      control: "boolean",
-      table: { category: "Styling" },
-    },
-    maxLines: {
-      description: "Maximum lines before truncating (multi-line clamp)",
-      control: "number",
-      table: { category: "Styling" },
-    },
     wrap: {
-      description: "Text wrapping behavior",
       control: "select",
+      description: "Text wrapping behavior",
       options: ["balance", "pretty", "wrap", "nowrap"],
       table: { category: "Styling" },
     },
   },
+  component: Text,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Text renders typography using design tokens from a 1.2 typescale. It supports 10 variants from `title-1` (largest) to `caption-2` (smallest), semantic colors, and polymorphic rendering via the `as` prop. Use the `Title`, `Heading`, and `Caption` aliases for improved code readability.",
+      },
+      subtitle: "A foundational typography primitive with semantic aliases",
+    },
+  },
+  tags: ["autodocs"],
+  title: "Components/Text",
 };
 
 export default meta;
@@ -150,8 +152,8 @@ export const Default: Story = {
           "caption-2",
         ] as const
       ).map((variant) => (
-        <Stack key={variant} gap={1}>
-          <Text variant="caption-1" color="secondary">
+        <Stack gap={1} key={variant}>
+          <Text color="secondary" variant="caption-1">
             {variant}
           </Text>
           <Text variant={variant as TextProps["variant"]}>
@@ -174,7 +176,7 @@ export const AllColors: Story = {
     },
   },
   render: () => (
-    <Box direction="column" gap={2} padding={4} background="secondary">
+    <Box background="secondary" direction="column" gap={2} padding={4}>
       <Text color="primary">Primary color</Text>
       <Text color="secondary">Secondary color</Text>
       <Text color="accent">Accent color</Text>
@@ -190,6 +192,11 @@ export const AllColors: Story = {
 };
 
 export const VariantWithColor: Story = {
+  args: {
+    children: "Error: Something went wrong!",
+    color: "critical",
+    variant: "featured-1",
+  },
   name: "Variant + Color",
   parameters: {
     docs: {
@@ -198,11 +205,6 @@ export const VariantWithColor: Story = {
           "Combine any typography variant with any color. This example shows a `featured-1` variant with `critical` color for an error message.",
       },
     },
-  },
-  args: {
-    variant: "featured-1",
-    color: "critical",
-    children: "Error: Something went wrong!",
   },
 };
 
@@ -248,12 +250,12 @@ export const SemanticAliases: Story = {
   render: () => (
     <Box direction="column" gap={8}>
       <Box direction="column" gap={4}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Title Alias
         </Text>
         <Box direction="column" gap={3}>
           <Title variant="title-1">Page Title with Title alias</Title>
-          <Title variant="title-2" color="primary">
+          <Title color="primary" variant="title-2">
             Colored Title
           </Title>
           <Title as="h1" variant="title-1">
@@ -262,12 +264,12 @@ export const SemanticAliases: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={4}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Heading Alias
         </Text>
         <Box direction="column" gap={3}>
           <Heading variant="featured-1">Section Heading</Heading>
-          <Heading variant="featured-2" color="accent">
+          <Heading color="accent" variant="featured-2">
             Accented Heading
           </Heading>
           <Heading as="h3" variant="title-3">
@@ -276,15 +278,15 @@ export const SemanticAliases: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={4}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Caption Alias
         </Text>
         <Box direction="column" gap={2}>
           <Caption variant="caption-1">Image caption text</Caption>
-          <Caption variant="caption-2" color="secondary">
+          <Caption color="secondary" variant="caption-2">
             Secondary caption
           </Caption>
-          <Caption variant="body-2" color="critical">
+          <Caption color="critical" variant="body-2">
             Error message as caption
           </Caption>
         </Box>
@@ -308,7 +310,7 @@ export const TypographyHierarchy: Story = {
       <Title as="h1" variant="title-1">
         Welcome to Our Platform
       </Title>
-      <Text variant="featured-1" color="secondary">
+      <Text color="secondary" variant="featured-1">
         Discover amazing features and capabilities that will transform your
         workflow.
       </Text>
@@ -320,7 +322,7 @@ export const TypographyHierarchy: Story = {
           Follow these simple steps to begin your journey. Our platform is
           designed to be intuitive and easy to use, even for beginners.
         </Text>
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           Last updated: December 2025
         </Caption>
       </Box>
@@ -345,11 +347,11 @@ export const FormLabels: Story = {
           Email Address
         </Text>
         <input
-          type="email"
           placeholder="you@example.com"
-          style={{ padding: "8px", fontSize: "16px" }}
+          style={{ fontSize: "16px", padding: "8px" }}
+          type="email"
         />
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           We&apos;ll never share your email.
         </Caption>
       </Box>
@@ -358,11 +360,11 @@ export const FormLabels: Story = {
           Password
         </Text>
         <input
-          type="password"
           placeholder="••••••••"
-          style={{ padding: "8px", fontSize: "16px" }}
+          style={{ fontSize: "16px", padding: "8px" }}
+          type="password"
         />
-        <Caption variant="caption-1" color="critical">
+        <Caption color="critical" variant="caption-1">
           Password must be at least 8 characters.
         </Caption>
       </Box>
@@ -383,26 +385,26 @@ export const ErrorStates: Story = {
   render: () => (
     <Box direction="column" gap={4}>
       <Box direction="column" gap={1}>
-        <Text variant="featured-2" color="critical">
+        <Text color="critical" variant="featured-2">
           Error: Invalid credentials
         </Text>
-        <Text variant="body-1" color="critical">
+        <Text color="critical" variant="body-1">
           Please check your email and password and try again.
         </Text>
       </Box>
       <Box direction="column" gap={1}>
-        <Text variant="featured-2" color="positive">
+        <Text color="positive" variant="featured-2">
           Success!
         </Text>
-        <Text variant="body-1" color="positive">
+        <Text color="positive" variant="body-1">
           Your account has been created successfully.
         </Text>
       </Box>
       <Box direction="column" gap={1}>
-        <Text variant="featured-2" color="warning">
+        <Text color="warning" variant="featured-2">
           Warning
         </Text>
-        <Text variant="body-1" color="warning">
+        <Text color="warning" variant="body-1">
           Your session will expire in 5 minutes.
         </Text>
       </Box>
@@ -423,34 +425,34 @@ export const TextAlignment: Story = {
   render: () => (
     <Box direction="column" gap={4}>
       <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           align=&quot;left&quot; (default)
         </Caption>
-        <Text as="p" align="left">
+        <Text align="left" as="p">
           The quick brown fox jumps over the lazy dog.
         </Text>
       </Box>
       <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           align=&quot;center&quot;
         </Caption>
-        <Text as="p" align="center">
+        <Text align="center" as="p">
           The quick brown fox jumps over the lazy dog.
         </Text>
       </Box>
       <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           align=&quot;right&quot;
         </Caption>
-        <Text as="p" align="right">
+        <Text align="right" as="p">
           The quick brown fox jumps over the lazy dog.
         </Text>
       </Box>
       <Box direction="column" gap={1}>
-        <Caption variant="caption-1" color="secondary">
+        <Caption color="secondary" variant="caption-1">
           align=&quot;justify&quot;
         </Caption>
-        <Text as="p" align="justify">
+        <Text align="justify" as="p">
           The quick brown fox jumps over the lazy dog. This text is longer to
           demonstrate the justify alignment which spreads words evenly across
           each line.
@@ -511,7 +513,7 @@ export const ItalicText: Story = {
     <Box direction="column" gap={4}>
       <Text>Normal text</Text>
       <Text italic>Italic text</Text>
-      <Text variant="featured-1" italic>
+      <Text italic variant="featured-1">
         Featured italic text
       </Text>
     </Box>
@@ -531,12 +533,12 @@ export const TextOverflowAndWrapping: Story = {
   render: () => (
     <Box direction="column" gap={8}>
       <Box direction="column" gap={4}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Truncation
         </Text>
         <Box direction="column" gap={4}>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               truncate (single line)
             </Caption>
             <Box style={{ maxWidth: "300px" }}>
@@ -547,7 +549,7 @@ export const TextOverflowAndWrapping: Story = {
             </Box>
           </Box>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               maxLines=&#123;2&#125;
             </Caption>
             <Box style={{ maxWidth: "300px" }}>
@@ -559,7 +561,7 @@ export const TextOverflowAndWrapping: Story = {
             </Box>
           </Box>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               maxLines=&#123;3&#125;
             </Caption>
             <Box style={{ maxWidth: "300px" }}>
@@ -574,12 +576,12 @@ export const TextOverflowAndWrapping: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={4}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Text Wrapping
         </Text>
         <Box direction="column" gap={4}>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               wrap=&quot;balance&quot; (balances line lengths)
             </Caption>
             <Box style={{ maxWidth: "400px" }}>
@@ -589,7 +591,7 @@ export const TextOverflowAndWrapping: Story = {
             </Box>
           </Box>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               wrap=&quot;pretty&quot; (avoids orphans)
             </Caption>
             <Box style={{ maxWidth: "400px" }}>
@@ -600,7 +602,7 @@ export const TextOverflowAndWrapping: Story = {
             </Box>
           </Box>
           <Box direction="column" gap={1}>
-            <Caption variant="caption-1" color="secondary">
+            <Caption color="secondary" variant="caption-1">
               wrap=&quot;nowrap&quot;
             </Caption>
             <Text wrap="nowrap">This text will not wrap to the next line.</Text>
@@ -622,17 +624,17 @@ export const CombinedStyles: Story = {
   },
   render: () => (
     <Box direction="column" gap={4}>
-      <Text transform="uppercase" decoration="underline" color="primary">
+      <Text color="primary" decoration="underline" transform="uppercase">
         Uppercase underlined primary text
       </Text>
-      <Text italic color="secondary" align="center" as="p">
+      <Text align="center" as="p" color="secondary" italic>
         Centered italic secondary text
       </Text>
       <Text
-        variant="featured-2"
-        transform="capitalize"
         color="accent"
         decoration="underline"
+        transform="capitalize"
+        variant="featured-2"
       >
         featured capitalized accent underline
       </Text>

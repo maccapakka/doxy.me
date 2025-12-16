@@ -1,38 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Box,
-  Section,
-  Article,
-  Header,
-  Footer,
-  Aside,
-  Nav,
-  Stack,
-  Cluster,
-  Placeholder,
-  Card,
-  Container,
-} from "./Box";
+
 import { Text } from "../Text";
+import {
+  Article,
+  Aside,
+  Box,
+  Card,
+  Cluster,
+  Container,
+  Footer,
+  Header,
+  Nav,
+  Placeholder,
+  Section,
+  Stack,
+} from "./Box";
 
 const meta: Meta<typeof Box> = {
-  component: Box,
-  title: "Components/Box",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      subtitle: "A flexible layout primitive for building UI compositions",
-      description: {
-        component:
-          "Box is a foundational layout component that provides flexbox-based layouts with token-based spacing. It supports polymorphic rendering via the `as` prop, semantic HTML aliases (`Section`, `Article`, `Header`, `Footer`, `Aside`), and layout aliases (`Stack` for vertical, `Cluster` for horizontal layouts).",
-      },
-    },
-  },
   argTypes: {
+    alignItems: {
+      control: "select",
+      description: "Align items on the cross axis",
+      options: ["flex-start", "center", "flex-end", "stretch", "baseline"],
+      table: { category: "Layout" },
+    },
+    alignSelf: {
+      control: "select",
+      description: "Align self on the cross axis",
+      options: ["flex-start", "center", "flex-end", "stretch"],
+      table: { category: "Layout" },
+    },
     // Element
     as: {
-      description: "The element type to render",
       control: "select",
+      description: "The element type to render",
       options: [
         "div",
         "section",
@@ -45,84 +46,15 @@ const meta: Meta<typeof Box> = {
       ],
       table: { category: "Element" },
     },
-    children: {
-      description: "The content to display inside the Box",
+    aspectRatio: {
       control: "text",
-      table: { category: "Element" },
-    },
-    className: {
-      description: "Additional CSS classes",
-      control: "text",
-      table: { category: "Element" },
-    },
-    style: {
-      description: "Additional inline styles",
-      control: "object",
-      table: { category: "Element" },
-    },
-    // Layout
-    direction: {
-      description: "Flex direction",
-      control: "select",
-      options: ["row", "column", "row-reverse", "column-reverse"],
-      table: { category: "Layout" },
-    },
-    alignItems: {
-      description: "Align items on the cross axis",
-      control: "select",
-      options: ["flex-start", "center", "flex-end", "stretch", "baseline"],
-      table: { category: "Layout" },
-    },
-    justifyContent: {
-      description: "Justify content on the main axis",
-      control: "select",
-      options: [
-        "flex-start",
-        "center",
-        "flex-end",
-        "space-between",
-        "space-around",
-        "space-evenly",
-      ],
-      table: { category: "Layout" },
-    },
-    alignSelf: {
-      description: "Align self on the cross axis",
-      control: "select",
-      options: ["flex-start", "center", "flex-end", "stretch"],
-      table: { category: "Layout" },
-    },
-    justifySelf: {
-      description: "Justify self on the main axis",
-      control: "select",
-      options: ["flex-start", "center", "flex-end", "stretch"],
-      table: { category: "Layout" },
-    },
-    // Spacing
-    gap: {
-      description: "Gap between children (token multiplier 1-12)",
-      control: { type: "range", min: 1, max: 12, step: 1 },
-      table: { category: "Spacing" },
-    },
-    padding: {
-      description: "Padding on all sides (token multiplier 1-12)",
-      control: { type: "range", min: 1, max: 12, step: 1 },
-      table: { category: "Spacing" },
-    },
-    paddingBlock: {
-      description: "Vertical padding (token multiplier 1-12)",
-      control: { type: "range", min: 1, max: 12, step: 1 },
-      table: { category: "Spacing" },
-    },
-    paddingInline: {
-      description: "Horizontal padding (token multiplier 1-12)",
-      control: { type: "range", min: 1, max: 12, step: 1 },
-      table: { category: "Spacing" },
+      description: "Aspect ratio (CSS value, e.g. '16/9', '1', '4/3')",
+      table: { category: "Styling" },
     },
     // Styling
     background: {
-      description: "Background color from design tokens",
       control: "select",
+      description: "Background color from design tokens",
       options: [
         undefined,
         "primary",
@@ -152,92 +84,165 @@ const meta: Meta<typeof Box> = {
       ],
       table: { category: "Styling" },
     },
-    elevated: {
-      description: "Apply elevation styling (box shadow)",
-      control: "boolean",
-      table: { category: "Styling" },
-    },
-    borderRadius: {
-      description: "Border radius from design tokens or special values",
-      control: "select",
-      options: [1, 2, 3, "circle"],
-      table: { category: "Styling" },
-    },
-    cornerShape: {
-      description: "Corner shape style (CSS corner-shape property)",
-      control: "select",
-      options: ["round", "scoop", "bevel", "notch", "squircle"],
-      table: { category: "Styling" },
-    },
-    width: {
-      description: "Width of the box (CSS width value)",
-      control: "text",
-      table: { category: "Styling" },
-    },
-    maxWidth: {
-      description: "Max width of the box (CSS max-width value)",
-      control: "text",
-      table: { category: "Styling" },
-    },
-    height: {
-      description: "Height of the box (CSS height value)",
-      control: "text",
-      table: { category: "Styling" },
-    },
-    aspectRatio: {
-      description: "Aspect ratio (CSS value, e.g. '16/9', '1', '4/3')",
-      control: "text",
-      table: { category: "Styling" },
-    },
     // Background Image
     backgroundImage: {
-      description: "Background image URL",
       control: "text",
+      description: "Background image URL",
       table: { category: "Background" },
     },
     backgroundPosition: {
-      description: "Background position (CSS value, e.g. 'center', 'top left')",
       control: "text",
+      description: "Background position (CSS value, e.g. 'center', 'top left')",
       table: { category: "Background" },
     },
     backgroundSize: {
-      description: "Background size (CSS value, e.g. 'cover', 'contain')",
       control: "select",
+      description: "Background size (CSS value, e.g. 'cover', 'contain')",
       options: [undefined, "cover", "contain", "auto"],
       table: { category: "Background" },
     },
-    // Grid
-    gridTemplateColumns: {
-      description:
-        "CSS grid-template-columns value. Setting this triggers grid display mode.",
-      control: "text",
-      table: { category: "Grid" },
+    borderRadius: {
+      control: "select",
+      description: "Border radius from design tokens or special values",
+      options: [1, 2, 3, "circle"],
+      table: { category: "Styling" },
     },
-    gridTemplateRows: {
-      description:
-        "CSS grid-template-rows value. Setting this triggers grid display mode.",
+    children: {
       control: "text",
+      description: "The content to display inside the Box",
+      table: { category: "Element" },
+    },
+    className: {
+      control: "text",
+      description: "Additional CSS classes",
+      table: { category: "Element" },
+    },
+    cornerShape: {
+      control: "select",
+      description: "Corner shape style (CSS corner-shape property)",
+      options: ["round", "scoop", "bevel", "notch", "squircle"],
+      table: { category: "Styling" },
+    },
+    // Layout
+    direction: {
+      control: "select",
+      description: "Flex direction",
+      options: ["row", "column", "row-reverse", "column-reverse"],
+      table: { category: "Layout" },
+    },
+    elevated: {
+      control: "boolean",
+      description: "Apply elevation styling (box shadow)",
+      table: { category: "Styling" },
+    },
+    // Spacing
+    gap: {
+      control: { max: 12, min: 1, step: 1, type: "range" },
+      description: "Gap between children (token multiplier 1-12)",
+      table: { category: "Spacing" },
+    },
+    gridArea: {
+      control: "text",
+      description:
+        "CSS grid-area value for placement in parent grid. Does not trigger grid display.",
       table: { category: "Grid" },
     },
     gridTemplateAreas: {
+      control: "text",
       description:
         "CSS grid-template-areas value. Setting this triggers grid display mode.",
-      control: "text",
       table: { category: "Grid" },
     },
-    gridArea: {
-      description:
-        "CSS grid-area value for placement in parent grid. Does not trigger grid display.",
+    // Grid
+    gridTemplateColumns: {
       control: "text",
+      description:
+        "CSS grid-template-columns value. Setting this triggers grid display mode.",
       table: { category: "Grid" },
+    },
+    gridTemplateRows: {
+      control: "text",
+      description:
+        "CSS grid-template-rows value. Setting this triggers grid display mode.",
+      table: { category: "Grid" },
+    },
+    height: {
+      control: "text",
+      description: "Height of the box (CSS height value)",
+      table: { category: "Styling" },
+    },
+    justifyContent: {
+      control: "select",
+      description: "Justify content on the main axis",
+      options: [
+        "flex-start",
+        "center",
+        "flex-end",
+        "space-between",
+        "space-around",
+        "space-evenly",
+      ],
+      table: { category: "Layout" },
+    },
+    justifySelf: {
+      control: "select",
+      description: "Justify self on the main axis",
+      options: ["flex-start", "center", "flex-end", "stretch"],
+      table: { category: "Layout" },
+    },
+    maxWidth: {
+      control: "text",
+      description: "Max width of the box (CSS max-width value)",
+      table: { category: "Styling" },
+    },
+    padding: {
+      control: { max: 12, min: 1, step: 1, type: "range" },
+      description: "Padding on all sides (token multiplier 1-12)",
+      table: { category: "Spacing" },
+    },
+    paddingBlock: {
+      control: { max: 12, min: 1, step: 1, type: "range" },
+      description: "Vertical padding (token multiplier 1-12)",
+      table: { category: "Spacing" },
+    },
+    paddingInline: {
+      control: { max: 12, min: 1, step: 1, type: "range" },
+      description: "Horizontal padding (token multiplier 1-12)",
+      table: { category: "Spacing" },
+    },
+    style: {
+      control: "object",
+      description: "Additional inline styles",
+      table: { category: "Element" },
+    },
+    width: {
+      control: "text",
+      description: "Width of the box (CSS width value)",
+      table: { category: "Styling" },
     },
   },
+  component: Box,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Box is a foundational layout component that provides flexbox-based layouts with token-based spacing. It supports polymorphic rendering via the `as` prop, semantic HTML aliases (`Section`, `Article`, `Header`, `Footer`, `Aside`), and layout aliases (`Stack` for vertical, `Cluster` for horizontal layouts).",
+      },
+      subtitle: "A flexible layout primitive for building UI compositions",
+    },
+  },
+  tags: ["autodocs"],
+  title: "Components/Box",
 };
 
 export default meta;
 type Story = StoryObj<typeof Box>;
 
 export const Default: Story = {
+  args: {
+    children: "Box content",
+    padding: 4,
+  },
   name: "Default",
   parameters: {
     docs: {
@@ -246,10 +251,6 @@ export const Default: Story = {
           "Basic Box with padding. Use this as a starting point for simple container layouts.",
       },
     },
-  },
-  args: {
-    children: "Box content",
-    padding: 4,
   },
 };
 
@@ -266,44 +267,44 @@ export const FlexDirection: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           direction="row" (default)
         </Text>
-        <Box direction="row" gap={4} padding={4} background="secondary">
+        <Box background="secondary" direction="row" gap={4} padding={4}>
           <Placeholder>1</Placeholder>
           <Placeholder>2</Placeholder>
           <Placeholder>3</Placeholder>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           direction="column"
         </Text>
-        <Box direction="column" gap={4} padding={4} background="secondary">
+        <Box background="secondary" direction="column" gap={4} padding={4}>
           <Placeholder>1</Placeholder>
           <Placeholder>2</Placeholder>
           <Placeholder>3</Placeholder>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           direction="row-reverse"
         </Text>
-        <Box direction="row-reverse" gap={4} padding={4} background="secondary">
+        <Box background="secondary" direction="row-reverse" gap={4} padding={4}>
           <Placeholder>1</Placeholder>
           <Placeholder>2</Placeholder>
           <Placeholder>3</Placeholder>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           direction="column-reverse"
         </Text>
         <Box
+          background="secondary"
           direction="column-reverse"
           gap={4}
           padding={4}
-          background="secondary"
         >
           <Placeholder>1</Placeholder>
           <Placeholder>2</Placeholder>
@@ -327,13 +328,13 @@ export const JustifyContent: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="flex-start" (default)
         </Text>
         <Box
+          background="secondary"
           justifyContent="flex-start"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -341,13 +342,13 @@ export const JustifyContent: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="center"
         </Text>
         <Box
+          background="secondary"
           justifyContent="center"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -355,13 +356,13 @@ export const JustifyContent: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="flex-end"
         </Text>
         <Box
+          background="secondary"
           justifyContent="flex-end"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -369,13 +370,13 @@ export const JustifyContent: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="space-between"
         </Text>
         <Box
+          background="secondary"
           justifyContent="space-between"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -383,13 +384,13 @@ export const JustifyContent: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="space-around"
         </Text>
         <Box
+          background="secondary"
           justifyContent="space-around"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -397,13 +398,13 @@ export const JustifyContent: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           justifyContent="space-evenly"
         </Text>
         <Box
+          background="secondary"
           justifyContent="space-evenly"
           padding={4}
-          background="secondary"
           style={{ minWidth: "400px" }}
         >
           <Placeholder>1</Placeholder>
@@ -427,14 +428,14 @@ export const AlignItems: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           alignItems="flex-start"
         </Text>
         <Box
           alignItems="flex-start"
+          background="secondary"
           gap={4}
           padding={4}
-          background="secondary"
           style={{ minHeight: "100px" }}
         >
           <Placeholder>Short</Placeholder>
@@ -442,14 +443,14 @@ export const AlignItems: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           alignItems="center"
         </Text>
         <Box
           alignItems="center"
+          background="secondary"
           gap={4}
           padding={4}
-          background="secondary"
           style={{ minHeight: "100px" }}
         >
           <Placeholder>Short</Placeholder>
@@ -457,14 +458,14 @@ export const AlignItems: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           alignItems="flex-end"
         </Text>
         <Box
           alignItems="flex-end"
+          background="secondary"
           gap={4}
           padding={4}
-          background="secondary"
           style={{ minHeight: "100px" }}
         >
           <Placeholder>Short</Placeholder>
@@ -472,14 +473,14 @@ export const AlignItems: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           alignItems="stretch" (default)
         </Text>
         <Box
           alignItems="stretch"
+          background="secondary"
           gap={4}
           padding={4}
-          background="secondary"
           style={{ minHeight: "100px" }}
         >
           <Placeholder>Short</Placeholder>
@@ -487,14 +488,14 @@ export const AlignItems: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           alignItems="baseline"
         </Text>
         <Box
           alignItems="baseline"
+          background="secondary"
           gap={4}
           padding={4}
-          background="secondary"
           style={{ minHeight: "100px" }}
         >
           <Placeholder>
@@ -522,7 +523,7 @@ export const BackgroundColors: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Primary
         </Text>
         <Box direction="column" gap={2}>
@@ -540,7 +541,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Secondary
         </Text>
         <Box direction="column" gap={2}>
@@ -560,7 +561,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Accent
         </Text>
         <Box direction="column" gap={2}>
@@ -578,7 +579,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Warning
         </Text>
         <Box direction="column" gap={2}>
@@ -594,7 +595,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Positive
         </Text>
         <Box direction="column" gap={2}>
@@ -610,7 +611,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Critical
         </Text>
         <Box direction="column" gap={2}>
@@ -628,7 +629,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Neutral
         </Text>
         <Box direction="column" gap={2}>
@@ -644,7 +645,7 @@ export const BackgroundColors: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="featured-3" as="h3">
+        <Text as="h3" variant="featured-3">
           Black & White
         </Text>
         <Box direction="column" gap={2}>
@@ -673,26 +674,26 @@ export const LogicalPadding: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           padding={4} (all sides)
         </Text>
-        <Box padding={4} background="secondary">
+        <Box background="secondary" padding={4}>
           <Text style={{ color: "white" }}>16px on all sides</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           paddingBlock={8} paddingInline={4}
         </Text>
-        <Box paddingBlock={8} paddingInline={4} background="secondary">
+        <Box background="secondary" paddingBlock={8} paddingInline={4}>
           <Text style={{ color: "white" }}>32px vertical, 16px horizontal</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           paddingBlock={2} paddingInline={8}
         </Text>
-        <Box paddingBlock={2} paddingInline={8} background="secondary">
+        <Box background="secondary" paddingBlock={2} paddingInline={8}>
           <Text style={{ color: "white" }}>8px vertical, 32px horizontal</Text>
         </Box>
       </Box>
@@ -711,12 +712,12 @@ export const NestedBoxes: Story = {
     },
   },
   render: () => (
-    <Box direction="column" gap={4} padding={4} background="secondary">
-      <Box direction="row" gap={4} padding={4} background="primary">
+    <Box background="secondary" direction="column" gap={4} padding={4}>
+      <Box background="primary" direction="row" gap={4} padding={4}>
         <Placeholder>Nested 1</Placeholder>
         <Placeholder>Nested 2</Placeholder>
       </Box>
-      <Box direction="row" gap={4} padding={4} background="accent">
+      <Box background="accent" direction="row" gap={4} padding={4}>
         <Placeholder>Nested 3</Placeholder>
         <Placeholder>Nested 4</Placeholder>
       </Box>
@@ -737,21 +738,21 @@ export const SemanticElements: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Section>"}
         </Text>
-        <Section padding={4} background="secondary">
+        <Section background="secondary" padding={4}>
           <Text style={{ color: "white" }}>
             Renders as &lt;section&gt; — for thematic content groupings
           </Text>
         </Section>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Article>"}
         </Text>
-        <Article padding={4} direction="column" gap={2} background="secondary">
-          <Text as="h3" variant="featured-3" style={{ color: "white" }}>
+        <Article background="secondary" direction="column" gap={2} padding={4}>
+          <Text as="h3" style={{ color: "white" }} variant="featured-3">
             Article Title
           </Text>
           <Text style={{ color: "white" }}>
@@ -761,40 +762,40 @@ export const SemanticElements: Story = {
         </Article>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Header>"}
         </Text>
-        <Header padding={4} background="secondary">
+        <Header background="secondary" padding={4}>
           <Text style={{ color: "white" }}>
             Renders as &lt;header&gt; — for introductory content
           </Text>
         </Header>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Footer>"}
         </Text>
-        <Footer padding={4} background="secondary">
+        <Footer background="secondary" padding={4}>
           <Text style={{ color: "white" }}>
             Renders as &lt;footer&gt; — for footer content
           </Text>
         </Footer>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Aside>"}
         </Text>
-        <Aside padding={4} background="secondary">
+        <Aside background="secondary" padding={4}>
           <Text style={{ color: "white" }}>
             Renders as &lt;aside&gt; — for tangentially related content
           </Text>
         </Aside>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Nav>"}
         </Text>
-        <Nav padding={4} background="secondary">
+        <Nav background="secondary" padding={4}>
           <Text style={{ color: "white" }}>
             Renders as &lt;nav&gt; — for navigation sections
           </Text>
@@ -816,82 +817,82 @@ export const BorderRadius: Story = {
   },
   render: () => (
     <Box direction="row" gap={6}>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
-          borderRadius={1}
-          padding={6}
+          alignItems="center"
           background="neutral-bold"
-          width="120px"
+          borderRadius={1}
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>1</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           1 (4px, default)
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
-          borderRadius={2}
-          padding={6}
+          alignItems="center"
           background="neutral-bold"
-          width="120px"
+          borderRadius={2}
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>2</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           2 (8px)
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
-          borderRadius={3}
-          padding={6}
+          alignItems="center"
           background="neutral-bold"
-          width="120px"
+          borderRadius={3}
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>3</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           3 (12px)
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
-          borderRadius="circle"
-          padding={6}
+          alignItems="center"
           background="neutral-bold"
-          width="120px"
+          borderRadius="circle"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Circle</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           circle (9999px)
         </Text>
@@ -912,107 +913,107 @@ export const CornerShape: Story = {
   },
   render: () => (
     <Box direction="row" gap={6}>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
+          alignItems="center"
+          background="neutral-bold"
           borderRadius={2}
           cornerShape="round"
-          padding={6}
-          background="neutral-bold"
-          width="120px"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Round</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           round (default)
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
+          alignItems="center"
+          background="neutral-bold"
           borderRadius={2}
           cornerShape="scoop"
-          padding={6}
-          background="neutral-bold"
-          width="120px"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Scoop</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           scoop
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
+          alignItems="center"
+          background="neutral-bold"
           borderRadius={2}
           cornerShape="bevel"
-          padding={6}
-          background="neutral-bold"
-          width="120px"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Bevel</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           bevel
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
+          alignItems="center"
+          background="neutral-bold"
           borderRadius={2}
           cornerShape="notch"
-          padding={6}
-          background="neutral-bold"
-          width="120px"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Notch</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           notch
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
+      <Box alignItems="center" direction="column" gap={2}>
         <Box
+          alignItems="center"
+          background="neutral-bold"
           borderRadius={2}
           cornerShape="squircle"
-          padding={6}
-          background="neutral-bold"
-          width="120px"
           height="120px"
           justifyContent="center"
-          alignItems="center"
+          padding={6}
+          width="120px"
         >
           <Text style={{ color: "white" }}>Squircle</Text>
         </Box>
         <Text
-          variant="body-2"
           color="secondary"
           style={{ textAlign: "center" }}
+          variant="body-2"
         >
           squircle
         </Text>
@@ -1034,20 +1035,20 @@ export const LayoutAliases: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Stack>"} — vertical layout (direction="column")
         </Text>
-        <Stack gap={4} padding={4} background="secondary">
+        <Stack background="secondary" gap={4} padding={4}>
           <Placeholder>Item 1</Placeholder>
           <Placeholder>Item 2</Placeholder>
           <Placeholder>Item 3</Placeholder>
         </Stack>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Cluster>"} — horizontal layout (direction="row")
         </Text>
-        <Cluster gap={4} padding={4} background="secondary">
+        <Cluster background="secondary" gap={4} padding={4}>
           <Placeholder>Item 1</Placeholder>
           <Placeholder>Item 2</Placeholder>
           <Placeholder>Item 3</Placeholder>
@@ -1070,14 +1071,14 @@ export const GridLayout: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           gridTemplateColumns="1fr 1fr 1fr"
         </Text>
         <Box
-          gridTemplateColumns="1fr 1fr 1fr"
-          gap={4}
-          padding={4}
           background="secondary"
+          gap={4}
+          gridTemplateColumns="1fr 1fr 1fr"
+          padding={4}
         >
           <Placeholder>1</Placeholder>
           <Placeholder>2</Placeholder>
@@ -1088,14 +1089,14 @@ export const GridLayout: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           gridTemplateColumns="200px 1fr 100px"
         </Text>
         <Box
-          gridTemplateColumns="200px 1fr 100px"
-          gap={4}
-          padding={4}
           background="secondary"
+          gap={4}
+          gridTemplateColumns="200px 1fr 100px"
+          padding={4}
         >
           <Placeholder>Fixed 200px</Placeholder>
           <Placeholder>Flexible</Placeholder>
@@ -1103,15 +1104,15 @@ export const GridLayout: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           gridTemplateColumns + gridTemplateRows
         </Text>
         <Box
+          background="secondary"
+          gap={4}
           gridTemplateColumns="1fr 1fr"
           gridTemplateRows="100px 150px"
-          gap={4}
           padding={4}
-          background="secondary"
         >
           <Placeholder>Row 1</Placeholder>
           <Placeholder>Row 1</Placeholder>
@@ -1120,28 +1121,28 @@ export const GridLayout: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           gridTemplateAreas with named regions
         </Text>
         <Box
+          background="secondary"
+          gap={4}
           gridTemplateAreas="'header header' 'sidebar main' 'footer footer'"
           gridTemplateColumns="200px 1fr"
           gridTemplateRows="auto 1fr auto"
-          gap={4}
-          padding={4}
-          background="secondary"
           height="300px"
+          padding={4}
         >
-          <Box gridArea="header" background="primary" padding={4}>
+          <Box background="primary" gridArea="header" padding={4}>
             <Text style={{ color: "white" }}>Header</Text>
           </Box>
-          <Box gridArea="sidebar" background="accent" padding={4}>
+          <Box background="accent" gridArea="sidebar" padding={4}>
             <Text style={{ color: "white" }}>Sidebar</Text>
           </Box>
-          <Box gridArea="main" background="positive" padding={4}>
+          <Box background="positive" gridArea="main" padding={4}>
             <Text style={{ color: "white" }}>Main Content</Text>
           </Box>
-          <Box gridArea="footer" background="warning" padding={4}>
+          <Box background="warning" gridArea="footer" padding={4}>
             <Text>Footer</Text>
           </Box>
         </Box>
@@ -1161,9 +1162,9 @@ export const Elevated: Story = {
     },
   },
   render: () => (
-    <Box direction="column" gap={6} padding={4} background="neutral-subtle">
+    <Box background="neutral-subtle" direction="column" gap={6} padding={4}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           elevated (shadow only)
         </Text>
         <Box elevated padding={4}>
@@ -1171,18 +1172,18 @@ export const Elevated: Story = {
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           elevated + background=&quot;elevation&quot;
         </Text>
-        <Box elevated background="elevation" padding={4}>
+        <Box background="elevation" elevated padding={4}>
           <Text>Elevated surface with white background and shadow</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           elevated + borderRadius=&#123;2&#125;
         </Text>
-        <Box elevated background="elevation" padding={4} borderRadius={2}>
+        <Box background="elevation" borderRadius={2} elevated padding={4}>
           <Text>Elevated box with larger border radius</Text>
         </Box>
       </Box>
@@ -1201,9 +1202,9 @@ export const CardAlias: Story = {
     },
   },
   render: () => (
-    <Box direction="column" gap={6} padding={4} background="neutral-subtle">
+    <Box background="neutral-subtle" direction="column" gap={6} padding={4}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Card>"}
         </Text>
         <Card>
@@ -1225,9 +1226,9 @@ export const ContainerAlias: Story = {
     },
   },
   render: () => (
-    <Box direction="column" gap={6} background="neutral-subtle">
+    <Box background="neutral-subtle" direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           {"<Container>"}
         </Text>
         <Container background="secondary" padding={4}>
@@ -1253,49 +1254,49 @@ export const BackgroundImage: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           backgroundSize=&quot;cover&quot; backgroundPosition=&quot;center&quot;
         </Text>
         <Box
           backgroundImage="https://picsum.photos/800/400"
-          backgroundSize="cover"
           backgroundPosition="center"
-          height="200px"
+          backgroundSize="cover"
           borderRadius={2}
+          height="200px"
         />
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           backgroundSize=&quot;contain&quot;
           backgroundPosition=&quot;center&quot;
         </Text>
         <Box
-          backgroundImage="https://picsum.photos/400/400"
-          backgroundSize="contain"
-          backgroundPosition="center"
-          height="200px"
-          borderRadius={2}
           background="neutral-subtle"
+          backgroundImage="https://picsum.photos/400/400"
+          backgroundPosition="center"
+          backgroundSize="contain"
+          borderRadius={2}
+          height="200px"
           style={{ backgroundRepeat: "no-repeat" }}
         />
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Hero section with overlay content
         </Text>
         <Box
-          backgroundImage="https://picsum.photos/800/300"
-          backgroundSize="cover"
-          backgroundPosition="center"
-          height="200px"
-          borderRadius={2}
-          padding={6}
-          justifyContent="center"
           alignItems="center"
+          backgroundImage="https://picsum.photos/800/300"
+          backgroundPosition="center"
+          backgroundSize="cover"
+          borderRadius={2}
+          height="200px"
+          justifyContent="center"
+          padding={6}
         >
           <Text
-            variant="title-3"
             style={{ color: "white", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
+            variant="title-3"
           >
             Hero Title
           </Text>
@@ -1318,62 +1319,62 @@ export const AspectRatio: Story = {
   render: () => (
     <Box direction="column" gap={6}>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           aspectRatio=&quot;16/9&quot; (video)
         </Text>
         <Box
+          alignItems="center"
           aspectRatio="16/9"
           background="neutral-bold"
           borderRadius={2}
-          width="300px"
           justifyContent="center"
-          alignItems="center"
+          width="300px"
         >
           <Text style={{ color: "white" }}>16:9</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           aspectRatio=&quot;4/3&quot; (photo)
         </Text>
         <Box
+          alignItems="center"
           aspectRatio="4/3"
           background="neutral-bold"
           borderRadius={2}
-          width="300px"
           justifyContent="center"
-          alignItems="center"
+          width="300px"
         >
           <Text style={{ color: "white" }}>4:3</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           aspectRatio=&quot;1&quot; (square)
         </Text>
         <Box
+          alignItems="center"
           aspectRatio="1"
           background="neutral-bold"
           borderRadius={2}
-          width="150px"
           justifyContent="center"
-          alignItems="center"
+          width="150px"
         >
           <Text style={{ color: "white" }}>1:1</Text>
         </Box>
       </Box>
       <Box direction="column" gap={2}>
-        <Text variant="body-2" color="secondary">
+        <Text color="secondary" variant="body-2">
           Aspect ratio with background image
         </Text>
         <Box
           aspectRatio="21/9"
           backgroundImage="https://picsum.photos/800/350"
-          backgroundSize="cover"
           backgroundPosition="center"
+          backgroundSize="cover"
           borderRadius={2}
-          width="100%"
           maxWidth="500px"
+          width="100%"
         />
       </Box>
     </Box>

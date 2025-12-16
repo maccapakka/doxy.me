@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Icon } from "./Icon";
+
 import { ChatIcon } from "../../icons/ChatIcon";
 import { DotsIcon } from "../../icons/DotsIcon";
 import { LayoutIcon } from "../../icons/LayoutIcon";
@@ -12,46 +12,18 @@ import { ReportIcon } from "../../icons/ReportIcon";
 import { SettingsIcon } from "../../icons/SettingsIcon";
 import { Box } from "../Box";
 import { Text } from "../Text";
+import { Icon } from "./Icon";
 
 const meta: Meta<typeof Icon> = {
-  component: Icon,
-  title: "Components/Icon",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      subtitle: "A wrapper component for consistent icon sizing and coloring",
-      description: {
-        component:
-          "Icon wraps SVG elements with token-based sizing and coloring. It uses a multiplier-based sizing system (4px base) and provides color variants from the design system. The component maintains a 1:1 aspect ratio and works seamlessly with all icon assets.",
-      },
-    },
-  },
   argTypes: {
-    // Element
-    svg: {
-      description: "The SVG element to render",
-      control: false,
-      table: { category: "Element" },
-    },
     className: {
-      description: "Additional CSS classes",
       control: "text",
+      description: "Additional CSS classes",
       table: { category: "Element" },
-    },
-    style: {
-      description: "Additional inline styles",
-      control: "object",
-      table: { category: "Element" },
-    },
-    // Styling
-    size: {
-      description: "Size multiplier (multiplier of 4px, default: 6 = 24px)",
-      control: { type: "range", min: 1, max: 20, step: 1 },
-      table: { category: "Styling" },
     },
     color: {
-      description: "Color variant from design tokens",
       control: "select",
+      description: "Color variant from design tokens",
       options: [
         "primary",
         "secondary",
@@ -63,13 +35,46 @@ const meta: Meta<typeof Icon> = {
       ],
       table: { category: "Styling" },
     },
+    // Styling
+    size: {
+      control: { max: 20, min: 1, step: 1, type: "range" },
+      description: "Size multiplier (multiplier of 4px, default: 6 = 24px)",
+      table: { category: "Styling" },
+    },
+    style: {
+      control: "object",
+      description: "Additional inline styles",
+      table: { category: "Element" },
+    },
+    // Element
+    svg: {
+      control: false,
+      description: "The SVG element to render",
+      table: { category: "Element" },
+    },
   },
+  component: Icon,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Icon wraps SVG elements with token-based sizing and coloring. It uses a multiplier-based sizing system (4px base) and provides color variants from the design system. The component maintains a 1:1 aspect ratio and works seamlessly with all icon assets.",
+      },
+      subtitle: "A wrapper component for consistent icon sizing and coloring",
+    },
+  },
+  tags: ["autodocs"],
+  title: "Components/Icon",
 };
 
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {
+  args: {
+    size: 6,
+    svg: DotsIcon,
+  },
   name: "Default",
   parameters: {
     docs: {
@@ -78,10 +83,6 @@ export const Default: Story = {
           "Basic icon usage with default size (24px). Without a color prop, the icon inherits the current text color.",
       },
     },
-  },
-  args: {
-    svg: DotsIcon,
-    size: 6,
   },
 };
 
@@ -97,45 +98,45 @@ export const ColorVariants: Story = {
   },
   render: () => (
     <Box direction="row" gap={6}>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="primary" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Primary
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="secondary" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="secondary" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Secondary
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="accent" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="accent" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Accent
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="warning" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="warning" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Warning
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="positive" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="positive" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Positive
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="critical" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="critical" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Critical
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="neutral" size={8} />
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="neutral" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="body-2">
           Neutral
         </Text>
       </Box>
@@ -155,41 +156,41 @@ export const SizeScale: Story = {
   },
   render: () => (
     <Box alignItems="flex-end" gap={6}>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           3 (12px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={3} />
+        <Icon color="primary" size={3} svg={SettingsIcon} />
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           4 (16px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={4} />
+        <Icon color="primary" size={4} svg={SettingsIcon} />
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           6 (24px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={6} />
+        <Icon color="primary" size={6} svg={SettingsIcon} />
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           8 (32px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={8} />
+        <Icon color="primary" size={8} svg={SettingsIcon} />
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           10 (40px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={10} />
+        <Icon color="primary" size={10} svg={SettingsIcon} />
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Text variant="body-2" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Text color="secondary" variant="body-2">
           12 (48px)
         </Text>
-        <Icon svg={SettingsIcon} color="primary" size={12} />
+        <Icon color="primary" size={12} svg={SettingsIcon} />
       </Box>
     </Box>
   ),
@@ -207,63 +208,63 @@ export const IconLibrary: Story = {
   },
   render: () => (
     <Box gap={6} style={{ flexWrap: "wrap" }}>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={ChatIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={ChatIcon} />
+        <Text color="secondary" variant="caption-1">
           Chat
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={DotsIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={DotsIcon} />
+        <Text color="secondary" variant="caption-1">
           Dots
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={LayoutIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={LayoutIcon} />
+        <Text color="secondary" variant="caption-1">
           Layout
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={MeetingCameraIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={MeetingCameraIcon} />
+        <Text color="secondary" variant="caption-1">
           Camera
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={MeetingCameraOffIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={MeetingCameraOffIcon} />
+        <Text color="secondary" variant="caption-1">
           Camera Off
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={MicrophoneIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={MicrophoneIcon} />
+        <Text color="secondary" variant="caption-1">
           Microphone
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={PhoneIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={PhoneIcon} />
+        <Text color="secondary" variant="caption-1">
           Phone
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={PhoneOffIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={PhoneOffIcon} />
+        <Text color="secondary" variant="caption-1">
           Phone Off
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={ReportIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={ReportIcon} />
+        <Text color="secondary" variant="caption-1">
           Report
         </Text>
       </Box>
-      <Box direction="column" gap={2} alignItems="center">
-        <Icon svg={SettingsIcon} color="primary" size={8} />
-        <Text variant="caption-1" color="secondary">
+      <Box alignItems="center" direction="column" gap={2}>
+        <Icon color="primary" size={8} svg={SettingsIcon} />
+        <Text color="secondary" variant="caption-1">
           Settings
         </Text>
       </Box>

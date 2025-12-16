@@ -1,12 +1,12 @@
 export const OneIcon = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={1.5}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <title>One</title>
     <path d="m12 16 0 -8v0.66667C12 9.40304 11.403 10 10.6667 10L10 10" />
